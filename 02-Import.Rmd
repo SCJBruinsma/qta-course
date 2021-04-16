@@ -1,4 +1,14 @@
-# Preparing the Data
+---
+title: "Import"
+bibliography: library.bib
+biblio-style: apalike
+link-citations: yes
+output:  
+  html_document:  
+    toc: true  
+    toc_float: true
+    fig_width: 1       
+---
 
 No analysis is possible unless we have some data to work with. In the following exercises, we will look at five different ways to get textual data into R: a) by using .pdf files, b) by using .txt files, c) by using .csv files, d) by using web scraping, and e) by using an API. Before we get to these methods, we will look at how R handles text and how we can work with it.
 
@@ -228,7 +238,7 @@ path <- "https://data.police.uk/api/crimes-street/all-crime?"
 
 We can then build our request. As you can see on the site, the request requires us to specify the latitude and longitude of the place we are interested in and optionally the date. We set these here:
 
-```{r}
+```{r, eval=FALSE}
 request <- GET(url = path,
 query = list(
 lat = 51.523772,
@@ -238,13 +248,13 @@ lng = -0.158539)
 
 We can then send our request. Here, we do this with the `content` command, which takes as its input the request we just set up, as well as the way we want our data (in text form) and the encoding (here UTF-8):
 
-```{r}
+```{r, eval=FALSE}
 response <- content(request, as = "text", encoding = "UTF-8")
 ```
 
 The result is a JSON object that you can see in the environment. While JSON (JavaScript Object Notation) is a generic way in which information is easy to share - and is thus often used - it is not in an ideal form. So, we change the JSON information to a data frame using the following:
 
-```{r}
+```{r, eval=FALSE}
 data_crimes <- fromJSON(response, flatten = TRUE) %>%
 data.frame()
 ```

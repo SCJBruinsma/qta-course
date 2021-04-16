@@ -1,4 +1,13 @@
-# Dictionaries
+---
+title: "Dictionaries"
+bibliography: library.bib
+biblio-style: apalike
+link-citations: yes
+output:  
+  html_document:  
+    toc: true  
+    toc_float: true
+---
 
 One of the simplest forms of quantitative text analysis is dictionary analysis. We can define dictionary methods as those which simply use the rate at which key words appear in a text to classify documents into categories or to measure the extent to which documents belong to particular categories, without making further assumptions. In many respects, dictionary methods present a non-statistical, categorical analysis approach.
 

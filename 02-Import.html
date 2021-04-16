@@ -11,7 +11,7 @@
 
 
 
-<title>02-Import.utf8</title>
+<title>Import</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -56,6 +59,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 
 
@@ -218,6 +243,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -225,6 +313,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -262,6 +360,12 @@ $(document).ready(function () {
 <li>
   <a href="07-Seminar5.html">Unsupervised Methods</a>
 </li>
+<li>
+  <a href="08-references.html">References</a>
+</li>
+<li>
+  <a href="09-test.html">Test</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -274,12 +378,11 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Import</h1>
 
 </div>
 
 
-<div id="preparing-the-data" class="section level1">
-<h1>Preparing the Data</h1>
 <p>No analysis is possible unless we have some data to work with. In the following exercises, we will look at five different ways to get textual data into R: a) by using .pdf files, b) by using .txt files, c) by using .csv files, d) by using web scraping, and e) by using an API. Before we get to these methods, we will look at how R handles text and how we can work with it.</p>
 <div id="text-in-r" class="section level2">
 <h2>Text in R</h2>
@@ -377,7 +480,7 @@ data_texts &lt;- readtext(paste0(txt_directory, &quot;*&quot;), encoding = &quot
 </div>
 <div id="import-.csv-files" class="section level2">
 <h2>Import .csv Files</h2>
-<p>We can also choose not to import the texts into R in a direct fashion, but import a .csv file with word counts instead. One way to generate these counts is by using JFreq <span class="citation">[@Lowe2011b]</span>. This is a useful stand-alone programme written in Java that generates a .csv file where the rows represent the documents and the columns represent the individual words contained in the documents. The cells therefore, contain the wordcounts for each word within each document. JFreq also allows performing some basic pre-processing. JFreq is not actively maintained, but is available at <a href="https://conjugateprior.org/software/jfreq/" class="uri">https://conjugateprior.org/software/jfreq/</a>.</p>
+<p>We can also choose not to import the texts into R in a direct fashion, but import a .csv file with word counts instead. One way to generate these counts is by using JFreq <span class="citation">(<a href="#ref-Lowe2011b" role="doc-biblioref">Lowe 2011</a>)</span>. This is a useful stand-alone programme written in Java that generates a .csv file where the rows represent the documents and the columns represent the individual words contained in the documents. The cells therefore, contain the wordcounts for each word within each document. JFreq also allows performing some basic pre-processing. JFreq is not actively maintained, but is available at <a href="https://conjugateprior.org/software/jfreq/" class="uri">https://conjugateprior.org/software/jfreq/</a>.</p>
 <p>To use JFreq, open the programme and drag and drop all the documents you want to process into the window of the programme. Once you do this, the document file names will appear in the document window. Then, you can choose from several pre-processing options. Amongst these are options to make all words lowercase or remove numbers, currency symbols, or stop words. The latter are words that often appear in texts which do not carry an important meaning. These are words such as <code>and'',</code>or’’ and ``but’’. As stop words are language-specific and often context-specific as well, we need to tell JFreq what words are stop words. We can do so by putting all the stop words in a separate .txt file and load it in JFreq. You can also find many lists of stopwords for different languages online. For instance, many different lists of stopwords in English are available in this GitHub page: <a href="https://github.com/igorbrigadir/stopwords" class="uri">https://github.com/igorbrigadir/stopwords</a> Finally, we can apply a stemmer which reduces words such as Europe and European to a single Europ* stem. JFreq allows us to use pre-defined stemmers by choosing the relevant language from a drop-down menu. In the following screenshot, you can see the JFreq at work importing the .txt files of a number of election manifestos.</p>
 <p><img src="figures/jfreq.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>Note that here the encoding is UTF-8 while the locale is English (UK). Once we have specified all the options we want, we give a name for the output folder and press <em>Process</em>. Now we go to that folder we named and copy-paste the ``data.csv’’ file into your Working Directory. In R, we then run the following:</p>
@@ -387,7 +490,7 @@ data_texts &lt;- readtext(paste0(txt_directory, &quot;*&quot;), encoding = &quot
 <div id="import-using-web-scraping" class="section level2">
 <h2>Import using Web Scraping</h2>
 <p>If our text is online (e.g. as part of a website) we can also choose to get it from there without copying it into a .txt file first. To do so, we have to employ web scraping. The logic of web scraping is that we use the structure of the underlying HTML document to find and download the text we want. Note though that not all websites encourage (or even allow) scraping. So, do have a look at their disclaimer before we do so. You can do this by either checking the website’s <em>terms and condition</em> page, or the robots.txt file that you can usually find appended at the home page (e.g. <a href="https://www.facebook.com/robots.txt" class="uri">https://www.facebook.com/robots.txt</a> ).</p>
-<p>In the following example we will see how one can download information from the Internet Movie Database (IMDb): <a href="https://www.imdb.com" class="uri">https://www.imdb.com</a> Note that the IMDb does not allow you to do any web scraping, so the following example is given for illustration purposes only! If you are interested in analyzing data from IMDB you can download the official datasets that are released by IMDB here: <a href="https://datasets.imdbws.com/" class="uri">https://datasets.imdbws.com/</a> The documentation for these datasets is available here: <a href="https://www.imdb.com/interfaces/" class="uri">https://www.imdb.com/interfaces/</a> If you would like to learn more about web scraping in the context of quantitative text analysis we suggest the textbook by <span class="citation">@Munzert2014</span>.</p>
+<p>In the following example we will see how one can download information from the Internet Movie Database (IMDb): <a href="https://www.imdb.com" class="uri">https://www.imdb.com</a> Note that the IMDb does not allow you to do any web scraping, so the following example is given for illustration purposes only! If you are interested in analyzing data from IMDB you can download the official datasets that are released by IMDB here: <a href="https://datasets.imdbws.com/" class="uri">https://datasets.imdbws.com/</a> The documentation for these datasets is available here: <a href="https://www.imdb.com/interfaces/" class="uri">https://www.imdb.com/interfaces/</a> If you would like to learn more about web scraping in the context of quantitative text analysis we suggest the textbook by <span class="citation"><a href="#ref-Munzert2014" role="doc-biblioref">Munzert et al.</a> (<a href="#ref-Munzert2014" role="doc-biblioref">2014</a>)</span>.</p>
 <p>In the following example we show how to download the user reviews that appear on the IMDB website. The first command, <code>read_html</code> downloads this whole page. If you look at this page in your browser, you see that there are many other things on there besides the user review. To tell R which part is the text to download, we use the <code>html_nodes</code> command. This command looks for a certain header on the HTML page and starts downloading from there. The <code>html_text</code> command then reads that bit of text and puts it into the object. Note that the <code>%&gt;%</code> command we use here is what we call a <em>pipe</em>. What it does is that it transports the output of one command into another, without saving it to an intermediate object. So here, we first download the HTML, find the right header, and only then save it into an object. Having done this for three reviews, we then bind them together:</p>
 <pre class="r"><code>library(rvest)
 
@@ -408,9 +511,9 @@ reviews_scraping &lt;- c(review1, review2, review3)</code></pre>
 <div id="import-from-an-api" class="section level2">
 <h2>Import from an API</h2>
 <p>Instead of importing the online data page-by-page, we can also use special programmes to download lots of data at once. We can do so with an Application Programming Interface (API). The main difference between using an API and regular webscraping is that APIs are specifically designed for this purpose. This means that it is easier for R to read the webpages, and that you can download a large amount of data at once. APIs are offered by many popular web sites like Wikipedia, social networking sites like Twitter and Facebook, newspapers such as <em>The New York Times</em>, and so on.</p>
-<p>While almost all websites can be read by the <code>rvest</code> package, for the APIs you often need a specific package. For example, for Twitter there is the <code>rtweet</code> package, for Facebook <code>rFacebook</code>, and <code>ggmap</code> for Google maps. Also, you often, if not always, need to register first before you can use an API. Note, however, that Facebook has recently taken steps in restricting access to their public APIs for research purposes, which means that research on Facebook users’ posts is no longer an option (see <span class="citation">@Freelon2018</span> and <span class="citation">@Perriam2020</span>).</p>
+<p>While almost all websites can be read by the <code>rvest</code> package, for the APIs you often need a specific package. For example, for Twitter there is the <code>rtweet</code> package, for Facebook <code>rFacebook</code>, and <code>ggmap</code> for Google maps. Also, you often, if not always, need to register first before you can use an API. Note, however, that Facebook has recently taken steps in restricting access to their public APIs for research purposes, which means that research on Facebook users’ posts is no longer an option (see <span class="citation"><a href="#ref-Freelon2018" role="doc-biblioref">Freelon</a> (<a href="#ref-Freelon2018" role="doc-biblioref">2018</a>)</span> and <span class="citation"><a href="#ref-Perriam2020" role="doc-biblioref">Perriam, Birkbak, and Freeman</a> (<a href="#ref-Perriam2020" role="doc-biblioref">2020</a>)</span>).</p>
 <p>Having said this, however, there are many APIs with associated R packages that are made by researchers and for researchers. One such example in the area of quantitative text analysis is the API and <code>manifestoR</code> package developed by the Manifesto Project, a longstanding research project previously known as the Manifesto Research Group (MRG), Comparative Manifestos Project (CMP), and Manifesto Research on Political Representation (MARPOR).</p>
-<p>The Manifesto Project collects the electoral manifestos that have been released by major parties across the OECD countries since 1945, and trains human coders to classify their content using a custom-made coding scheme <span class="citation">[@Volkens2019a]</span>. Using the Manifesto Project API we can download the text of many of these manifestos along with the annotations made by the trained coders (see <span class="citation">@Merz2016</span>). In the following example we do this using the <code>manifestoR</code> package.</p>
+<p>The Manifesto Project collects the electoral manifestos that have been released by major parties across the OECD countries since 1945, and trains human coders to classify their content using a custom-made coding scheme <span class="citation">(<a href="#ref-Volkens2019a" role="doc-biblioref">Volkens et al. 2019</a>)</span>. Using the Manifesto Project API we can download the text of many of these manifestos along with the annotations made by the trained coders (see <span class="citation"><a href="#ref-Merz2016" role="doc-biblioref">Merz, Regel, and Lewandowski</a> (<a href="#ref-Merz2016" role="doc-biblioref">2016</a>)</span>). In the following example we do this using the <code>manifestoR</code> package.</p>
 <p>Before you can use the API, you first need to register with the Manifesto Project. For this, go to their website (<a href="https://manifesto-project.wzb.eu/" class="uri">https://manifesto-project.wzb.eu/</a>), click on the <em>Login/Sign-up</em> button, and choose <em>Register</em>. As soon as you then have confirmed your account using the confirmation e-mail, you can then login to your account and go to your profile page. Here you can see your API key, which you can download. Do so, and save the file in your Working Directory. If you have forgotten where that is, type <code>getwd()</code> into the console and R will tell you. To load the manifestos into R we then first have to load the package and set the API key:</p>
 <pre class="r"><code>library(manifestoR)
 mp_setapikey(&quot;manifesto_apikey.txt&quot;)</code></pre>
@@ -435,11 +538,32 @@ lng = -0.158539)
 <pre class="r"><code>data_crimes &lt;- fromJSON(response, flatten = TRUE) %&gt;%
 data.frame()</code></pre>
 <p>You can now find all the information in the new <code>data_crimes</code> object, which contains information about the type of crime, location, month etc. This is one example of an API, but there are many others available, such as those of the EU, OpenStreetMaps, Weather Underground, etc. As we can see though, having a package makes things easier, though more limited.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Freelon2018" class="csl-entry">
+Freelon, Deen. 2018. <span>“Computational Research in the Post-API Age.”</span> <em>Political Communication</em> 35 (4): 665–68.
+</div>
+<div id="ref-Lowe2011b" class="csl-entry">
+Lowe, Will. 2011. <em>JFreq: Count Words, Quickly</em>. <a href="http://www.conjugateprior.org/software/jfreq/">http://www.conjugateprior.org/software/jfreq/</a>.
+</div>
+<div id="ref-Merz2016" class="csl-entry">
+Merz, Nicolas, Sven Regel, and Jirka Lewandowski. 2016. <span>“The Manifesto Corpus: A New Resource for Research on Political Parties and Quantitative Text Analysis.”</span> <em>Research &amp; Politics</em> 3 (2): 2053168016643346.
+</div>
+<div id="ref-Munzert2014" class="csl-entry">
+Munzert, Simon, Christian Rubba, Peter Meißner, and Dominic Nyhuis. 2014. <em>Automated Data Collection with r: A Practical Guide to Web Scraping and Text Mining</em>. John Wiley &amp; Sons.
+</div>
+<div id="ref-Perriam2020" class="csl-entry">
+Perriam, Jessamy, Andreas Birkbak, and Andy Freeman. 2020. <span>“Digital Methods in a Post-API Environment.”</span> <em>International Journal of Social Research Methodology</em> 23 (3): 277–90.
+</div>
+<div id="ref-Volkens2019a" class="csl-entry">
+Volkens, Andrea, Werner Krause, Pola Lehmann, Theres Matthieß, Nicolas Merz, Sven Regel, and Bernhard Weßels. 2019. <span>“<span>The Manifesto Data Collection. Manifesto Project (MRG/CMP/MARPOR)</span>.”</span> Berlin: Wissenschaftszentrum Berlin f<span>ü</span>r Sozialforschung (WZB). 2019. <a href="https://doi.org/10.25522/manifesto.mpds.2019b">https://doi.org/10.25522/manifesto.mpds.2019b</a>.
 </div>
 </div>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -472,6 +596,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

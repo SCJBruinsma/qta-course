@@ -11,7 +11,7 @@
 
 
 
-<title>01-Install.utf8</title>
+<title>Getting Ready</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -56,6 +59,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 
 
@@ -218,6 +243,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -225,6 +313,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -262,6 +360,12 @@ $(document).ready(function () {
 <li>
   <a href="07-Seminar5.html">Unsupervised Methods</a>
 </li>
+<li>
+  <a href="08-references.html">References</a>
+</li>
+<li>
+  <a href="09-test.html">Test</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -274,12 +378,11 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Getting Ready</h1>
 
 </div>
 
 
-<div id="getting-ready" class="section level1">
-<h1>Getting Ready</h1>
 <p>The developments over the past 20 years have made research using quantitative text analysis a particularly exciting undertaking.</p>
 <p>First of all, the enormous increase in computing power has made it possible to work with large bodies of text. Secondly, the development of R, a free, open-source, cross-platform statistical software has enabled many researchers and programmers to develop particular packages that implement statistical methods of working with text. In addition, the spread of the Internet has made available in digital format many interesting sources of textual data. To these, we should add the emergence of social media as a massive source of text which is generated daily, by millions of users across the world.</p>
 <p>Yet, quantitative text analysis can be a daunting experience for someone who is not familiar with quantitative methods or programming. This book will guide you, with step-by-step explanation of the code, through a series of exercises illustrating a wide range of text analysis methods. Many of these exercises have been given to participants in the ECPR Summer and Winter Schools in Methods and Techniques whom, often, had no prior experience in text analysis, R, or quantitative methods. Therefore, we hope that you will find the exercises easy to understand but also engaging.</p>
@@ -346,7 +449,7 @@ $(document).ready(function () {
 </div>
 <div id="quanteda" class="section level2">
 <h2>Quanteda</h2>
-<p>While we will be using several different packages to run quantitative text analysis, we will mostly use <code>quanteda</code> (<span class="citation">@Benoit2018</span>). <code>quanteda</code> integrates many of the text analysis functions of R that were before spread out over many different packages (see, for example <span class="citation">@Welbers2017</span>). Besides, it is easy to combine with other packages, has simple and logical commands, and a well-maintained website (www.quanteda.io).</p>
+<p>While we will be using several different packages to run quantitative text analysis, we will mostly use <code>quanteda</code> (<span class="citation"><a href="#ref-Benoit2018" role="doc-biblioref">Benoit et al.</a> (<a href="#ref-Benoit2018" role="doc-biblioref">2018</a>)</span>). <code>quanteda</code> integrates many of the text analysis functions of R that were before spread out over many different packages (see, for example <span class="citation"><a href="#ref-Welbers2017" role="doc-biblioref">Welbers, Van Atteveldt, and Benoit</a> (<a href="#ref-Welbers2017" role="doc-biblioref">2017</a>)</span>). Besides, it is easy to combine with other packages, has simple and logical commands, and a well-maintained website (www.quanteda.io).</p>
 <p>The current version of <code>quanteda</code> as of writing is <code>packageVersion("quanteda")</code>. This version works best with R version 4.0.1 or higher. To check if your system has this, type <code>R.Version()</code> in your console. The result will be a list. Look for <code>$version.string</code> to see which version number your version of R is. If you do not have the latest version, see the steps above on how to download this.</p>
 <p>To install the package, type:</p>
 <pre class="r"><code>install.packages(&quot;quanteda&quot;, dependencies=TRUE)</code></pre>
@@ -383,11 +486,20 @@ install.packages(&quot;tidyverse&quot;, dependencies = TRUE)</code></pre>
 <li>Is the data in the right shape or format?</li>
 </ol>
 <p>If none of these provides a solution, you can always look up online if others have run into the same issue. Often, copy-pasting your error into a search engine can provide you with other instances, and most often a solution. One well-known place for solutions is Stack Overflow (<a href="https://stackoverflow.com/" class="uri">https://stackoverflow.com/</a>). Here, you can share your problem with others and see if someone can offer a solution. Make sure though to read through the problems already posted first, to ensure that you do not post the same problem twice.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Benoit2018" class="csl-entry">
+Benoit, Kenneth, Kohei Watanabe, Haiyan Wang, Paul Nulty, Adam Obeng, Stefan Müller, and Akitaka Matsuo. 2018. <span>“Quanteda: An r Package for the Quantitative Analysis of Textual Data.”</span> <em>Journal of Open Source Software</em> 3 (30): 774.
+</div>
+<div id="ref-Welbers2017" class="csl-entry">
+Welbers, Kasper, Wouter Van Atteveldt, and Kenneth Benoit. 2017. <span>“Text Analysis in r.”</span> <em>Communication Methods and Measures</em> 11 (4): 245–65.
 </div>
 </div>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -420,6 +532,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

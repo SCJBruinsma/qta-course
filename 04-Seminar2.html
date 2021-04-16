@@ -11,7 +11,7 @@
 
 
 
-<title>04-Seminar2.utf8</title>
+<title>Dictionaries</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -56,6 +59,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 
 
@@ -218,6 +243,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -225,6 +313,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -262,6 +360,12 @@ $(document).ready(function () {
 <li>
   <a href="07-Seminar5.html">Unsupervised Methods</a>
 </li>
+<li>
+  <a href="08-references.html">References</a>
+</li>
+<li>
+  <a href="09-test.html">Test</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -274,14 +378,13 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Dictionaries</h1>
 
 </div>
 
 
-<div id="dictionaries" class="section level1">
-<h1>Dictionaries</h1>
 <p>One of the simplest forms of quantitative text analysis is dictionary analysis. We can define dictionary methods as those which simply use the rate at which key words appear in a text to classify documents into categories or to measure the extent to which documents belong to particular categories, without making further assumptions. In many respects, dictionary methods present a non-statistical, categorical analysis approach.</p>
-<p>One of the most well-known examples of using dictionary methods is the measuring the tone in newspaper articles, speeches, children’s writings, and so on, by using the so-called sentiment analysis dictionaries. Another well-known example is the measuring of policy content in different documents as illustrated by the Policy Agendas Project dictionary (<span class="citation">@Albaugh2013</span>).</p>
+<p>One of the most well-known examples of using dictionary methods is the measuring the tone in newspaper articles, speeches, children’s writings, and so on, by using the so-called sentiment analysis dictionaries. Another well-known example is the measuring of policy content in different documents as illustrated by the Policy Agendas Project dictionary (<span class="citation"><a href="#ref-Albaugh2013" role="doc-biblioref">Albaugh et al.</a> (<a href="#ref-Albaugh2013" role="doc-biblioref">2013</a>)</span>).</p>
 <p>Here, we will carry out two such analyses, the first a standard analysis and the second focusing on sentiment. For the former, we will use political party manifestos, while for the latter we will use movie reviews. First, though, we will have a look at the data itself and which tools <code>quanteda</code> has to investigate it.</p>
 <div id="working-with-a-corpus" class="section level2">
 <h2>Working with a Corpus</h2>
@@ -330,7 +433,7 @@ corpus_manifestos &lt;- corpus_subset(corpus_manifestos, Party==&quot;Lab&quot; 
 <pre><code>##  ...segmenting into words</code></pre>
 <pre><code>##  ...10,488 unique types</code></pre>
 <pre><code>##  ...removing separators, punctuation, symbols, numbers, URLs</code></pre>
-<pre><code>##  ...complete, elapsed time: 0.694 seconds.</code></pre>
+<pre><code>##  ...complete, elapsed time: 0.858 seconds.</code></pre>
 <pre><code>## Finished constructing tokens from 10 documents.</code></pre>
 <p>We can also remove certain stopwords so that words like “and” or “the” do not influence our analysis too much. We can either specify these words ourselves or we can use a list that is already present in R. To see this list, type <code>stopwords("english")</code> in the console. Stopwords for other languages are also available (such as German, French and Spanish). Even more stopwords can be found in the <code>stopword</code> package, that can easily be integrated with <code>quanteda</code>. For now, we will use the English ones. First, however, as all the stopwords are lower-case, we will have to lower case our words as well:</p>
 <pre class="r"><code>data_manifestos_tokens &lt;- tokens_tolower(data_manifestos_tokens, keep_acronyms = FALSE)
@@ -368,11 +471,11 @@ textplot_wordcloud(wordcloud_dfm_comp, comparison = TRUE)</code></pre>
 <h2>Standard Dictionary Analysis</h2>
 <p>Now we have the first idea of our data, we can turn to a dictionary analysis. We can do so either by making a dictionary ourselves or using an off-the-shelf version. For the latter, we can either import the files we already have into R or use some of the versions that come with the <code>quanteda.dictionaries</code> package. For this, we first load the package:</p>
 <pre class="r"><code>library(quanteda.dictionaries)</code></pre>
-<p>We then apply one of these dictionaries to the document feature matrix we made earlier. As a dictionary, we will use the one made by <span class="citation">@Laver2000a</span>, meant for estimating policy positions from political texts. We first load this dictionary into R and then run it on the dfm using the <code>dfm_lookup</code> command:</p>
+<p>We then apply one of these dictionaries to the document feature matrix we made earlier. As a dictionary, we will use the one made by <span class="citation"><a href="#ref-Laver2000a" role="doc-biblioref">Laver and Garry</a> (<a href="#ref-Laver2000a" role="doc-biblioref">2000</a>)</span>, meant for estimating policy positions from political texts. We first load this dictionary into R and then run it on the dfm using the <code>dfm_lookup</code> command:</p>
 <pre class="r"><code>data_dictionary_LaverGarry
 dictionary_results &lt;- dfm_lookup(data_manifestos_dfm, data_dictionary_LaverGarry)
 dictionary_results</code></pre>
-<p>Apart from off-the-shelf dictionaries, it is also possible to create our own which could suit our research question better. One approach in dictionary construction is to use prior theory deductively to come up with different categories and their associated words. Another approach is to use reference texts in order to come up with categories and words inductively. We can also combine different dictionaries as illustrated by <span class="citation">@Young2012</span>, or different dictionaries and keywords from categories in manual coding scheme (<span class="citation">@Lind2019</span>). Finally, one can use expert or crowdcoding assessments to determine the words that best match different categories in a dictionary (<span class="citation">@Haselmayer2017</span>).</p>
+<p>Apart from off-the-shelf dictionaries, it is also possible to create our own which could suit our research question better. One approach in dictionary construction is to use prior theory deductively to come up with different categories and their associated words. Another approach is to use reference texts in order to come up with categories and words inductively. We can also combine different dictionaries as illustrated by <span class="citation"><a href="#ref-Young2012" role="doc-biblioref">Young and Soroka</a> (<a href="#ref-Young2012" role="doc-biblioref">2012</a>)</span>, or different dictionaries and keywords from categories in manual coding scheme (<span class="citation"><a href="#ref-Lind2019" role="doc-biblioref">Lind et al.</a> (<a href="#ref-Lind2019" role="doc-biblioref">2019</a>)</span>). Finally, one can use expert or crowdcoding assessments to determine the words that best match different categories in a dictionary (<span class="citation"><a href="#ref-Haselmayer2017" role="doc-biblioref">Haselmayer and Jenny</a> (<a href="#ref-Haselmayer2017" role="doc-biblioref">2017</a>)</span>).</p>
 <p>If we want to create our own dictionary in <code>quanteda</code> we use the same commands as above, but we first have to create the dictionary. To do so, we specify the words in a named list. This list contains keys (the words we want to look for) and the categories to which they belong. We then transform this list into a dictionary. Here, we choose some words which we believe will allow us to easily identify the different parties:</p>
 <pre class="r"><code>dic_list &lt;- list(economy = c(&quot;tax*&quot;, &quot;vat&quot;, &quot;trade&quot;), social = c(&quot;NHS&quot;, 
     &quot;GP&quot;, &quot;health&quot;), devolution = c(&quot;referendum&quot;, &quot;leave&quot;, &quot;independence&quot;), 
@@ -418,37 +521,37 @@ results_dfm</code></pre>
 <p>The next step is to convert the results to a data frame and view them:</p>
 <pre class="r"><code>sentiment &lt;- convert(results_dfm, to=&quot;data.frame&quot;)
 sentiment</code></pre>
-<pre><code>##                    doc_id negative positive neg_positive neg_negative
-## 1  train/pos/11590_10.txt        1        8            0            0
-## 2    train/pos/5765_9.txt       33       27            0            0
-## 3     test/pos/1479_8.txt        2        1            0            0
-## 4    train/neg/9712_1.txt       20        8            0            0
-## 5    train/pos/6401_8.txt       15       15            0            0
-## 6     test/pos/3769_8.txt       10       19            0            0
-## 7    train/pos/4755_7.txt       10        8            0            0
-## 8   train/neg/11447_1.txt       12        5            0            0
-## 9    test/pos/11255_9.txt       22       19            0            0
-## 10   train/neg/1955_1.txt       14        2            0            0
-## 11    test/neg/6819_3.txt        9        8            0            0
-## 12   train/pos/1773_9.txt        5       13            0            0
-## 13   test/pos/5873_10.txt        1        3            0            0
-## 14    test/neg/5964_3.txt       27        4            0            0
-## 15   train/pos/3803_9.txt       19       10            0            0
-## 16    test/neg/6910_3.txt       13        7            0            0
-## 17  train/pos/2106_10.txt        3       13            0            0
-## 18    test/neg/9633_4.txt        7        4            0            0
-## 19   train/pos/2051_8.txt       31       25            0            0
-## 20    test/neg/5740_4.txt       13        5            0            0
-## 21   test/pos/3034_10.txt       32       31            0            0
-## 22    test/neg/5793_4.txt        7        6            0            0
-## 23     test/neg/516_1.txt        9        1            0            0
-## 24    test/neg/9666_1.txt       14        4            0            0
-## 25   test/neg/11351_4.txt       17        8            0            0
-## 26  train/pos/4446_10.txt       11       28            0            0
-## 27  train/neg/10675_2.txt       10        8            0            0
-## 28   train/pos/8911_8.txt       15        7            0            0
-## 29   test/neg/11581_1.txt       15       16            0            0
-## 30    test/pos/3552_7.txt        4        5            0            0</code></pre>
+<pre><code>##                   doc_id negative positive neg_positive neg_negative
+## 1   train/pos/2395_7.txt        6        9            0            0
+## 2   train/pos/7091_9.txt        8       11            0            0
+## 3   train/neg/3541_1.txt       20       17            0            0
+## 4  test/pos/12147_10.txt        2       12            0            0
+## 5  train/neg/12365_1.txt       17       22            0            0
+## 6   train/neg/1049_3.txt        6        6            0            0
+## 7   train/pos/322_10.txt        4        7            0            0
+## 8   train/neg/7427_3.txt       50       41            0            0
+## 9   train/pos/1745_7.txt       20       33            0            0
+## 10   test/neg/5617_2.txt        9        2            0            0
+## 11    test/neg/467_3.txt       15       11            0            0
+## 12   test/pos/4851_7.txt        9       12            0            0
+## 13 train/pos/3664_10.txt       22       20            0            0
+## 14  train/pos/4548_7.txt        2        9            0            0
+## 15   test/neg/4221_3.txt        4       16            0            0
+## 16  test/pos/1414_10.txt        3        4            0            0
+## 17 train/pos/10365_8.txt       11        9            0            0
+## 18 train/neg/11105_1.txt        9        6            0            0
+## 19  train/pos/8850_8.txt       10        6            0            0
+## 20  train/neg/1835_2.txt       14        8            0            0
+## 21  test/neg/11264_3.txt       19       15            0            0
+## 22  train/neg/5517_3.txt       26       19            0            0
+## 23   test/neg/5927_2.txt       12       15            0            0
+## 24  test/neg/10698_1.txt       12        8            0            0
+## 25   test/neg/4802_1.txt        3        5            0            0
+## 26   test/pos/9016_8.txt        3        3            0            0
+## 27  train/neg/6474_3.txt       22       11            0            0
+## 28  test/pos/11936_8.txt       11        8            0            0
+## 29   test/pos/6340_7.txt       16        8            0            0
+## 30    test/pos/852_7.txt        5       10            0            0</code></pre>
 <p>Since movie reviews usually come with some sort of rating (often in the form of stars), we can see if this relates to the sentiment of the review. To do so, we have to take the rating out of the dfm and place it in a new data-frame with the positive and negative sentiments:</p>
 <pre class="r"><code>star_data &lt;- reviews_dfm@docvars$rating
 stargraph &lt;- as.data.frame(cbind(star_data, sentiment$negative, sentiment$positive))
@@ -516,11 +619,29 @@ ggplot() +
  theme_classic()</code></pre>
 <p><img src="04-Seminar2_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p>As can be seen in this particular example, the fact that some documents are much less lengthier than others introduces a lot of uncertainty in the estimates. As evident from the overlapping confidence intervals in the figure, for most reviews, the percentage of negative words is not much different from the percentage of positive words. In other words: the sentiment for these reviews is rather mixed.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Albaugh2013" class="csl-entry">
+Albaugh, Quinn, Julie Sevenans, Stuart Soroka, and Peter John Loewen. 2013. <span>“The Automated Coding of Policy Agendas: A Dictionary-Based Approach.”</span> In <em>6th Annual Comparative Agendas Conference, Antwerp, Belgium</em>.
+</div>
+<div id="ref-Haselmayer2017" class="csl-entry">
+Haselmayer, Martin, and Marcelo Jenny. 2017. <span>“Sentiment Analysis of Political Communication: Combining a Dictionary Approach with Crowdcoding.”</span> <em>Quality &amp; Quantity</em> 51 (6): 2623–46.
+</div>
+<div id="ref-Laver2000a" class="csl-entry">
+Laver, Michael, and John Garry. 2000. <span>“Estimating Policy Positions from Political Texts.”</span> <em>American Journal of Political Science</em> 44 (3): 619–34. <a href="https://doi.org/10.2307/2669268">https://doi.org/10.2307/2669268</a>.
+</div>
+<div id="ref-Lind2019" class="csl-entry">
+Lind, Fabienne, Jakob-Moritz Eberl, Tobias Heidenreich, Hajo G Boomgaarden, Eva Luisa Gómez Montero, Beatriz Herrero, Rosa Berganza, Will Allen, and Peter Bajomi-Lazar. 2019. <span>“Multilingual Dictionary Construction: A Roadmap to Measuring Migration Frames in European Media Discourse.”</span>
+</div>
+<div id="ref-Young2012" class="csl-entry">
+Young, Lori, and Stuart Soroka. 2012. <span>“Lexicoder Sentiment Dictionary.”</span>
 </div>
 </div>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -553,6 +674,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

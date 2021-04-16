@@ -1,4 +1,14 @@
-# Getting Ready
+---
+title: "Getting Ready"
+bibliography: library.bib
+biblio-style: apalike
+link-citations: yes
+output:  
+  html_document:  
+    toc: true  
+    toc_float: true
+    fig_width: 1       
+---
 
 The developments over the past 20 years have made research using quantitative text analysis a particularly exciting undertaking. 
 

@@ -1,4 +1,14 @@
-# Reliability and validity
+---
+title: "Reliability and Validity"
+bibliography: library.bib
+biblio-style: apalike
+link-citations: yes
+output:  
+  html_document:  
+    toc: true  
+    toc_float: true
+    fig_width: 1       
+---
 
 We could say that the central tenet of quantitative text analysis, which sets it apart from other approaches to analyzing text, is that it strives to be objective and replicable. In measurement theory, we use the terms **reliability** and **validity** to convey this message.
 

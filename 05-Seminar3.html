@@ -11,7 +11,7 @@
 
 
 
-<title>05-Seminar3.utf8</title>
+<title>Scaling</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -56,6 +59,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 
 
@@ -218,6 +243,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -225,6 +313,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -262,6 +360,12 @@ $(document).ready(function () {
 <li>
   <a href="07-Seminar5.html">Unsupervised Methods</a>
 </li>
+<li>
+  <a href="08-references.html">References</a>
+</li>
+<li>
+  <a href="09-test.html">Test</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -274,13 +378,12 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Scaling</h1>
 
 </div>
 
 
-<div id="scaling" class="section level1">
-<h1>Scaling</h1>
-<p>With a dictionary, we aimed to classify our texts into different categories based on the words they contain. While practical, there is no real way to compare these categories: one category is no better or worse than the other. If we do want to compare texts, we have to place them on some sort of scale. Here, we will look at two ways in which we can do so: <em>Wordscores</em> <span class="citation">[@Laver2003a]</span> and <em>Wordfish</em> <span class="citation">[@Slapin2008a]</span>. Both methods used to be part of the main <code>quanteda</code> package, but have now moved to the <code>quanteda.textmodels</code> package. For both, we will use again the data from the 2001 and 2005 party manifestos of the five largest parties in the United Kingdom. So, we load this data, make the subset, transform it into a dfm, and clean it:</p>
+<p>With a dictionary, we aimed to classify our texts into different categories based on the words they contain. While practical, there is no real way to compare these categories: one category is no better or worse than the other. If we do want to compare texts, we have to place them on some sort of scale. Here, we will look at two ways in which we can do so: <em>Wordscores</em> <span class="citation">(<a href="#ref-Laver2003a" role="doc-biblioref">Laver, Benoit, and Garry 2003</a>)</span> and <em>Wordfish</em> <span class="citation">(<a href="#ref-Slapin2008a" role="doc-biblioref">Slapin and Proksch 2008</a>)</span>. Both methods used to be part of the main <code>quanteda</code> package, but have now moved to the <code>quanteda.textmodels</code> package. For both, we will use again the data from the 2001 and 2005 party manifestos of the five largest parties in the United Kingdom. So, we load this data, make the subset, transform it into a dfm, and clean it:</p>
 <pre class="r"><code>library(quanteda)
 library(quanteda.corpora)
 
@@ -304,7 +407,7 @@ data_manifestos_tokens &lt;- tokens_select(data_manifestos_tokens,
 data_manifestos_dfm &lt;- dfm(data_manifestos_tokens)</code></pre>
 <div id="wordscores" class="section level2">
 <h2>Wordscores</h2>
-<p>The idea of Wordscores is to use reference texts (from which we know the position) to position our virgin texts (from which we do not know the position). Here, we will use the 2001 documents as reference texts and the 2005 documents as virgin texts. Here, we the scale we want to position our documents on is the general left-right scale. Thus, we need to know the positions for the 2001 documents on this. Here, we will use the left-right scale from the 2002 Chapel Hill Expert Survey <span class="citation">[@Bakker2012a]</span> to do so.</p>
+<p>The idea of Wordscores is to use reference texts (from which we know the position) to position our virgin texts (from which we do not know the position). Here, we will use the 2001 documents as reference texts and the 2005 documents as virgin texts. Here, we the scale we want to position our documents on is the general left-right scale. Thus, we need to know the positions for the 2001 documents on this. Here, we will use the left-right scale from the 2002 Chapel Hill Expert Survey <span class="citation">(<a href="#ref-Bakker2012a" role="doc-biblioref">Bakker et al. 2012</a>)</span> to do so.</p>
 <p>To start, we have to check the order of the documents inside our dfm:</p>
 <pre class="r"><code>data_manifestos_dfm@Dimnames$docs</code></pre>
 <pre><code>##  [1] &quot;UK_natl_2001_en_Con&quot; &quot;UK_natl_2001_en_Lab&quot; &quot;UK_natl_2001_en_LD&quot; 
@@ -346,7 +449,7 @@ summary(ws)</code></pre>
 ##        4.524        4.910        4.342        7.515        4.401        4.278 
 ##        proud    democracy   conclusion      present    ambitious    programme 
 ##        6.069        5.267        6.946        3.594        4.466        4.233</code></pre>
-<p>When we run the <code>summary</code> command, we can see the word scores for each word. This is the position of that word on our scale of interest. We then only need to figure out how often these words occur in each of the texts, add up their scores, and divide this by the total number of words of the texts. This gives us the <em>raw score</em> of the text. Yet, this raw score has some problems. Most important of which is that as some words occur in almost all texts, all the scores will be very clustered in the middle of our scale. To prevent this, we can spread out the scores again, so they look more like the scores of our reference texts. This rescaling has two versions. The first was the original as proposed by <span class="citation">@Laver2003a</span>, and focuses on the variance of the scores. The idea here is that the distribution of the scores of the virgin texts has the correct mean, but an incorrect variance which needs rescaling. The second, proposed by <span class="citation">@Martin2008a</span>, focuses on the extremes of the scores. What it does is to take the scores of the virgin texts and stretch them out to match the extremes of the scores of the reference texts. Here, we run both so we can compare them. For the MV transformation, we will calculate the standard errors for the scores as well:</p>
+<p>When we run the <code>summary</code> command, we can see the word scores for each word. This is the position of that word on our scale of interest. We then only need to figure out how often these words occur in each of the texts, add up their scores, and divide this by the total number of words of the texts. This gives us the <em>raw score</em> of the text. Yet, this raw score has some problems. Most important of which is that as some words occur in almost all texts, all the scores will be very clustered in the middle of our scale. To prevent this, we can spread out the scores again, so they look more like the scores of our reference texts. This rescaling has two versions. The first was the original as proposed by <span class="citation"><a href="#ref-Laver2003a" role="doc-biblioref">Laver, Benoit, and Garry</a> (<a href="#ref-Laver2003a" role="doc-biblioref">2003</a>)</span>, and focuses on the variance of the scores. The idea here is that the distribution of the scores of the virgin texts has the correct mean, but an incorrect variance which needs rescaling. The second, proposed by <span class="citation"><a href="#ref-Martin2008a" role="doc-biblioref">Martin and Vanberg</a> (<a href="#ref-Martin2008a" role="doc-biblioref">2008</a>)</span>, focuses on the extremes of the scores. What it does is to take the scores of the virgin texts and stretch them out to match the extremes of the scores of the reference texts. Here, we run both so we can compare them. For the MV transformation, we will calculate the standard errors for the scores as well:</p>
 <pre class="r"><code>pred_lbg &lt;- predict(ws, rescaling = &quot;lbg&quot;)</code></pre>
 <pre><code>## Warning: 2203 features in newdata not used in prediction.</code></pre>
 <pre class="r"><code>pred_mv &lt;- predict(ws, rescaling = &quot;mv&quot;, se.fit = TRUE, interval = &quot;confidence&quot;)</code></pre>
@@ -382,8 +485,8 @@ summary(ws)</code></pre>
 ##          0.03423029          0.05004577          0.02482464          0.03179121 
 ## UK_natl_2005_en_PCy UK_natl_2005_en_SNP 
 ##          0.04572606          0.09601792</code></pre>
-<p>Note that this does not only predict the 2005 texts, but also the 2001 texts. As such, we can use these scores to see how well this procedure can recover the original scores. One reason why this might be a problem is because of a warning you most likely received. This says that “<em>n</em> features in newdata not used in prediction”. This is as the method does not use all the words from the reference texts to score the virgin texts. Instead, it only uses the words that occur in them both. Thus, when we compare the reference scores with the scores the method gives to the reference documents, can see how well the method does.</p>
-<p>To compare the scores, we will use the Concordance Correlation Coefficient as developed by <span class="citation">@Lin1989a</span>. This coefficient estimates how far two sets of data deviate from a line of 45 degrees (which indicates perfect agreement). To calculate this, we take the scores (here we take the LBG version) from the object we created and combine them with the original scores. From this, we only select the first five texts (those from 2001) and calculate the CCC:</p>
+<p>Note that this does not only predict the 2005 texts, but also the 2001 texts. As such, we can use these scores to see how well this procedure can recover the original scores. One reason why this might be a problem is because of a warning you most likely received. This says that “<em>n</em> features in newdata not used in prediction.” This is as the method does not use all the words from the reference texts to score the virgin texts. Instead, it only uses the words that occur in them both. Thus, when we compare the reference scores with the scores the method gives to the reference documents, can see how well the method does.</p>
+<p>To compare the scores, we will use the Concordance Correlation Coefficient as developed by <span class="citation"><a href="#ref-Lin1989a" role="doc-biblioref">Lin</a> (<a href="#ref-Lin1989a" role="doc-biblioref">1989</a>)</span>. This coefficient estimates how far two sets of data deviate from a line of 45 degrees (which indicates perfect agreement). To calculate this, we take the scores (here we take the LBG version) from the object we created and combine them with the original scores. From this, we only select the first five texts (those from 2001) and calculate the CCC:</p>
 <pre class="r"><code>library(DescTools)</code></pre>
 <pre class="r"><code>comparison &lt;- as.data.frame(cbind(pred_lbg, scores))
 comparison &lt;- comparison[1:5, ]
@@ -435,17 +538,17 @@ ggplot(comparison, aes(x=scores, y=pred_lbg)) +
                        values=c(1,3),
                        labels=c(&quot;Line of perfect concordance&quot; , &quot;Reduced major axis&quot;))+
  theme_classic()</code></pre>
-<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-7-1.png" width="96" /></p>
 <p>This graph allows us to spot the problem. That is that while we gave the manifesto for Plaid Cymru (PCy) a reference score of 3.20, Wordscores gave it 1.91. Removing this manifesto from our data-set would thus improve our estimates.</p>
 <p>Apart from positioning the texts, we can also have a look at the words themselves. We can do this with the <code>textplot_scale1d</code> command, for which we also specify some words to highlight:</p>
 <pre class="r"><code>library(quanteda.textplots)
 
 textplot_scale1d(ws, margin = &quot;features&quot;, highlighted = c(&quot;british&quot;, 
     &quot;vote&quot;, &quot;europe&quot;, &quot;taxes&quot;))</code></pre>
-<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-8-1.png" width="96" /></p>
 <p>Finally, we can have a look at the confidence intervals around the scores we created. For this, we use the same command as above, though instead of specifying <code>features</code> (referring to the words), we specify <code>texts</code>. Note that we can only do this for the MV scores, as only here we also calculated the standard errors:</p>
 <pre class="r"><code>textplot_scale1d(pred_mv, margin = &quot;documents&quot;)</code></pre>
-<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-9-1.png" width="96" /></p>
 <p>Note that we can also make this graph ourselves. This requires some data-wrangling using the <code>dplyr</code> package. This package allows us to use pipes, which are denoted by the <code>%&gt;%</code> command. This pipe transports an output of a command to another one before saving it. This saves us from constructing too many intermediate data-sets. Thus, here we first bind together the row names of the fit (which denote the documents), the fit itself, and the standard error of the fit (which also includes the lower and upper bound). We then transform this into a tibble (which is similar to a dataframe), rename the first and fifth columns, and finally ensure that all the values (which are still characters), are numeric (and year a factor):</p>
 <pre class="r"><code>library(dplyr)
 
@@ -480,7 +583,7 @@ data_textplot$id &lt;- with(data_textplot,  reorder(id, fit))</code></pre>
   theme(plot.title = element_text(size = 20, hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         legend.position = &quot;top&quot;)</code></pre>
-<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-12-1.png" width="96" /></p>
 </div>
 <div id="wordfish" class="section level2">
 <h2>Wordfish</h2>
@@ -539,15 +642,33 @@ pred_wordfish</code></pre>
 <p>As with Wordscores, we can also plot graphs for Wordfish, using the same commands. The first graph we will again be looking at is the distribution of the words, which here forms an “Eifel Tower” like graph:</p>
 <pre class="r"><code>textplot_scale1d(wordfish, margin = &quot;features&quot;, highlighted = c(&quot;british&quot;, 
     &quot;vote&quot;, &quot;europe&quot;, &quot;election&quot;))</code></pre>
-<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-15-1.png" width="96" /></p>
 <p>And then we can do the same for the documents as well. Note that we can also make a similar graph to the one we made ourselves above (just replace <code>pred_mv</code> with <code>pred_wordfish</code>):</p>
 <pre class="r"><code>textplot_scale1d(wordfish, margin = &quot;documents&quot;)</code></pre>
-<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-16-1.png" width="96" /></p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Bakker2012a" class="csl-entry">
+Bakker, Ryan, Catherine de Vries, Erica Edwards, Liesbet Hooghe, Seth Jolly, Gary Marks, Jonathan Polk, Jan Rovny, Marco R. Steenbergen, and Milada Anna Vachudova. 2012. <span>“Measuring Party Positions in Europe: The Chapel Hill Expert Survey Trend File, 1999-2010: The Chapel Hill Expert Survey Trend File, 1999–2010.”</span> <em>Party Politics</em> 21 (1): 1–15. <a href="https://doi.org/10.1177/1354068812462931">https://doi.org/10.1177/1354068812462931</a>.
+</div>
+<div id="ref-Laver2003a" class="csl-entry">
+Laver, Michael, Kenneth Benoit, and John Garry. 2003. <span>“Extracting Policy Positions from Political Texts Using Words as Data.”</span> <em>The American Political Science Review</em> 97 (2): 311–31. <a href="https://doi.org/10.1017/S0003055403000698">https://doi.org/10.1017/S0003055403000698</a>.
+</div>
+<div id="ref-Lin1989a" class="csl-entry">
+Lin, L. 1989. <span>“A Concordance Correlation Coefficient to Evaluate Reproducibility.”</span> <em>Biometrics</em> 45: 255–68.
+</div>
+<div id="ref-Martin2008a" class="csl-entry">
+Martin, Lanny W., and Georg Vanberg. 2008. <span>“Reply to Benoit and Laver.”</span> <em>Political Analysis</em> 16 (1): 112–14. <a href="https://doi.org/10.1093/pan/mpm018">https://doi.org/10.1093/pan/mpm018</a>.
+</div>
+<div id="ref-Slapin2008a" class="csl-entry">
+Slapin, Jonathan B., and Sven-Oliver Proksch. 2008. <span>“A Scaling Model for Estimating Time-Series Party Positions from Texts.”</span> <em>American Journal of Political Science</em> 52 (3): 705–22.
 </div>
 </div>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -580,6 +701,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

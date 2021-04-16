@@ -11,7 +11,7 @@
 
 
 
-<title>06-Seminar4.utf8</title>
+<title>Supervised Methods</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -56,6 +59,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 
 
@@ -218,6 +243,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -225,6 +313,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -262,6 +360,12 @@ $(document).ready(function () {
 <li>
   <a href="07-Seminar5.html">Unsupervised Methods</a>
 </li>
+<li>
+  <a href="08-references.html">References</a>
+</li>
+<li>
+  <a href="09-test.html">Test</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -274,12 +378,11 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Supervised Methods</h1>
 
 </div>
 
 
-<div id="supervised-methods" class="section level1">
-<h1>Supervised Methods</h1>
 <p>While with scaling we try to place our texts on a scale, with supervised methods we go back to what we did with dictionary analysis: classification. Within <code>quanteda</code> there are many different models for supervised methods, of which we will cover two. These are Support Vector Machines (SVM) and Naive Bayes (NB). The first classifies texts by looking at their position on a hyperplane, the second by their (Bayesian) probabilities. To show how they work, we will look at an example of SVM in <code>quanteda</code> and one in <code>RTextTools</code>, and an example of NB in <code>quanteda</code>.</p>
 <div id="support-vector-machines" class="section level2">
 <h2>Support Vector Machines</h2>
@@ -382,7 +485,7 @@ table(table_data$svm_predict,table_data$rating)</code></pre>
 </div>
 <div id="naive-bayes" class="section level2">
 <h2>Naive Bayes</h2>
-<p>For the NB example, we will use data from the Manifesto Project <span class="citation">[@Volkens2019a]</span>, also known as the Comparative Manifesto Project (CMP), Manifesto Research Group (MRG), and MARPOR (Manifesto Research on Political Representation)). After you have signed up and downloaded the API key, load the package and set the key:</p>
+<p>For the NB example, we will use data from the Manifesto Project <span class="citation">(<a href="#ref-Volkens2019a" role="doc-biblioref">Volkens et al. 2019</a>)</span>, also known as the Comparative Manifesto Project (CMP), Manifesto Research Group (MRG), and MARPOR (Manifesto Research on Political Representation)). After you have signed up and downloaded the API key, load the package and set the key:</p>
 <pre class="r"><code>library(manifestoR)
 mp_setapikey(&quot;manifesto_apikey.txt&quot;)</code></pre>
 <p>While we can download the whole dataset, as it is rather large, it makes more sense to only download download a part of it. Here, we take the manifestos for the United Kingdom in 2015. To tell R we want only these documents, we make a small dataframe listing the party and the year we want, and then place this into the <code>mp_corpus</code> command. Note that instead of the names of the parties, the Manifesto Project assigns unique codes to each party. To see which code belongs to which party, see: <a href="https://manifesto-project.wzb.eu/down/data/2019a/codebooks/parties_MPDataset_MPDS2019a.pdf" class="uri">https://manifesto-project.wzb.eu/down/data/2019a/codebooks/parties_MPDataset_MPDS2019a.pdf</a>. Also note that the date includes both the year and month of the election:</p>
@@ -494,7 +597,7 @@ ggplot(data = prop_row, aes(x = Code, y = Percentage, fill = Party)) +
     position = &quot;stack&quot;) + scale_y_continuous(expand = c(0, 0)) + 
     theme_classic() + theme(axis.text.x = element_text(angle = 90)) + 
     theme(axis.text.x = element_text(vjust = 0.4))</code></pre>
-<p><img src="06-Seminar4_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="06-Seminar4_files/figure-html/unnamed-chunk-21-1.png" width="96" /></p>
 <p>Now, we can see that some parties dominate some categories, while for others the spread is more even. For example, UKIP dominates the categories 406 and 407 - dealing with positive and negative mentions of protectionism, while the Conservatives do the same with category 103 (<em>Anti-Imperialism</em>). Note though, that these are percentages. This means that the reason the Conservatives dominate category 103 is as they have two (quasi)-sentences with that category. The others do not have the category at all (702 on <em>Negative Mentioning of Labour Groups</em> has the same issue). Other categories, such as 403 (<em>Market Regulation</em>) and 502 (<em>Positive Mentions of Culture</em>) are way better spread out over all the parties.</p>
 <p>Another thing we can look at is what part of a party’s manifesto belongs to any of the codes. This can help us answer the question: “what are the parties talking about?” To see this, we have to calculate the column percentages:</p>
 <pre class="r"><code>prop_col &lt;- as.data.frame((prop.table(table(manifesto_data$cmp_code, 
@@ -521,7 +624,7 @@ prop_col$Domain &lt;- factor(prop_col$Domain, levels(prop_col$Domain)[c(2,
     geom_bar(stat = &quot;identity&quot;, position = &quot;stack&quot;) + scale_y_continuous(expand = c(0, 
     0)) + theme_classic() + theme(axis.text.x = element_text(angle = 90)) + 
     theme(axis.text.x = element_text(vjust = 0.4))</code></pre>
-<p><img src="06-Seminar4_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="06-Seminar4_files/figure-html/unnamed-chunk-24-1.png" width="96" /></p>
 <p>Here, we see that the Domain of <em>Welfare and Quality of Life</em> was the most dominant in all the manifestos, with <em>Economy</em> coming second. Also, especially UKIP paid a lot of attention to <em>External Relations</em>, while the Green party paid little attention to the <em>Fabric of Society</em>. In all, this gives us a good idea of what type of data we are actually dealing with.</p>
 <p>Now let’s get back to the classification. For this, we need to transform the corpus from the <code>manifestoR</code> package into a corpus for the <code>quanteda</code> package. To do so, we first have to transform the former into a data frame, and then turn it into a corpus. We then look at the first 10 entries:</p>
 <pre class="r"><code>corpus_data &lt;- mp_corpus(manifestos) %&gt;% 
@@ -566,7 +669,7 @@ ggplot(data = table_class, aes(x = predicted_class, y = actual_class)) +
     ylab(&quot;Actual Class&quot;) + scale_y_discrete(expand = c(0, 0)) + 
     theme_classic() + theme(axis.text.x = element_text(angle = 90)) + 
     theme(axis.text.x = element_text(vjust = 0.4))</code></pre>
-<p><img src="06-Seminar4_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="06-Seminar4_files/figure-html/unnamed-chunk-32-1.png" width="96" /></p>
 <p>Here, we can see that a high number of cases are on the diagonal, which indicates that the algorithm did a good job. Yet, it also classified a large number of sentences into the 503 and 504 categories, while they belonged to any of the other categories.</p>
 <p>Besides this, we can also summarize how good the algorithm is by means of Krippendorff’s <span class="math inline">\(\alpha\)</span>. To do so, we take the predicted codes, transform them from factors to numeric values, and store them in an object. Then, we bind them together with the actual codes and place them into a data frame. Finally, we transpose the data frame (so that rows are now columns) and make it into a matrix:</p>
 <pre class="r"><code>predict &lt;- as.numeric(as.character(predicted_class))
@@ -579,12 +682,21 @@ kripp.boot(reliability, iter = 500, method = &quot;nominal&quot;)</code></pre>
 <p>Alternatively, we can use the <code>DescTools</code> package:</p>
 <pre class="r"><code>library(DescTools)
 KrippAlpha(reliability, method = &quot;nominal&quot;)</code></pre>
-<p>Here we see that the number of subjects was 2780 (the number of sentences in the test set), the number of coders 2 (the actual and the predicted codes), and the value of <span class="math inline">\(\alpha\)</span> 0.318 with an interval between 0.297 and 0.337. While this might not look particularly encouraging, when we realise that <span class="citation">@Mikhaylov2012a</span> estimate the agreement among trained coders by the Manifesto Project to be between 0.350 and 0.400, then 0.305 is quite a good score for a simple model!</p>
+<p>Here we see that the number of subjects was 2780 (the number of sentences in the test set), the number of coders 2 (the actual and the predicted codes), and the value of <span class="math inline">\(\alpha\)</span> 0.318 with an interval between 0.297 and 0.337. While this might not look particularly encouraging, when we realise that <span class="citation"><a href="#ref-Mikhaylov2012a" role="doc-biblioref">Mikhaylov, Laver, and Benoit</a> (<a href="#ref-Mikhaylov2012a" role="doc-biblioref">2012</a>)</span> estimate the agreement among trained coders by the Manifesto Project to be between 0.350 and 0.400, then 0.305 is quite a good score for a simple model!</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Mikhaylov2012a" class="csl-entry">
+Mikhaylov, Slava, Michael Laver, and Kenneth Benoit. 2012. <span>“Coder Reliability and Misclassification in the Human Coding of Party Manifestos.”</span> <em>Political Analysis</em> 20 (1): 78–91. <a href="https://doi.org/10.1093/pan/mpr047">https://doi.org/10.1093/pan/mpr047</a>.
+</div>
+<div id="ref-Volkens2019a" class="csl-entry">
+Volkens, Andrea, Werner Krause, Pola Lehmann, Theres Matthieß, Nicolas Merz, Sven Regel, and Bernhard Weßels. 2019. <span>“<span>The Manifesto Data Collection. Manifesto Project (MRG/CMP/MARPOR)</span>.”</span> Berlin: Wissenschaftszentrum Berlin f<span>ü</span>r Sozialforschung (WZB). 2019. <a href="https://doi.org/10.25522/manifesto.mpds.2019b">https://doi.org/10.25522/manifesto.mpds.2019b</a>.
 </div>
 </div>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -617,6 +729,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

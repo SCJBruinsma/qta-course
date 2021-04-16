@@ -11,7 +11,7 @@
 
 
 
-<title>03-Seminar1.utf8</title>
+<title>Reliability and Validity</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -56,6 +59,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 
 
@@ -218,6 +243,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -225,6 +313,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -262,6 +360,12 @@ $(document).ready(function () {
 <li>
   <a href="07-Seminar5.html">Unsupervised Methods</a>
 </li>
+<li>
+  <a href="08-references.html">References</a>
+</li>
+<li>
+  <a href="09-test.html">Test</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -274,27 +378,26 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Reliability and Validity</h1>
 
 </div>
 
 
-<div id="reliability-and-validity" class="section level1">
-<h1>Reliability and validity</h1>
 <p>We could say that the central tenet of quantitative text analysis, which sets it apart from other approaches to analyzing text, is that it strives to be objective and replicable. In measurement theory, we use the terms <strong>reliability</strong> and <strong>validity</strong> to convey this message.</p>
 <p>Reliability refers to consistency, that is, the degree to which we get similar results whenever we apply a measuring instrument to measure a given concept. This is similar to the concept of <em>replicability</em>. Validity, on the other hand, refers to unbiasedness, that is, the degree to which our measure really measures the concept which intends to measure. In other words, validity looks whether the measuring instrument that we are using is objective.</p>
-<p><span class="citation">@Carmines1979a</span> distinguish among three types of validity. <em>Content Validity</em>, which refers to whether our measure represents all facets of the construct of interest; <em>criterion Validity</em>, which looks at whether our measure correlates with other measures of the same concept, and <em>construct Validity</em>, which looks at whether our measure behaves as expected within a given theoretical context. I should also say here, that the three types of validity are not interchangeable. Ideally, one has to prove that their results pass all three validity tests. In the words of <span class="citation">@Grimmer2013a</span>: “Validate, validate, validate”!</p>
-<p><span class="citation">@Krippendorff2004a</span> distinguishes among three types of reliability. <em>Stability</em>, which he considers as the weakest form of coding reliability, and which can be measured when the same text is coded by the same coder more than once, <em>reproducibility</em>, which is measured by the degree of agreement among independent coders, and <em>accuracy</em>, which he considers as the strongest form of coding reliability, and which is measured by the agreement between coders and a given standard. However, in the absence of a benchmark, we are usually interested in measuring reliability as reproducibility, in other words as inter-coder agreement.</p>
+<p><span class="citation"><a href="#ref-Carmines1979a" role="doc-biblioref">Carmines and Zeller</a> (<a href="#ref-Carmines1979a" role="doc-biblioref">1979</a>)</span> distinguish among three types of validity. <em>Content Validity</em>, which refers to whether our measure represents all facets of the construct of interest; <em>criterion Validity</em>, which looks at whether our measure correlates with other measures of the same concept, and <em>construct Validity</em>, which looks at whether our measure behaves as expected within a given theoretical context. I should also say here, that the three types of validity are not interchangeable. Ideally, one has to prove that their results pass all three validity tests. In the words of <span class="citation"><a href="#ref-Grimmer2013a" role="doc-biblioref">Grimmer and Stewart</a> (<a href="#ref-Grimmer2013a" role="doc-biblioref">2013</a>)</span>: “Validate, validate, validate!”</p>
+<p><span class="citation"><a href="#ref-Krippendorff2004a" role="doc-biblioref">Krippendorff</a> (<a href="#ref-Krippendorff2004a" role="doc-biblioref">2004</a>)</span> distinguishes among three types of reliability. <em>Stability</em>, which he considers as the weakest form of coding reliability, and which can be measured when the same text is coded by the same coder more than once, <em>reproducibility</em>, which is measured by the degree of agreement among independent coders, and <em>accuracy</em>, which he considers as the strongest form of coding reliability, and which is measured by the agreement between coders and a given standard. However, in the absence of a benchmark, we are usually interested in measuring reliability as reproducibility, in other words as inter-coder agreement.</p>
 <div id="measuring-inter-coder-agreement" class="section level2">
 <h2>Measuring inter-coder agreement</h2>
-<p><span class="citation">@Hayes2007a [p.79]</span> argue that a good measure of the agreement should at least address five criteria. The first is that it should apply to many coders, and not only two. Also, when we use the method for more coders, there should be no difference in how many coders we include. The second is that the method should only take into account the actual number of categories the coders used and not all that were available. This as while the designers designed the coding scheme on what they thought the data would look like, the coders use the scheme based on what the data is. Third, it should be numerical, meaning that we can use it to make a scale between 0 (absence of agreement) and 1 (perfect agreement). Fourth, it should be appropriate for the level of measurement. So, if our data is ordinal or nominal, we should not use a measure that assumes metric data. This ensures that the metric uses all the data and that it does not add or not use other information. Fifth, we should be able to compute (or know), the sampling behaviour of the measure.</p>
-<p>With these criteria in mind, we see that popular methods, such as % agreement or Pearson’s <em>r</em>, can be misleading. Especially for the latter - as it is a quite popular method - this often leads to problems, as this figure by <span class="citation">@Krippendorff2004a</span> shows:</p>
+<p><span class="citation"><a href="#ref-Hayes2007a" role="doc-biblioref">Hayes and Krippendorff</a> (<a href="#ref-Hayes2007a" role="doc-biblioref">2007, 79</a>)</span> argue that a good measure of the agreement should at least address five criteria. The first is that it should apply to many coders, and not only two. Also, when we use the method for more coders, there should be no difference in how many coders we include. The second is that the method should only take into account the actual number of categories the coders used and not all that were available. This as while the designers designed the coding scheme on what they thought the data would look like, the coders use the scheme based on what the data is. Third, it should be numerical, meaning that we can use it to make a scale between 0 (absence of agreement) and 1 (perfect agreement). Fourth, it should be appropriate for the level of measurement. So, if our data is ordinal or nominal, we should not use a measure that assumes metric data. This ensures that the metric uses all the data and that it does not add or not use other information. Fifth, we should be able to compute (or know), the sampling behaviour of the measure.</p>
+<p>With these criteria in mind, we see that popular methods, such as % agreement or Pearson’s <em>r</em>, can be misleading. Especially for the latter - as it is a quite popular method - this often leads to problems, as this figure by <span class="citation"><a href="#ref-Krippendorff2004a" role="doc-biblioref">Krippendorff</a> (<a href="#ref-Krippendorff2004a" role="doc-biblioref">2004</a>)</span> shows:</p>
 <p><img src="figures/observers.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>Here, the figure on the left shows two coders: A and B. The dots in the figure show the choices both coders made, while the dotted line shows the line of perfect agreement. If a dot is on this line, it means that both Coder A and Coder B made the same choice. In this case, they disagreed in all cases. When Coder A chose <em>a</em>, Coder B chose <em>e</em>, when Coder A chose <em>b</em>, Coder B chose <em>a</em>, and so on. Yet, when we would calculate Pearson’s <em>r</em> for this, we would find a result as shown in the right-hand side of the figure. Seen this way, the agreement between both coders does not seem a problem at all. The reason for this is that Pearson’s <em>r</em> works with the distances between the categories <em>without</em> taking into account their location. So, for a positive relationship, the only thing Pearson’s <em>r</em> requires is that for every increase or decrease for one coder, there is a similar increase or decrease for the other. This happens here with four of the five categories. The result is thus a high Pearson’s <em>r</em>, though the actual agreement should be 0.</p>
-<p>Pearson’s <em>r</em> thus cannot fulfil all our criteria. A measure that can is Krippendorff’s <span class="math inline">\(\alpha\)</span> <span class="citation">[@Krippendorff2004a]</span>. This measure can not only give us the agreement we need, but can also do so for nominal, ordinal, interval, and ratio level data, as well as data with many coders and missing values. Besides, we can compute 95% confidence intervals around <span class="math inline">\(\alpha\)</span> using bootstrapping, which we can use to show the degree of uncertainty around our reliability estimates.</p>
-<p>Despite this, Krippendorff’s <span class="math inline">\(\alpha\)</span> is not free of problems. One main problem occurs when coders agree on only a few categories and use these categories a considerable number of times. This leads to an inflation of <span class="math inline">\(\alpha\)</span>, making it is higher than it should be <span class="citation">[@Krippendorff2004a]</span>, as in the following example:</p>
+<p>Pearson’s <em>r</em> thus cannot fulfil all our criteria. A measure that can is Krippendorff’s <span class="math inline">\(\alpha\)</span> <span class="citation">(<a href="#ref-Krippendorff2004a" role="doc-biblioref">Krippendorff 2004</a>)</span>. This measure can not only give us the agreement we need, but can also do so for nominal, ordinal, interval, and ratio level data, as well as data with many coders and missing values. Besides, we can compute 95% confidence intervals around <span class="math inline">\(\alpha\)</span> using bootstrapping, which we can use to show the degree of uncertainty around our reliability estimates.</p>
+<p>Despite this, Krippendorff’s <span class="math inline">\(\alpha\)</span> is not free of problems. One main problem occurs when coders agree on only a few categories and use these categories a considerable number of times. This leads to an inflation of <span class="math inline">\(\alpha\)</span>, making it is higher than it should be <span class="citation">(<a href="#ref-Krippendorff2004a" role="doc-biblioref">Krippendorff 2004</a>)</span>, as in the following example:</p>
 <p><img src="figures/kripp.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>Here, in the left-most figure, we see coders A and B who have to code into three categories: 0, 1, or 2. In this example, the categories 1 and 2 carry a certain meaning, while category 0 means that the coders did not know what to assign the case to. Of the 86 cases, both coders code 80 cases in the 0 category. This means that there are only 6 cases on which they can agree or disagree about a code that carries some meaning. Yet, if we calculate <span class="math inline">\(\alpha\)</span>, the result - 0.686 - takes into account all the categories. One solution for this is to add up the categories 1 and 2, as the figure in the middle shows. Here, the coders agree in 84 of the 86 cases (on the diagonal line) and disagree in only 2 of them. Calculating <span class="math inline">\(\alpha\)</span> now shows that it would increase to 0.789. Finally, we can remove the 0 category and again view 1 and 2 as separate categories (as the most right-hand figure shows). Yet, the result of this is quite disastrous. While the coders agree in 3 of the 4 cases, the resulting <span class="math inline">\(\alpha\)</span> equals 0.000, as coder B did not use category 1 at all.</p>
-<p>Apart from these issues, Krippendorff’s <span class="math inline">\(\alpha\)</span> is a stable and useful measure. A value of <span class="math inline">\(\alpha\)</span> = 1 indicates perfect reliability, while a value of <span class="math inline">\(\alpha\)</span> = 0 indicates the absence of reliability. This means that if <span class="math inline">\(\alpha\)</span> = 0, there is no relationship between the values. It is possible for <span class="math inline">\(\alpha\)</span> &lt; 0, which means that the disagreements between the values are larger than they would be by chance and are systematic. As for thresholds, <span class="citation">@Krippendorff2004a</span> proposes to use either 0.80 or 0.67 for results to be reliable. Such low reliability often has many causes. One thing might be that the coding scheme is not appropriate for the documents. This means that coders had categories that they had no use for, and lacked categories they needed. Another reason might be that the coders lacked training. Thus, they did not understand how to use the coding scheme or how the coding process works. This often leads to frustration on part of the coders, as in these cases the process often becomes time-consuming and too demanding to carry out.</p>
+<p>Apart from these issues, Krippendorff’s <span class="math inline">\(\alpha\)</span> is a stable and useful measure. A value of <span class="math inline">\(\alpha\)</span> = 1 indicates perfect reliability, while a value of <span class="math inline">\(\alpha\)</span> = 0 indicates the absence of reliability. This means that if <span class="math inline">\(\alpha\)</span> = 0, there is no relationship between the values. It is possible for <span class="math inline">\(\alpha\)</span> &lt; 0, which means that the disagreements between the values are larger than they would be by chance and are systematic. As for thresholds, <span class="citation"><a href="#ref-Krippendorff2004a" role="doc-biblioref">Krippendorff</a> (<a href="#ref-Krippendorff2004a" role="doc-biblioref">2004</a>)</span> proposes to use either 0.80 or 0.67 for results to be reliable. Such low reliability often has many causes. One thing might be that the coding scheme is not appropriate for the documents. This means that coders had categories that they had no use for, and lacked categories they needed. Another reason might be that the coders lacked training. Thus, they did not understand how to use the coding scheme or how the coding process works. This often leads to frustration on part of the coders, as in these cases the process often becomes time-consuming and too demanding to carry out.</p>
 <p>To calculate Krippendorff’s <span class="math inline">\(\alpha\)</span>, we can use the following software:</p>
 <ul>
 <li>KALPHA custom dialogue (SPSS)</li>
@@ -341,8 +444,8 @@ kalpha$value</code></pre>
 </div>
 <div id="visualizing-the-quality-of-coding" class="section level2">
 <h2>Visualizing the quality of coding</h2>
-<p><span class="citation">@Lamprianou2020</span> notes that existing reliability indices may mask coding problems and that the reliability of coding is not stable across coding units (as illustrated in the example given for Krippendorff’s alpha in Section 3.2 above). To investigate the quality of coding he proposes using social network analysis (SNA) and exponential random graph models (ERGM). Here, we illustrate a different approach, based on the idea of sensitivity analysis.</p>
-<p>We therefore compare the codings of each coder against all others (and also against a benchmark or a gold standard). For this, we need to bootstrap the coding reliability results to create an uncertainty measure around each coder’s results, following the approach proposed by <span class="citation">@Benoit2009a</span>. The idea is to use a non-parametric bootstrap for the codings of each coder (using 1000 draws with replacement) at the category level and then calculate the confidence intervals. Their width then depends on both the number of sentences coded by each coder (n) in each category and the number of coding categories that are not empty. Thus, larger documents and fewer empty categories result in narrower confidence intervals, while a small number of categories leads to wider intervals <span class="citation">[@Lowe2011a]</span>.</p>
+<p><span class="citation"><a href="#ref-Lamprianou2020" role="doc-biblioref">Lamprianou</a> (<a href="#ref-Lamprianou2020" role="doc-biblioref">2020</a>)</span> notes that existing reliability indices may mask coding problems and that the reliability of coding is not stable across coding units (as illustrated in the example given for Krippendorff’s alpha in Section 3.2 above). To investigate the quality of coding he proposes using social network analysis (SNA) and exponential random graph models (ERGM). Here, we illustrate a different approach, based on the idea of sensitivity analysis.</p>
+<p>We therefore compare the codings of each coder against all others (and also against a benchmark or a gold standard). For this, we need to bootstrap the coding reliability results to create an uncertainty measure around each coder’s results, following the approach proposed by <span class="citation"><a href="#ref-Benoit2009a" role="doc-biblioref">Benoit, Laver, and Mikhaylov</a> (<a href="#ref-Benoit2009a" role="doc-biblioref">2009</a>)</span>. The idea is to use a non-parametric bootstrap for the codings of each coder (using 1000 draws with replacement) at the category level and then calculate the confidence intervals. Their width then depends on both the number of sentences coded by each coder (n) in each category and the number of coding categories that are not empty. Thus, larger documents and fewer empty categories result in narrower confidence intervals, while a small number of categories leads to wider intervals <span class="citation">(<a href="#ref-Lowe2011a" role="doc-biblioref">Lowe and Benoit 2011</a>)</span>.</p>
 <p>To start, the first thing we do is load two packages we need into R using the <code>library</code> command:</p>
 <pre class="r"><code>library(Hmisc)
 library(combinat)</code></pre>
@@ -458,21 +561,45 @@ dataBS &lt;- cbind(dataBS, c0_lo, c0_hi, c01_lo, c01_hi, c02_lo,
 <pre class="r"><code>ggplot(dataBS, aes(per0, coderid)) + geom_point() + geom_errorbarh(aes(xmax = c0_hi, 
     xmin = c0_lo), height = 0.2) + xlab(&quot;Percentage coded to category 0&quot;) + 
     ylab(&quot;Coder ID&quot;) + theme_classic()</code></pre>
-<p><img src="03-Seminar1_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="03-Seminar1_files/figure-html/unnamed-chunk-15-1.png" width="96" /></p>
 <pre class="r"><code>ggplot(dataBS, aes(per01, coderid)) + geom_point() + geom_errorbarh(aes(xmax = c01_hi, 
     xmin = c01_lo), height = 0.2) + xlab(&quot;Percentage coded to category 01&quot;) + 
     ylab(&quot;Coder ID&quot;) + theme_classic()</code></pre>
-<p><img src="03-Seminar1_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="03-Seminar1_files/figure-html/unnamed-chunk-16-1.png" width="96" /></p>
 <pre class="r"><code>ggplot(dataBS, aes(per02, coderid)) + geom_point() + geom_errorbarh(aes(xmax = c02_hi, 
     xmin = c02_lo), height = 0.2) + xlab(&quot;Percentage coded to category 02&quot;) + 
     ylab(&quot;Coder ID&quot;) + theme_classic()</code></pre>
-<p><img src="03-Seminar1_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="03-Seminar1_files/figure-html/unnamed-chunk-17-1.png" width="96" /></p>
 <p>Each figure shows the percentage that each of the coders coded in the respective category of the coding scheme. We thus use the confidence intervals around the estimates to look at the degree of uncertainty around each estimate. We can read the plots by looking if the dashed line is within the confidence intervals for each coder. The larger the coders deviate from the benchmark or standard, the less likely that they understood the coding scheme in the same way. It also means that it is more likely that a coder would have coded the work programme much different from the benchmark coder. Thus, such a sensitivity analysis is like having a single reliability coefficient for each coding category.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Benoit2009a" class="csl-entry">
+Benoit, Kenneth, Michael Laver, and Slava Mikhaylov. 2009. <span>“Treating Words as Data with Error: Uncertainty in Text Statements of Policy Positions.”</span> <em>American Journal of Political Science</em> 53 (2): 495–513. <a href="https://doi.org/10.1111/j.1540-5907.2009.00383.x">https://doi.org/10.1111/j.1540-5907.2009.00383.x</a>.
+</div>
+<div id="ref-Carmines1979a" class="csl-entry">
+Carmines, Edward G., and Richard A. Zeller. 1979. <em>Reliability and Validity Assessment</em>. Beverly Hills, CA: Sage.
+</div>
+<div id="ref-Grimmer2013a" class="csl-entry">
+Grimmer, Justin, and Brandon M. Stewart. 2013. <span>“Text as Data: The Promise and Pitfals of Automatic Content Analysis Methods for Political Texts.”</span> <em>Political Analysis</em> 21 (3): 267–97. <a href="https://doi.org/10.1093/pan/mps028">https://doi.org/10.1093/pan/mps028</a>.
+</div>
+<div id="ref-Hayes2007a" class="csl-entry">
+Hayes, Andrew F., and Klaus Krippendorff. 2007. <span>“Answering the Call for a Standard Reliability Measure for Coding Data.”</span> <em>Communication Methods and Measures</em> 1 (1): 77–89. <a href="https://doi.org/10.1080/19312450709336664">https://doi.org/10.1080/19312450709336664</a>.
+</div>
+<div id="ref-Krippendorff2004a" class="csl-entry">
+Krippendorff, Klaus. 2004. <em>Content Analysis - an Introduction to Its Methodology</em>. 2nd ed. Thousand Oaks, CA: SAGE Publications.
+</div>
+<div id="ref-Lamprianou2020" class="csl-entry">
+Lamprianou, Iasonas. 2020. <span>“Measuring and Visualizing Coders’ Reliability: New Approaches and Guidelines from Experimental Data.”</span> <em>Sociological Methods &amp; Research</em>, 0049124120926198.
+</div>
+<div id="ref-Lowe2011a" class="csl-entry">
+Lowe, Will, and Kenneth Benoit. 2011. <span>“Estimating Uncertainty in Quantitative Text Analysis.”</span> <em>Paper Prepared for Presentation at the Annual Conference of the Midwest Political Science Association</em>, 1–34.
 </div>
 </div>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -505,6 +632,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -1,4 +1,15 @@
-# Scaling
+---
+title: "Scaling"
+bibliography: library.bib
+biblio-style: apalike
+link-citations: yes
+output:  
+  html_document:  
+    toc: true  
+    toc_float: true
+    fig_width: 1       
+---
+
 
 With a dictionary, we aimed to classify our texts into different categories based on the words they contain. While practical, there is no real way to compare these categories: one category is no better or worse than the other. If we do want to compare texts, we have to place them on some sort of scale. Here, we will look at two ways in which we can do so: *Wordscores* [@Laver2003a] and *Wordfish* [@Slapin2008a]. Both methods used to be part of the main `quanteda` package, but have now moved to the `quanteda.textmodels` package. For both, we will use again the data from the 2001 and 2005 party manifestos of the five largest parties in the United Kingdom. So, we load this data, make the subset, transform it into a dfm, and clean it:
 

@@ -1,4 +1,15 @@
-# Supervised Methods
+---
+title: "Supervised Methods"
+bibliography: library.bib
+biblio-style: apalike
+link-citations: yes
+output:  
+  html_document:  
+    toc: true  
+    toc_float: true
+    fig_width: 1       
+---
+
 
 While with scaling we try to place our texts on a scale, with supervised methods we go back to what we did with dictionary analysis: classification. Within `quanteda` there are many different models for supervised methods, of which we will cover two. These are Support Vector Machines (SVM) and Naive Bayes (NB). The first classifies texts by looking at their position on a hyperplane, the second by their (Bayesian) probabilities. To show how they work, we will look at an example of SVM in `quanteda` and one in `RTextTools`, and an example of NB in `quanteda`.
 

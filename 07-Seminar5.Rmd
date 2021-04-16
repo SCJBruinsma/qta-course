@@ -1,9 +1,14 @@
 ---
-output:
-  pdf_document: default
-  html_document: default
+title: "Unsupervised Methods"
+bibliography: library.bib
+biblio-style: apalike
+link-citations: yes
+output:  
+  html_document:  
+    toc: true  
+    toc_float: true
+    fig_width: 1       
 ---
-# Unsupervised Methods
 
 While supervised models often work fine for text classification, one disadvantage is that we need to set specifics for the model. As an alternative, we can not specify anything and have R find out which classifications work. There are various algorithms to do so, and we will focus on two: Latent Dirichlet Allocation and Correspondence Analysis.
 

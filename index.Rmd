@@ -1,6 +1,10 @@
 ---
 title: "Quantitative Text Analysis"
 author:  "[Bastiaan Bruinsma](https://github.com/SCJBruinsma)"
+date: "`r Sys.Date()`"
+bibliography: library.bib
+biblio-style: apalike
+link-citations: yes
 output:
   html_document:
     fig_width: 1
