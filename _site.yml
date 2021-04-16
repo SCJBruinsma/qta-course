@@ -7,7 +7,7 @@ navbar:
 output_dir: "."
 output:
   html_document:
-    theme: yeti
-    highlight: textmate
+    theme: cosmo
+    highlight: default
 #    include:
 #      after_body: _footer.html
