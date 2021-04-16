@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>04-Seminar2.utf8</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">HOME</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="01-Install.html">Install</a>
+</li>
+<li>
+  <a href="02-Import.html">Import</a>
+</li>
+<li>
+  <a href="03-Seminar1.html">Reliability and Validity</a>
+</li>
+<li>
+  <a href="04-Seminar2.html">Dictionaries</a>
+</li>
+<li>
+  <a href="05-Seminar3.html">Scaling</a>
+</li>
+<li>
+  <a href="06-Seminar4.html">Supervised Methods</a>
+</li>
+<li>
+  <a href="07-Seminar5.html">Unsupervised Methods</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="dictionaries" class="section level1">
+<h1>Dictionaries</h1>
+<p>One of the simplest forms of quantitative text analysis is dictionary analysis. We can define dictionary methods as those which simply use the rate at which key words appear in a text to classify documents into categories or to measure the extent to which documents belong to particular categories, without making further assumptions. In many respects, dictionary methods present a non-statistical, categorical analysis approach.</p>
+<p>One of the most well-known examples of using dictionary methods is the measuring the tone in newspaper articles, speeches, children’s writings, and so on, by using the so-called sentiment analysis dictionaries. Another well-known example is the measuring of policy content in different documents as illustrated by the Policy Agendas Project dictionary (<span class="citation">@Albaugh2013</span>).</p>
+<p>Here, we will carry out two such analyses, the first a standard analysis and the second focusing on sentiment. For the former, we will use political party manifestos, while for the latter we will use movie reviews. First, though, we will have a look at the data itself and which tools <code>quanteda</code> has to investigate it.</p>
+<div id="working-with-a-corpus" class="section level2">
+<h2>Working with a Corpus</h2>
+<p>In the previous chapter, we saw that there are many ways to load our data into R. Most often, the result of this is is a data frame which contains the texts. Besides, it also often has information on the name of the documents, the number of sentences and so on.</p>
+<p>Within <code>quanteda</code>, the main way to store documents is in the form of a <code>corpus</code> object. This object contains all the information that comes with the texts and does not change during our analysis. Instead, we make copies of the main corpus, change them into the type we need, and run our analyses on them. The advantage of this is that we always can go back to our original data.</p>
+<p>Apart from importing texts ourselves, <code>quanteda</code> contains several corpora as well. Here, we use one of these, which contains the electoral manifestos of political parties in the United Kingdom. For this, we first have to load the main package and the package that contains the corpus, and then load the data into R:</p>
+<pre class="r"><code>library(quanteda)
+library(quanteda.corpora)
+
+data(data_corpus_ukmanifestos)
+data_corpus_ukmanifestos</code></pre>
+<pre><code>## Corpus consisting of 101 documents and 6 docvars.
+## UK_natl_1945_en_Con :
+## &quot;CONSERVATIVE PARTY: 1945  Mr. Churchill&#39;s Declaration of Pol...&quot;
+## 
+## UK_natl_1945_en_Lab :
+## &quot;Labour Party: 1945  Let Us Face the Future: A Declaration of...&quot;
+## 
+## UK_natl_1945_en_Lib :
+## &quot;LIBERAL MANIFESTO 1945  20 Point Manifesto of the Liberal Pa...&quot;
+## 
+## UK_natl_1950_en_Con :
+## &quot;CONSERVATIVE PARTY: 1950  This is the Road: The Conservative...&quot;
+## 
+## UK_natl_1950_en_Lab :
+## &quot;LABOUR PARTY: 1950  Let Us Win Through Together: A Declarati...&quot;
+## 
+## UK_natl_1950_en_Lib :
+## &quot;LIBERAL PARTY 1950  No Easy Way: Britain&#39;s Problems and the ...&quot;
+## 
+## [ reached max_ndoc ... 95 more documents ]</code></pre>
+<p>You should now see the corpus appear in the Environment tab. If you click on it, you can see, amongst others, that the corpus comes with information on the Year of the release of the manifesto and the party it belongs to. As the corpus is quite large, we make it a bit more manageable by only selecting the manifestos for the years 2001 and 2005 for the main five parties. We can do this by using the <code>corpus_subset</code> command for both:</p>
+<pre class="r"><code>corpus_manifestos &lt;- corpus_subset(data_corpus_ukmanifestos, Year == 2001 | Year == 2005)
+corpus_manifestos &lt;- corpus_subset(corpus_manifestos, Party==&quot;Lab&quot; | Party==&quot;LD&quot; | Party == &quot;Con&quot; | Party== &quot;SNP&quot; | Party== &quot;PCy&quot;)</code></pre>
+<p>Now we have our corpus, we can start with the analysis. As noted, we try not to carry out any analysis on the corpus itself. Instead, we keep it as it is and work on its copies. Often, this means transforming the data into another shape. One of the more popular shapes is the data frequency matrix (dfm). This is a matrix which contains the documents in the rows and the word counts for each word in the columns.</p>
+<p>Before we can do so however, we have to split up our texts into unique words. To do this, we first have to construct a <code>tokens</code> object. In the command that we use to do this, we can specify how we want our texts to be split (here we use the standard option), and in addition clean our data a bit. For example, we can specify that we want to convert all the texts into lowercase and remove any numbers and special characters.</p>
+<pre class="r"><code>data_manifestos_tokens &lt;- tokens(corpus_manifestos, what = &quot;word&quot;, 
+    remove_punct = TRUE, remove_symbols = TRUE, remove_numbers = TRUE, 
+    remove_url = TRUE, remove_separators = TRUE, split_hyphens = FALSE, 
+    include_docvars = TRUE, padding = FALSE, verbose = TRUE)</code></pre>
+<pre><code>## Creating a tokens object from a corpus input...</code></pre>
+<pre><code>##  ...starting tokenization</code></pre>
+<pre><code>##  ...UK_natl_2001_en_Con to UK_natl_2005_en_SNP</code></pre>
+<pre><code>##  ...preserving hyphens</code></pre>
+<pre><code>##  ...preserving social media tags (#, @)</code></pre>
+<pre><code>##  ...segmenting into words</code></pre>
+<pre><code>##  ...10,488 unique types</code></pre>
+<pre><code>##  ...removing separators, punctuation, symbols, numbers, URLs</code></pre>
+<pre><code>##  ...complete, elapsed time: 0.694 seconds.</code></pre>
+<pre><code>## Finished constructing tokens from 10 documents.</code></pre>
+<p>We can also remove certain stopwords so that words like “and” or “the” do not influence our analysis too much. We can either specify these words ourselves or we can use a list that is already present in R. To see this list, type <code>stopwords("english")</code> in the console. Stopwords for other languages are also available (such as German, French and Spanish). Even more stopwords can be found in the <code>stopword</code> package, that can easily be integrated with <code>quanteda</code>. For now, we will use the English ones. First, however, as all the stopwords are lower-case, we will have to lower case our words as well:</p>
+<pre class="r"><code>data_manifestos_tokens &lt;- tokens_tolower(data_manifestos_tokens, keep_acronyms = FALSE)
+data_manifestos_tokens &lt;- tokens_select(data_manifestos_tokens, stopwords(&quot;english&quot;), selection = &quot;remove&quot;)</code></pre>
+<p>Then, we can construct our dfm:</p>
+<pre class="r"><code>data_manifestos_dfm &lt;- dfm(data_manifestos_tokens)</code></pre>
+<p>One thing we can do with this dfm is to generate a frequency graph using the <code>topfeatures</code> function. For this, we first have to save the 50 most frequently occurring words in our texts:</p>
+<pre class="r"><code>features &lt;- topfeatures(data_manifestos_dfm, 50)</code></pre>
+<p>We then have to transform this object into a data frame, and sort it by decreasing frequency:</p>
+<pre class="r"><code>features_plot &lt;- data.frame(list(term = names(features),frequency = unname(features)))
+features_plot$term &lt;- with(features_plot, reorder(term, -frequency))</code></pre>
+<p>Then we can plot the results:</p>
+<pre class="r"><code>library(ggplot2)
+ggplot(features_plot) + 
+ geom_point(aes(x=term, y=frequency)) +
+ theme_classic()+
+ theme(axis.text.x=element_text(angle=90, hjust=1))</code></pre>
+<p><img src="04-Seminar2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>We can also generate word clouds. As these show all the words we have, we will trim our dfm first to remove all those words that occurred less than 40 times. We can do this with the <code>dfm_trim</code> function. Then, we can use this newly trimmed dfm to generate the word cloud:</p>
+<pre class="r"><code>library(quanteda.textplots)
+
+wordcloud_dfm_trim &lt;- dfm_trim(data_manifestos_dfm, min_termfreq = 40)
+textplot_wordcloud(wordcloud_dfm_trim)</code></pre>
+<p><img src="04-Seminar2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>If we would want to, we can also split up this word cloud based on which words belong to which parties. For this, we have to generate a new dfm and within it, specify the groups that well which words belong to which party:</p>
+<pre class="r"><code>library(quanteda.textplots)
+
+wordcloud_dfm_comp &lt;- dfm_group(data_manifestos_dfm, groups = Party)
+wordcloud_dfm_comp &lt;- dfm_trim(wordcloud_dfm_comp, min_termfreq = 20, 
+    max_words = 40)
+textplot_wordcloud(wordcloud_dfm_comp, comparison = TRUE)</code></pre>
+<p><img src="04-Seminar2_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="standard-dictionary-analysis" class="section level2">
+<h2>Standard Dictionary Analysis</h2>
+<p>Now we have the first idea of our data, we can turn to a dictionary analysis. We can do so either by making a dictionary ourselves or using an off-the-shelf version. For the latter, we can either import the files we already have into R or use some of the versions that come with the <code>quanteda.dictionaries</code> package. For this, we first load the package:</p>
+<pre class="r"><code>library(quanteda.dictionaries)</code></pre>
+<p>We then apply one of these dictionaries to the document feature matrix we made earlier. As a dictionary, we will use the one made by <span class="citation">@Laver2000a</span>, meant for estimating policy positions from political texts. We first load this dictionary into R and then run it on the dfm using the <code>dfm_lookup</code> command:</p>
+<pre class="r"><code>data_dictionary_LaverGarry
+dictionary_results &lt;- dfm_lookup(data_manifestos_dfm, data_dictionary_LaverGarry)
+dictionary_results</code></pre>
+<p>Apart from off-the-shelf dictionaries, it is also possible to create our own which could suit our research question better. One approach in dictionary construction is to use prior theory deductively to come up with different categories and their associated words. Another approach is to use reference texts in order to come up with categories and words inductively. We can also combine different dictionaries as illustrated by <span class="citation">@Young2012</span>, or different dictionaries and keywords from categories in manual coding scheme (<span class="citation">@Lind2019</span>). Finally, one can use expert or crowdcoding assessments to determine the words that best match different categories in a dictionary (<span class="citation">@Haselmayer2017</span>).</p>
+<p>If we want to create our own dictionary in <code>quanteda</code> we use the same commands as above, but we first have to create the dictionary. To do so, we specify the words in a named list. This list contains keys (the words we want to look for) and the categories to which they belong. We then transform this list into a dictionary. Here, we choose some words which we believe will allow us to easily identify the different parties:</p>
+<pre class="r"><code>dic_list &lt;- list(economy = c(&quot;tax*&quot;, &quot;vat&quot;, &quot;trade&quot;), social = c(&quot;NHS&quot;, 
+    &quot;GP&quot;, &quot;health&quot;), devolution = c(&quot;referendum&quot;, &quot;leave&quot;, &quot;independence&quot;), 
+    europe = c(&quot;Brussels&quot;, &quot;remain&quot;, &quot;EU&quot;))
+dic_created &lt;- dictionary(dic_list, tolower = FALSE)
+dic_created</code></pre>
+<pre><code>## Dictionary object with 4 key entries.
+## - [economy]:
+##   - tax*, vat, trade
+## - [social]:
+##   - NHS, GP, health
+## - [devolution]:
+##   - referendum, leave, independence
+## - [europe]:
+##   - Brussels, remain, EU</code></pre>
+<p>If you compare the <code>dic_list</code> file with the <code>data_dictionary_LaverGarry</code> file, you will find that it has the same structure. To see the result, we can use the same command:</p>
+<pre class="r"><code>dictionary_created &lt;- dfm_lookup(data_manifestos_dfm, dic_created)
+dictionary_created</code></pre>
+<pre><code>## Document-feature matrix of: 10 documents, 4 features (2.50% sparse) and 6 docvars.
+##                      features
+## docs                  economy social devolution europe
+##   UK_natl_2001_en_Con     108     27         13     14
+##   UK_natl_2001_en_Lab      89     86         20     36
+##   UK_natl_2001_en_LD      104     74         12     37
+##   UK_natl_2001_en_PCy      14     26          1      1
+##   UK_natl_2001_en_SNP      51     26         30     10
+##   UK_natl_2005_en_Con      37     21          8     10
+## [ reached max_ndoc ... 4 more documents ]</code></pre>
+<p>Here, we see that the Conservatives are the most active on the Economy together with the Liberal Democrats. Social issues are for Labour, while the SNP is most active on devolution, as are the Liberal Democrats on Europe.</p>
+</div>
+<div id="sentiment-analysis" class="section level2">
+<h2>Sentiment Analysis</h2>
+<p>The logic of dictionaries is that we can use them to see which kind of topics are present in our documents. Yet, we can also use them to provide us with measurements that are most often related to scaling. One way to do so is with <em>sentiment</em> analysis. Here, we look at whether a certain piece of text is happy, angry, positive, negative, and so on. One case in which this can help us is with movie reviews. These reviews give us a description of a movie and then tell us their opinion. Here, we will use these reviews and apply a sentiment dictionary on them.</p>
+<p>First, we load some reviews into R. The corpus we use here contains 50,000 movie reviews, each with a 1-10 rating (amongst others). As 50,000 reviews make the analysis quite slow, we will first select 30 reviews at random from this corpus. We do so via <code>corpus_sample</code>, after which we transform it via a tokens object into a dfm:</p>
+<pre class="r"><code>library(quanteda.classifiers)
+reviews &lt;- corpus_sample(data_corpus_LMRD, 30)
+reviews_tokens &lt;- tokens(reviews)
+reviews_dfm &lt;- dfm(reviews_tokens)</code></pre>
+<p>The next step is to load in a sentiment analysis dictionary. Here, we will use the Lexicoder Sentiment Dictionary, included in <code>quanteda</code> and run it on the dfm:</p>
+<pre class="r"><code>data_dictionary_LSD2015
+results_dfm &lt;- dfm_lookup(reviews_dfm, data_dictionary_LSD2015)
+results_dfm</code></pre>
+<p>The next step is to convert the results to a data frame and view them:</p>
+<pre class="r"><code>sentiment &lt;- convert(results_dfm, to=&quot;data.frame&quot;)
+sentiment</code></pre>
+<pre><code>##                    doc_id negative positive neg_positive neg_negative
+## 1  train/pos/11590_10.txt        1        8            0            0
+## 2    train/pos/5765_9.txt       33       27            0            0
+## 3     test/pos/1479_8.txt        2        1            0            0
+## 4    train/neg/9712_1.txt       20        8            0            0
+## 5    train/pos/6401_8.txt       15       15            0            0
+## 6     test/pos/3769_8.txt       10       19            0            0
+## 7    train/pos/4755_7.txt       10        8            0            0
+## 8   train/neg/11447_1.txt       12        5            0            0
+## 9    test/pos/11255_9.txt       22       19            0            0
+## 10   train/neg/1955_1.txt       14        2            0            0
+## 11    test/neg/6819_3.txt        9        8            0            0
+## 12   train/pos/1773_9.txt        5       13            0            0
+## 13   test/pos/5873_10.txt        1        3            0            0
+## 14    test/neg/5964_3.txt       27        4            0            0
+## 15   train/pos/3803_9.txt       19       10            0            0
+## 16    test/neg/6910_3.txt       13        7            0            0
+## 17  train/pos/2106_10.txt        3       13            0            0
+## 18    test/neg/9633_4.txt        7        4            0            0
+## 19   train/pos/2051_8.txt       31       25            0            0
+## 20    test/neg/5740_4.txt       13        5            0            0
+## 21   test/pos/3034_10.txt       32       31            0            0
+## 22    test/neg/5793_4.txt        7        6            0            0
+## 23     test/neg/516_1.txt        9        1            0            0
+## 24    test/neg/9666_1.txt       14        4            0            0
+## 25   test/neg/11351_4.txt       17        8            0            0
+## 26  train/pos/4446_10.txt       11       28            0            0
+## 27  train/neg/10675_2.txt       10        8            0            0
+## 28   train/pos/8911_8.txt       15        7            0            0
+## 29   test/neg/11581_1.txt       15       16            0            0
+## 30    test/pos/3552_7.txt        4        5            0            0</code></pre>
+<p>Since movie reviews usually come with some sort of rating (often in the form of stars), we can see if this relates to the sentiment of the review. To do so, we have to take the rating out of the dfm and place it in a new data-frame with the positive and negative sentiments:</p>
+<pre class="r"><code>star_data &lt;- reviews_dfm@docvars$rating
+stargraph &lt;- as.data.frame(cbind(star_data, sentiment$negative, sentiment$positive))
+names(stargraph) &lt;- c(&quot;stars&quot;,&quot;negative&quot;,&quot;positive&quot;)</code></pre>
+<p>To compare the sentiment with the stars, we first have to combine the senitments into a scale. Of the many ways to do so, the simplest is to take the difference between the positive and negative words (positive – negative). Another option is to take the ratio of positive words against both positive and negative (positive/positive+negative). Here, we do both:</p>
+<pre class="r"><code>sentiment_difference &lt;- stargraph$positive - stargraph$negative
+sentiment_ratio &lt;- (stargraph$positive/(stargraph$positive + 
+    stargraph$negative))
+stargraph &lt;- cbind(stargraph, sentiment_difference, sentiment_ratio)</code></pre>
+<p>Then, we can plot the ratings and the scaled sentiment measures together with a linear regression line:</p>
+<pre class="r"><code>library(ggplot2)
+
+ggplot(stargraph, aes(x = sentiment_difference, y = stars)) + 
+    geom_point(shape = 1) + geom_smooth(method = lm, se = FALSE) + 
+    xlab(&quot;Positive minus Negative&quot;) + ylab(&quot;Stars&quot;) + theme_classic()</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="04-Seminar2_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(stargraph, aes(x = sentiment_ratio, y = stars)) + geom_point(shape = 1) + 
+    geom_smooth(method = lm, se = FALSE) + xlab(&quot;Ratio of Positive to Total&quot;) + 
+    ylab(&quot;Stars&quot;) + theme_classic()</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="04-Seminar2_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>Finally, we would like to illustrate how one can make inferences by using the output of a dictionary analysis, by estimating confidence intervals around the point estimates. To do so, again the first step is to add a column which will be the total of positive and negative words scored by the dictionary. We do so by copying the data frame to a new data frame and adding a new column filled with NA values:</p>
+<pre class="r"><code>reviews_bootstrap   &lt;- sentiment
+reviews_bootstrap$n &lt;- NA</code></pre>
+<p>We then again specify the number of reviews, the replications that we want and change the data frame into an array:</p>
+<pre class="r"><code>library(combinat)
+
+nman &lt;- nrow(reviews_bootstrap)
+nrepl &lt;- 1000
+manifBSn &lt;- manifBSnRand &lt;- array(as.matrix(reviews_bootstrap[, 
+    2:3]), c(nman, 2, nrepl + 1), dimnames = list(1:nman, names(reviews_bootstrap[, 
+    2:3]), 0:nrepl))</code></pre>
+<p>Then, we bootstrap the word counts for each movie review and compute percentages for each category using a multinomial draw:</p>
+<pre class="r"><code>n &lt;- apply(manifBSn[1:nrow(manifBSn), , 1], 1, sum)
+p &lt;- manifBSn[, , 1]/n
+
+for (i in 1:nrepl) {
+    manifBSn[, , i] &lt;- rmultinomial(n, p)
+}</code></pre>
+<p>We can then ask R to compute the quantities of interest. These are standard errors for each category, as well as the percentage coded for each category.</p>
+<pre class="r"><code>NegativeSE &lt;- apply(manifBSn[, &quot;negative&quot;, ]/n * 100, 1, sd)
+PositiveSE &lt;- apply(manifBSn[, &quot;positive&quot;, ]/n * 100, 1, sd)
+perNegative &lt;- apply(manifBSn[, &quot;negative&quot;, ]/n * 100, 1, mean)
+perPositive &lt;- apply(manifBSn[, &quot;positive&quot;, ]/n * 100, 1, mean)</code></pre>
+<p>We then save these quantities of interest in a new data frame:</p>
+<pre class="r"><code>dataBS &lt;- data.frame(cbind(reviews_bootstrap[, 1:3], NegativeSE, 
+    PositiveSE, perNegative, perPositive))</code></pre>
+<p>Then, we first calculate the confidence intervals and add these:</p>
+<pre class="r"><code>pos_hi &lt;- dataBS$perPositive + (1.96 * dataBS$PositiveSE)
+pos_lo &lt;- dataBS$perPositive - (1.96 * dataBS$PositiveSE)
+neg_lo &lt;- dataBS$perNegative - (1.96 * dataBS$NegativeSE)
+neg_hi &lt;- dataBS$perNegative + (1.96 * dataBS$NegativeSE)
+dataBS &lt;- cbind(dataBS, pos_hi, pos_lo, neg_lo, neg_hi)</code></pre>
+<p>Finally, we can then make the graph. Here, we plot each of the positive and negative points and then overlay them with their error bars:</p>
+<pre class="r"><code>library(ggplot2)
+
+ggplot() +
+ geom_point(data = dataBS,aes(x = perPositive, y = doc_id), shape = 0) +
+ geom_point(data = dataBS,aes(x = perNegative, y = doc_id), shape = 2) +
+ geom_errorbarh(data = dataBS,aes(x = perPositive, xmax = pos_hi,xmin = pos_lo, y = doc_id)) +
+ geom_errorbarh(data = dataBS,aes(x = perNegative, xmax = neg_hi,xmin = neg_lo, y = doc_id)) +
+ xlab(&quot;Percent positive/negative with 95% CIs&quot;) +
+ ylab(&quot;review&quot;)+
+ theme_classic()</code></pre>
+<p><img src="04-Seminar2_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p>As can be seen in this particular example, the fact that some documents are much less lengthier than others introduces a lot of uncertainty in the estimates. As evident from the overlapping confidence intervals in the figure, for most reviews, the percentage of negative words is not much different from the percentage of positive words. In other words: the sentiment for these reviews is rather mixed.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

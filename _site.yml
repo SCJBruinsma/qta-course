@@ -6,6 +6,18 @@ navbar:
       href: 01-Install.html
     - text: "Import"
       href: 02-Import.html      
+    - text: "Reliability and Validity"
+      href: 03-Seminar1.html     
+    - text: "Dictionaries"
+      href: 04-Seminar2.html     
+    - text: "Scaling"
+      href: 05-Seminar3.html     
+    - text: "Supervised Methods"
+      href: 06-Seminar4.html     
+    - text: "Unsupervised Methods"
+      href: 07-Seminar5.html       
+
+      
 output_dir: "."
 output:
   html_document:

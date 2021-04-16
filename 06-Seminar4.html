@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>06-Seminar4.utf8</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">HOME</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="01-Install.html">Install</a>
+</li>
+<li>
+  <a href="02-Import.html">Import</a>
+</li>
+<li>
+  <a href="03-Seminar1.html">Reliability and Validity</a>
+</li>
+<li>
+  <a href="04-Seminar2.html">Dictionaries</a>
+</li>
+<li>
+  <a href="05-Seminar3.html">Scaling</a>
+</li>
+<li>
+  <a href="06-Seminar4.html">Supervised Methods</a>
+</li>
+<li>
+  <a href="07-Seminar5.html">Unsupervised Methods</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="supervised-methods" class="section level1">
+<h1>Supervised Methods</h1>
+<p>While with scaling we try to place our texts on a scale, with supervised methods we go back to what we did with dictionary analysis: classification. Within <code>quanteda</code> there are many different models for supervised methods, of which we will cover two. These are Support Vector Machines (SVM) and Naive Bayes (NB). The first classifies texts by looking at their position on a hyperplane, the second by their (Bayesian) probabilities. To show how they work, we will look at an example of SVM in <code>quanteda</code> and one in <code>RTextTools</code>, and an example of NB in <code>quanteda</code>.</p>
+<div id="support-vector-machines" class="section level2">
+<h2>Support Vector Machines</h2>
+<p>For the SVM, we will start with a textbook example using a dataset that comes with <code>RTextTools</code> package. The US Congress dataset contains 1000 sentences drawn from bills debated in the 107 US Congress. With the following commands we load and view the US Congress data:</p>
+<pre class="r"><code>library(&quot;RTextTools&quot;)</code></pre>
+<pre><code>## Loading required package: SparseM</code></pre>
+<pre><code>## 
+## Attaching package: &#39;SparseM&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     backsolve</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;tree&#39;:
+##   method     from
+##   print.tree cli</code></pre>
+<pre class="r"><code>data(USCongress)</code></pre>
+<p>As you can see, the variable <code>text</code> corresponds to sentences (one per row) while the variable <code>major</code> corresponds to a category that was manually coded for each of these sentences. The goal of the supervised learning task is to use part of this dataset to train a certain algorithm, and then use the trained algorithm to assign categories to the remaining sentences. Since we know the coded categories for the remaining sentences, we will be able to evaluate how well this training was in guessing/estimating what the codes for these sentences were. We start by creating a document term matrix. The options specified in the command instruct R to look into the <code>text</code> variable and remove numbers, stem words, and remove words that appear in less than 2% of the sentences in the dataset.</p>
+<pre class="r"><code>doc_matrix &lt;- create_matrix(USCongress$text, language = &quot;english&quot;, removeNumbers = TRUE, stemWords = TRUE, removeSparseTerms = 0.998)</code></pre>
+<pre><code>## Warning in TermDocumentMatrix.SimpleCorpus(x, control): custom functions are
+## ignored</code></pre>
+<pre><code>## Warning in TermDocumentMatrix.SimpleCorpus(x, control): custom tokenizer is
+## ignored</code></pre>
+<pre class="r"><code>doc_matrix</code></pre>
+<pre><code>## &lt;&lt;DocumentTermMatrix (documents: 4449, terms: 1015)&gt;&gt;
+## Non-/sparse entries: 46473/4469262
+## Sparsity           : 99%
+## Maximal term length: 18
+## Weighting          : term frequency (tf)</code></pre>
+<p>Note that <code>RTextTools</code> gives you plenty of options in preprocessing. Apart from the options used above, you can also strip whitespace, remove punctuation, and remove stopwords from lists that are already defined in the package. Stemming and stopword removal is language specific, so when you select the language in the option as above <code>(language=''english'')</code>, the stemming and stopword removal will be done according to the language of your choice. At the moment, the stopwords included are those for Danish, Dutch, English, Finnish, French, German, Italian, Norwegian, Portuguese, Russian, Spanish, and Swedish.</p>
+<p>We then create a container parsing the document matrix into a training set, and a test set. The training set will be used to train the algorithm and the test set to test how well this algorithm was trained. The following command instructs R to use the first 4000 sentences for the training set the remaining 449 sentences for the test set. Moreover, we specify to append to the document matrix the variable that contains the assigned coders:</p>
+<pre class="r"><code>container &lt;- create_container(doc_matrix, USCongress$major, trainSize = 1:4000, testSize = 4001:4449, virgin = FALSE)</code></pre>
+<p>We can then train a model using one of the available algorithms. For instance, we can use the Support Vector Machines algorithm (SVM) as follows:</p>
+<pre class="r"><code>SVM &lt;- train_model(container, &quot;SVM&quot;)</code></pre>
+<p>Other algorithms available are glmnet (GLMNET), maximum entropy (MAXENT), scaled linear discriminant analysis (SLDA), bagging (BAGGING), boosting (BOOSTING), random forest (RF), neural networks (NNET), classification tree (TREE).</p>
+<p>We then use the model we just trained to classify the texts in the test set. The following command instructs R to classify the documents in the test set of the container using the SVM model that we previously trained.</p>
+<pre class="r"><code>SVM_CLASSIFY &lt;- classify_model(container, SVM)</code></pre>
+<p>We can also view the classification that was performed by the SVM model as follows. The first columns corresponds to the label that was assigned to each of the 449 sentences in the training set, while the second column gives the probability that the sentence was assigned to that particular category by the SVM algorithm. As you can see, while the probability for some sentences is quite high (e.g. 0.99 for sentence 3) for others is quite low (e.g. 0.13 for sentence 20) even though the classification always chooses the category with the highest probability.</p>
+<pre class="r"><code>View(SVM_CLASSIFY)</code></pre>
+<p>The next step is to check the performance of the model we just tested in terms of classification. To do this, we first request a function which returns a container with different summaries. For instance, we can request summaries on the basis of the labels that were attached to the sentences, the documents (or in this case, the sentences) by label, or on the basis of the algorithm.</p>
+<pre class="r"><code>analytics &lt;- create_analytics(container,cbind(SVM_CLASSIFY))
+summary(analytics)</code></pre>
+<pre><code>## ENSEMBLE SUMMARY
+## 
+##        n-ENSEMBLE COVERAGE n-ENSEMBLE RECALL
+## n &gt;= 1                   1              0.74
+## 
+## 
+## ALGORITHM PERFORMANCE
+## 
+## SVM_PRECISION    SVM_RECALL    SVM_FSCORE 
+##        0.6370        0.6355        0.6270</code></pre>
+<p>Precision gives the proportion of bills that were classified as belonging to a category and actually belong to this category (true positives) to all the bills that were classified in that category (irrespective of where they belong). Recall is the proportion of bills that were classified as belonging to a category and actually belong to this category (true positives) to all the bills that belong to this category (true positives plus false negatives). The F score is a weighted average between precision and recall ranging fro 0 to 1.</p>
+<p>Instead of using a separate package, we can also use <code>quanteda</code> to carry out an SVM. For this, we again load the reviews we used earlier, select 1000 of them at random, and place them into our corpus:</p>
+<pre class="r"><code>detach(&quot;package:RTextTools&quot;, unload = TRUE)
+
+set.seed(42)
+
+library(quanteda.classifiers)
+corpus_reviews &lt;- corpus_sample(data_corpus_LMRD, 1000)</code></pre>
+<p>Our aim here will be to see how well the SVM algorithm can predict the rating of the reviews. To do this, we first have to create a new variable <code>prediction</code>. This variable contains the same scores as the original rating. Then, we remove 30% of the scores and replace them with NA. We do so by creating a <code>missing</code> variable what contains 30% 0s and 70% 1s. We then place the 0s with NAs. These NA scores are then the ones we want the algorithm to predict. Finally, we add the new variable to the corpus:</p>
+<pre class="r"><code>prediction &lt;- corpus_reviews$rating
+
+set.seed(42)
+
+missing &lt;- rbinom(1000, 1, 0.7)
+prediction[missing == 0] &lt;- NA
+
+docvars(corpus_reviews, &quot;prediction&quot;) &lt;- prediction</code></pre>
+<p>We then transform the corpus into a data frame, and also remove stopwords, numbers and punctuation:</p>
+<pre class="r"><code>dfm_reviews &lt;- dfm(corpus_reviews, remove = stopwords(&quot;english&quot;), remove_punct = TRUE, remove_numbers = TRUE)</code></pre>
+<pre><code>## Warning: &#39;dfm.corpus()&#39; is deprecated. Use &#39;tokens()&#39; first.</code></pre>
+<pre><code>## Warning: &#39;...&#39; should not be used for tokens() arguments; use &#39;tokens()&#39; first.</code></pre>
+<pre><code>## Warning: &#39;remove&#39; is deprecated; use dfm_remove() instead</code></pre>
+<p>Now we can run the SVM algorithm. To do so, we tell the model on which dfm we want to run our model, and which variable contains the scores to train the algorithm. Here, this is our <code>prediction</code> variable with the missing data:</p>
+<pre class="r"><code>library(quanteda.textmodels)
+svm_reviews &lt;- textmodel_svm(dfm_reviews, y = docvars(dfm_reviews, &quot;prediction&quot;))
+svm_reviews</code></pre>
+<pre><code>## 
+## Call:
+## textmodel_svm.dfm(x = dfm_reviews, y = docvars(dfm_reviews, &quot;prediction&quot;))
+## 
+## 707 training documents; 129,216 fitted features.
+## Method: L2-regularized L2-loss support vector classification dual (L2R_L2LOSS_SVC_DUAL)</code></pre>
+<p>Here we see that the algorithm used 720 texts to train the model (the one with a score) and fitted 133,728 features. The latter refers to the total number of words in the training texts and not only the unique ones. Now we can use this model to predict the ratings we removed earlier:</p>
+<pre class="r"><code>svm_predict &lt;- predict(svm_reviews)</code></pre>
+<p>While we can of course look at the resulting numbers, we can also place them in a two-way table with the actual rating, to see how well the algorithm did:</p>
+<pre class="r"><code>rating     &lt;- corpus_reviews$rating
+table_data &lt;- as.data.frame(cbind(svm_predict, rating))
+table(table_data$svm_predict,table_data$rating)</code></pre>
+<pre><code>##     
+##        1   2   3   4   7   8   9  10
+##   1  175  14  10  11   4   3   1   6
+##   2   13  65   5   3   0   0   0   3
+##   3    5   2  82   4   1   4   0   3
+##   4    4   5   5  90   1   5   2   6
+##   7    0   1   2   2  75   6   0   1
+##   8    2   1   1   0   3  83   5   7
+##   9    3   0   1   6   4  11  74   7
+##   10   1   3   3   2   3  10  14 137</code></pre>
+<p>Here, the table shows the prediction of the algorithm from top to bottom and the original rating from left to right. What we want is that all cases are on the diagonal: in that case, the prediction is the same as the original rating. Here, this happens in the majority of cases. Also, only in a few cases is the algorithm far off.</p>
+</div>
+<div id="naive-bayes" class="section level2">
+<h2>Naive Bayes</h2>
+<p>For the NB example, we will use data from the Manifesto Project <span class="citation">[@Volkens2019a]</span>, also known as the Comparative Manifesto Project (CMP), Manifesto Research Group (MRG), and MARPOR (Manifesto Research on Political Representation)). After you have signed up and downloaded the API key, load the package and set the key:</p>
+<pre class="r"><code>library(manifestoR)
+mp_setapikey(&quot;manifesto_apikey.txt&quot;)</code></pre>
+<p>While we can download the whole dataset, as it is rather large, it makes more sense to only download download a part of it. Here, we take the manifestos for the United Kingdom in 2015. To tell R we want only these documents, we make a small dataframe listing the party and the year we want, and then place this into the <code>mp_corpus</code> command. Note that instead of the names of the parties, the Manifesto Project assigns unique codes to each party. To see which code belongs to which party, see: <a href="https://manifesto-project.wzb.eu/down/data/2019a/codebooks/parties_MPDataset_MPDS2019a.pdf" class="uri">https://manifesto-project.wzb.eu/down/data/2019a/codebooks/parties_MPDataset_MPDS2019a.pdf</a>. Also note that the date includes both the year and month of the election:</p>
+<pre class="r"><code>manifestos &lt;- data.frame(party=c(51320, 51620, 51110, 51421, 51901, 51902, 51951), date=c(201505, 201505, 201505, 201505, 201505, 201505, 201505))
+manifesto_corpus &lt;- mp_corpus(manifestos)</code></pre>
+<pre><code>## Connecting to Manifesto Project DB API... corpus version: 2020-2 
+## Connecting to Manifesto Project DB API... corpus version: 2020-2</code></pre>
+<p>For now, we are only interested in the (quasi)-sentences the of the manifestos, the codes the coders gave them, and names of the parties. To make everything more clear, we will take these elements from the corpus, combine them into a new data-frame, and remove all the NA values. We do this because otherwise the data would also include the headers and titles of the document, which do not have any codes assigned to them:</p>
+<pre class="r"><code>detach(&quot;package:httr&quot;, unload = TRUE)</code></pre>
+<pre><code>## Warning: &#39;httr&#39; namespace cannot be unloaded:
+##   namespace &#39;httr&#39; is imported by &#39;tidyverse&#39;, &#39;rvest&#39; so cannot be unloaded</code></pre>
+<pre class="r"><code>text_51320 &lt;- content(manifesto_corpus[[&quot;51320_201505&quot;]])
+text_51620 &lt;- content(manifesto_corpus[[&quot;51620_201505&quot;]])
+text_51110 &lt;- content(manifesto_corpus[[&quot;51110_201505&quot;]])
+text_51421 &lt;- content(manifesto_corpus[[&quot;51421_201505&quot;]])
+text_51901 &lt;- content(manifesto_corpus[[&quot;51901_201505&quot;]])
+text_51902 &lt;- content(manifesto_corpus[[&quot;51902_201505&quot;]])
+text_51951 &lt;- content(manifesto_corpus[[&quot;51951_201505&quot;]])
+
+texts &lt;- c(text_51320,text_51620,text_51110,text_51421,text_51901,text_51902,text_51951)
+
+party_51320 &lt;- rep(51320,length.out=length(text_51320))
+party_51620 &lt;- rep(51620,length.out=length(text_51620))
+party_51110 &lt;- rep(51110,length.out=length(text_51110))
+party_51421 &lt;- rep(51421,length.out=length(text_51421))
+party_51901 &lt;- rep(51901,length.out=length(text_51901))
+party_51902 &lt;- rep(51902,length.out=length(text_51902))
+party_51951 &lt;- rep(51951,length.out=length(text_51951))
+
+party &lt;- c(party_51320,party_51620,party_51110,party_51421,party_51901,party_51902,party_51951)
+
+cmp_code &lt;- codes(manifesto_corpus)
+
+manifesto_data &lt;- data.frame(texts,cmp_code,party)</code></pre>
+<p>Before we go on, we have to transform the columns in our data-frame. This is because R considers two of them (<em>texts</em> and <em>cmp_code</em>) to be a factor, and also still uses the codes for the <em>party</em> variable. To solve the latter, we first transform <em>party</em> into a factor type, then assign the party names to each of the codes (Conservatives, Labour, Liberal Democrats, SNP, Plaid Cymru, The Greens, and UKIP), and then change the column to character type. We then change the <strong>texts</strong> column to character and the <strong>cmp_code</strong> column to numeric. We also create a back-up of our current dfm for later, and finally remove any missing data:</p>
+<pre class="r"><code>manifesto_data$party &lt;- factor(manifesto_data$party,levels = c(51110, 51320, 51421, 51620, 51901, 51902, 51951), labels = c(&quot;GREEN&quot;, &quot;LABOUR&quot;, &quot;LIBDEM&quot;, &quot;CON&quot;, &quot;PC&quot;, &quot;SNP&quot;, &quot;UKIP&quot;)) 
+manifesto_data$party &lt;- as.character(manifesto_data$party)
+manifesto_data$texts &lt;- as.character(manifesto_data$texts)
+manifesto_data$cmp_code &lt;- as.numeric(as.character(manifesto_data$cmp_code))
+
+manifesto_data_raw &lt;- manifesto_data
+manifesto_data &lt;- na.omit(manifesto_data)</code></pre>
+<p>In our data-frame, the <em>text</em> variable indicates the hand-coded quasi-sentences, while the <em>cmp_code</em> indicates the code it received. There are 56 categories in the Manifesto Project coding scheme, and an extra empty category indicated with 0. Before we go on, it might be interesting to see which parties have which codes assigned to them. The most simplest way to do this so is to make a cross-table of the parties and the codes. We can do this with the <code>table()</code> command:</p>
+<pre class="r"><code>table(manifesto_data$cmp_code, manifesto_data$party)</code></pre>
+<pre><code>##      
+##       CON GREEN LABOUR LIBDEM  PC SNP UKIP
+##   0    15    25      5      0   8   0    0
+##   101   0     5      0      6   0   0    3
+##   103   0     0      0      2   0   0    0
+##   104   5    45      0     96   7  18   63
+##   105  21    14      2     16   9  16   16
+##   106  18    22      2      8   5   1    2
+##   107  76    62     22     98  16  11   13
+##   108  17    44      4     42   7  22    9
+##   109   5     0      0      0   5   0   17
+##   110   8     2      2     86   3   1  222
+##   201  51   153      4     39   8  11   13
+##   202  60   113      9     23  20  21   24
+##   203   1     0      0      5   1   0    0
+##   204  15    19      0     15   4   3    1
+##   301  62   116      3     67  58 102   28
+##   303   8    28      1     41   3   3   43
+##   304  14     1      5      4   0   0   11
+##   305  20     1     14      7   4   9   10
+##   401   3     4      0     25   0   0   11
+##   402   8    24      2     42  11  54   50
+##   403 164   137     56     80  48  68   70
+##   404   4     2      0     93   2  20   14
+##   405   3     3      0      0   1  10    0
+##   406   0     7      2      7   2   4   39
+##   407   0     0      0      0   0   0    8
+##   408  16     0      4      1   2   2    2
+##   409   9     4      7      9   1  24    3
+##   410  11    30      2     35  10  16    0
+##   411  70    87      7     89  49  51   12
+##   412  18    10      8      9   9  17    2
+##   413  38     4     32      0  12   7    4
+##   414  43    36      0     53   0  16   15
+##   416  39    49    129     16   7  15   36
+##   501 157   220    295     66  49  32   20
+##   502  14    30      0     34  42   9   13
+##   503 220   324    184     74 105  74   47
+##   504 212   221    131    138  91 124  204
+##   505   1    10      0     30   0   0   18
+##   506 125    86      6     82  27  39   70
+##   601  27    17      1     66   2   1  114
+##   602   0     0      0      0  17  21    0
+##   603   3     3      0     13   0   0    2
+##   604   1     1      0      0   0   0    0
+##   605   6   137      4    134   1  24   65
+##   606  57    27     27     35  33   1    3
+##   607  12    10      0      2  43   2    0
+##   608   2     6      0      6   0   0   10
+##   701  91    60     29     25  31  26   19
+##   702   0     0      0     12   0   0    0
+##   703   0    34      2     21  22  17   22
+##   706   2     1      9      1   1   0    0</code></pre>
+<p>Here we see that some codes such as 604 and 407 are rare, while others such as 501 and 504 occur far more often. When we look at the codebook the coders used (<a href="https://manifesto-project.wzb.eu/coding_schemes/mp_v5" class="uri">https://manifesto-project.wzb.eu/coding_schemes/mp_v5</a>), we find that 604 and 407 refer to <em>Traditional Morality: Negative</em> and <em>Protectionism: Negative</em>, while 501 and 504 refer to <em>Environmental Protection</em> and <em>Welfare State Expansion</em>. As such, it should also come as no surprise that the Green Party refers more to environmental protection than all other parties combined.</p>
+<p>To get an even better idea of how much a party “owns” a code, we can calculate the row percentages. These inform us how much of the appearance of a certain code is due to a single party. To calculate these, we use the <code>prop.table</code> command. Here, the <code>,1</code> at the end tells R to look at the rows (no value would give the cell proportions, and 2 would give the column proportions). We then multiply the proportions by 100 to get the percentages. Then, we place the output in a data-frame, and provide some names to the columns using the <code>names</code> command:</p>
+<pre class="r"><code>prop_row &lt;- as.data.frame((prop.table(table(manifesto_data$cmp_code, 
+    manifesto_data$party), 1) * 100))
+names(prop_row) &lt;- c(&quot;Code&quot;, &quot;Party&quot;, &quot;Percentage&quot;)</code></pre>
+<p>While we can look at the results by looking at the <code>prop_row</code> object, it is clearer to do this in a graph. To build this graph, in the command we first specify the data, the x variable (the codes), the y variable (the percentages), and the filling of the bar (which should be the party colours). These party colours we provide in the next line (in hexadecimal notation). Then we tell <code>ggplot</code> to draw the bar chart and <em>stack</em> the bars on top of each other (the alternative is to <em>dodge</em>, in which R places the bars next to each other). Then, we specify our theme, turn the text for the codes 90 degrees, and move the codes a little bit so they are under their respective bars:</p>
+<pre class="r"><code>library(ggplot2)
+
+ggplot(data = prop_row, aes(x = Code, y = Percentage, fill = Party)) + 
+    scale_fill_manual(&quot;&quot;, values = c(&quot;#0087DC&quot;, &quot;#67B437&quot;, &quot;#DC241F&quot;, 
+        &quot;#FAA61A&quot;, &quot;#008142&quot;, &quot;#FDF38E&quot;, &quot;#780077&quot;)) + geom_bar(stat = &quot;identity&quot;, 
+    position = &quot;stack&quot;) + scale_y_continuous(expand = c(0, 0)) + 
+    theme_classic() + theme(axis.text.x = element_text(angle = 90)) + 
+    theme(axis.text.x = element_text(vjust = 0.4))</code></pre>
+<p><img src="06-Seminar4_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>Now, we can see that some parties dominate some categories, while for others the spread is more even. For example, UKIP dominates the categories 406 and 407 - dealing with positive and negative mentions of protectionism, while the Conservatives do the same with category 103 (<em>Anti-Imperialism</em>). Note though, that these are percentages. This means that the reason the Conservatives dominate category 103 is as they have two (quasi)-sentences with that category. The others do not have the category at all (702 on <em>Negative Mentioning of Labour Groups</em> has the same issue). Other categories, such as 403 (<em>Market Regulation</em>) and 502 (<em>Positive Mentions of Culture</em>) are way better spread out over all the parties.</p>
+<p>Another thing we can look at is what part of a party’s manifesto belongs to any of the codes. This can help us answer the question: “what are the parties talking about?” To see this, we have to calculate the column percentages:</p>
+<pre class="r"><code>prop_col &lt;- as.data.frame((prop.table(table(manifesto_data$cmp_code, 
+    manifesto_data$party), 2) * 100))
+names(prop_col) &lt;- c(&quot;Code&quot;, &quot;Party&quot;, &quot;Percentage&quot;)</code></pre>
+<p>If we now type <code>prop_col</code>, we can see what percentage of a party manifesto was about a certain code. Yet, given that there are 57 possible codes, it is more practical to cluster these in some way. Here, we do this using the Domains to which they belonged in the codebook. In total there are 7 domains (<a href="https://manifesto-project.wzb.eu/down/papers/handbook_2014_version_5.pdf" class="uri">https://manifesto-project.wzb.eu/down/papers/handbook_2014_version_5.pdf</a>), and a category which houses the 0 code. To cluster the codes, we make a new variable called <code>Domain</code>. To do so, we first transform the codes into numeric format, create an empty variable called <code>Domain</code>, and then replace the NA values in this empty category with the name of the domain based on the values in the Code variable. This we do using various operators R uses: <code>&gt;=</code> means greater than and equal to, while <code>&lt;=</code> means smaller than and equal to. Then, we make this new variable into a factor, and sort this factor in the way the codes occur:</p>
+<pre class="r"><code>prop_col$Code &lt;- as.numeric(as.character(prop_col$Code))
+prop_col$Domain &lt;- NA
+
+prop_col$Domain[prop_col$Code &gt;= 101 &amp; prop_col$Code &lt;= 110] &lt;- &quot;External Relations&quot;
+prop_col$Domain[prop_col$Code &gt;= 201 &amp; prop_col$Code &lt;= 204] &lt;- &quot;Freedom and Democracy&quot;
+prop_col$Domain[prop_col$Code &gt;= 301 &amp; prop_col$Code &lt;= 305] &lt;- &quot;Political System&quot;
+prop_col$Domain[prop_col$Code &gt;= 401 &amp; prop_col$Code &lt;= 416] &lt;- &quot;Economy&quot;
+prop_col$Domain[prop_col$Code &gt;= 501 &amp; prop_col$Code &lt;= 507] &lt;- &quot;Welfare and Quality of Life&quot;
+prop_col$Domain[prop_col$Code &gt;= 601 &amp; prop_col$Code &lt;= 608] &lt;- &quot;Fabric of Society&quot;
+prop_col$Domain[prop_col$Code &gt;= 701 &amp; prop_col$Code &lt;= 706] &lt;- &quot;Social Groups&quot;
+prop_col$Domain[prop_col$Code == 0] &lt;- &quot;NA&quot;
+
+prop_col$Domain &lt;- as.factor(prop_col$Domain)
+prop_col$Domain &lt;- factor(prop_col$Domain, levels(prop_col$Domain)[c(2, 
+    4, 6, 1, 8, 3, 7, 5)])</code></pre>
+<p>We then construct a plot as we did above:</p>
+<pre class="r"><code>ggplot(data = prop_col, aes(x = Party, y = Percentage, fill = Domain)) + 
+    geom_bar(stat = &quot;identity&quot;, position = &quot;stack&quot;) + scale_y_continuous(expand = c(0, 
+    0)) + theme_classic() + theme(axis.text.x = element_text(angle = 90)) + 
+    theme(axis.text.x = element_text(vjust = 0.4))</code></pre>
+<p><img src="06-Seminar4_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>Here, we see that the Domain of <em>Welfare and Quality of Life</em> was the most dominant in all the manifestos, with <em>Economy</em> coming second. Also, especially UKIP paid a lot of attention to <em>External Relations</em>, while the Green party paid little attention to the <em>Fabric of Society</em>. In all, this gives us a good idea of what type of data we are actually dealing with.</p>
+<p>Now let’s get back to the classification. For this, we need to transform the corpus from the <code>manifestoR</code> package into a corpus for the <code>quanteda</code> package. To do so, we first have to transform the former into a data frame, and then turn it into a corpus. We then look at the first 10 entries:</p>
+<pre class="r"><code>corpus_data &lt;- mp_corpus(manifestos) %&gt;% 
+  as.data.frame(with.meta=TRUE)
+
+manifesto_corpus &lt;- corpus(corpus_data)
+
+summary(manifesto_corpus, 10)</code></pre>
+<p>Here, we see that the corpus treats each sentence as a separate document (which is confusing). We can still identify to which party they belong due to the <em>party</em> variable, which shows the party code. The <em>cmp_code</em> variable shows the code assigned to the sentence (here it is all NA as the first sentences have the 0 category). To run the NB, instead of providing our training documents using a vector with NA values, we have to split our data-set into a training and a test set. For this, we first generate a string of 8000 random numbers between 0 and 10780 (the total number of sentences). We do so to prevent our training or test set to exist only of sentences from a single party document:</p>
+<pre class="r"><code>set.seed(42)
+id_train &lt;- sample(1:10780, 8000, replace = FALSE)
+head(id_train, 10)</code></pre>
+<pre><code>##  [1]  2369  5273  9290  1252  8826 10289   356  7700  3954 10095</code></pre>
+<p>Then we generate a unique number for each of the 10780 sentences in our corpus. This so we can later match them to the sentences we would like to place in our training set or our test set:</p>
+<pre class="r"><code>docvars(manifesto_corpus, &quot;id_numeric&quot;) &lt;- 1:ndoc(manifesto_corpus)</code></pre>
+<p>We should now see this new variable <em>id_numeric</em> appear in our corpus. We can now construct our training and test set using these id’s. For the training set, the logic is to create a sub set of the main corpus, and to take only those sentences whose <em>id_numeric</em> is also in <em>id_train</em>. For the test set, we do the same, only now taking only those sentences whose <em>id_numeric</em> is not in <em>id_train</em> (note that the ! mark signifies this). Then, we use the <code>%&gt;%</code> pipe to transform the resulting object via a tokens object into a dfm:</p>
+<pre class="r"><code>manifesto_train &lt;- corpus_subset(manifesto_corpus, id_numeric %in% id_train) %&gt;%
+  tokens() %&gt;%
+    dfm()
+
+manifesto_test &lt;- corpus_subset(manifesto_corpus, !id_numeric %in% id_train) %&gt;%
+    tokens() %&gt;%
+    dfm()</code></pre>
+<p>We then run the model using the <code>textmodel_nb</code> command, and ask it to use as classifiers the codes in the <em>cmp_code</em> variable:</p>
+<pre class="r"><code>manifesto_nb &lt;- textmodel_nb(manifesto_train, docvars(manifesto_train, &quot;cmp_code&quot;))
+summary(manifesto_nb)</code></pre>
+<p>Notice that the textmodel gives us a prediction of how likely it is that an individual word belongs to a certain code (the estimated feature scores). While this can be interesting, what we want to know here is how good the algorithm was. This is when we move from the training of the model using the training set to the prediction of the test set.</p>
+<p>A problem is that Naive Bayes can only use featuers that were both in the training and the test set. To ensure this happens, we use the <code>dfm_match</code> option, which matches all the features in our dfm to a specified vector of features:</p>
+<pre class="r"><code>manifesto_matched &lt;- dfm_match(manifesto_test, features = featnames(manifesto_train))</code></pre>
+<p>If we look at this new corpus we see that little has changed (there are still 2780 features). This means that all features that were in the test set were also there in the training set. This is good news as this means the algorithm has all the information needed for a good prediction. Yet, the lower the number of sentences, the less likely this is to occur, so matching is always a good idea.</p>
+<p>Now we can predict the missing codes in the test set (now the manifesto_matched dfm) using the model we trained earlier. The resulting classes are what the model predicts (we already set this when we trained the model). If we would then open the <code>predicted_class</code> object we can see to which code R assigned each sentence. Yet, as before, this is a little too much information. Moreover, we do not want to know what the model assigned the sentence to, but how this corresponds to the original code. To see this, we take the actual classes from the <code>manifesto_matched</code> dfm and place them with the predicted classes into a cross table:</p>
+<pre class="r"><code>predicted_class &lt;- predict(manifesto_nb, newdata = manifesto_matched)
+actual_class &lt;- docvars(manifesto_matched, &quot;cmp_code&quot;)
+table_class &lt;- table(actual_class, predicted_class)
+table_class</code></pre>
+<p>While this is already better (we have to pay attention to the diagonal), the large number of codes still makes this hard to read. So, as before, we can better visualise these results - here with the help of a heatmap. To do this, we first tranform our table into a dataframe which gives us all the possible combinations of codes and their occurrence. We put this into the command and also use a scaling gradient that gets darker when the value in a cell is higher:</p>
+<pre class="r"><code>table_class &lt;- as.data.frame(table_class)
+
+ggplot(data = table_class, aes(x = predicted_class, y = actual_class)) + 
+    geom_tile(aes(fill = Freq)) + scale_fill_gradient(high = &quot;black&quot;, 
+    low = &quot;white&quot;, name = &quot;Value&quot;) + xlab(&quot;Predicted Class&quot;) + 
+    ylab(&quot;Actual Class&quot;) + scale_y_discrete(expand = c(0, 0)) + 
+    theme_classic() + theme(axis.text.x = element_text(angle = 90)) + 
+    theme(axis.text.x = element_text(vjust = 0.4))</code></pre>
+<p><img src="06-Seminar4_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p>Here, we can see that a high number of cases are on the diagonal, which indicates that the algorithm did a good job. Yet, it also classified a large number of sentences into the 503 and 504 categories, while they belonged to any of the other categories.</p>
+<p>Besides this, we can also summarize how good the algorithm is by means of Krippendorff’s <span class="math inline">\(\alpha\)</span>. To do so, we take the predicted codes, transform them from factors to numeric values, and store them in an object. Then, we bind them together with the actual codes and place them into a data frame. Finally, we transpose the data frame (so that rows are now columns) and make it into a matrix:</p>
+<pre class="r"><code>predict &lt;- as.numeric(as.character(predicted_class))
+reliability &lt;- as.data.frame(cbind(actual_class, predict))
+reliability_t &lt;- t(reliability)
+reliability &lt;- as.matrix(reliability_t)</code></pre>
+<p>Then, we load the <code>kripp.boot</code> package, and calculate the nominal version of Krippendorff’s <span class="math inline">\(\alpha\)</span>, as we are working with nominal codes:</p>
+<pre class="r"><code>library(kripp.boot)
+kripp.boot(reliability, iter = 500, method = &quot;nominal&quot;)</code></pre>
+<p>Alternatively, we can use the <code>DescTools</code> package:</p>
+<pre class="r"><code>library(DescTools)
+KrippAlpha(reliability, method = &quot;nominal&quot;)</code></pre>
+<p>Here we see that the number of subjects was 2780 (the number of sentences in the test set), the number of coders 2 (the actual and the predicted codes), and the value of <span class="math inline">\(\alpha\)</span> 0.318 with an interval between 0.297 and 0.337. While this might not look particularly encouraging, when we realise that <span class="citation">@Mikhaylov2012a</span> estimate the agreement among trained coders by the Manifesto Project to be between 0.350 and 0.400, then 0.305 is quite a good score for a simple model!</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

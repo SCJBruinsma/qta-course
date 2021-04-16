@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>03-Seminar1.utf8</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">HOME</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="01-Install.html">Install</a>
+</li>
+<li>
+  <a href="02-Import.html">Import</a>
+</li>
+<li>
+  <a href="03-Seminar1.html">Reliability and Validity</a>
+</li>
+<li>
+  <a href="04-Seminar2.html">Dictionaries</a>
+</li>
+<li>
+  <a href="05-Seminar3.html">Scaling</a>
+</li>
+<li>
+  <a href="06-Seminar4.html">Supervised Methods</a>
+</li>
+<li>
+  <a href="07-Seminar5.html">Unsupervised Methods</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="reliability-and-validity" class="section level1">
+<h1>Reliability and validity</h1>
+<p>We could say that the central tenet of quantitative text analysis, which sets it apart from other approaches to analyzing text, is that it strives to be objective and replicable. In measurement theory, we use the terms <strong>reliability</strong> and <strong>validity</strong> to convey this message.</p>
+<p>Reliability refers to consistency, that is, the degree to which we get similar results whenever we apply a measuring instrument to measure a given concept. This is similar to the concept of <em>replicability</em>. Validity, on the other hand, refers to unbiasedness, that is, the degree to which our measure really measures the concept which intends to measure. In other words, validity looks whether the measuring instrument that we are using is objective.</p>
+<p><span class="citation">@Carmines1979a</span> distinguish among three types of validity. <em>Content Validity</em>, which refers to whether our measure represents all facets of the construct of interest; <em>criterion Validity</em>, which looks at whether our measure correlates with other measures of the same concept, and <em>construct Validity</em>, which looks at whether our measure behaves as expected within a given theoretical context. I should also say here, that the three types of validity are not interchangeable. Ideally, one has to prove that their results pass all three validity tests. In the words of <span class="citation">@Grimmer2013a</span>: “Validate, validate, validate”!</p>
+<p><span class="citation">@Krippendorff2004a</span> distinguishes among three types of reliability. <em>Stability</em>, which he considers as the weakest form of coding reliability, and which can be measured when the same text is coded by the same coder more than once, <em>reproducibility</em>, which is measured by the degree of agreement among independent coders, and <em>accuracy</em>, which he considers as the strongest form of coding reliability, and which is measured by the agreement between coders and a given standard. However, in the absence of a benchmark, we are usually interested in measuring reliability as reproducibility, in other words as inter-coder agreement.</p>
+<div id="measuring-inter-coder-agreement" class="section level2">
+<h2>Measuring inter-coder agreement</h2>
+<p><span class="citation">@Hayes2007a [p.79]</span> argue that a good measure of the agreement should at least address five criteria. The first is that it should apply to many coders, and not only two. Also, when we use the method for more coders, there should be no difference in how many coders we include. The second is that the method should only take into account the actual number of categories the coders used and not all that were available. This as while the designers designed the coding scheme on what they thought the data would look like, the coders use the scheme based on what the data is. Third, it should be numerical, meaning that we can use it to make a scale between 0 (absence of agreement) and 1 (perfect agreement). Fourth, it should be appropriate for the level of measurement. So, if our data is ordinal or nominal, we should not use a measure that assumes metric data. This ensures that the metric uses all the data and that it does not add or not use other information. Fifth, we should be able to compute (or know), the sampling behaviour of the measure.</p>
+<p>With these criteria in mind, we see that popular methods, such as % agreement or Pearson’s <em>r</em>, can be misleading. Especially for the latter - as it is a quite popular method - this often leads to problems, as this figure by <span class="citation">@Krippendorff2004a</span> shows:</p>
+<p><img src="figures/observers.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Here, the figure on the left shows two coders: A and B. The dots in the figure show the choices both coders made, while the dotted line shows the line of perfect agreement. If a dot is on this line, it means that both Coder A and Coder B made the same choice. In this case, they disagreed in all cases. When Coder A chose <em>a</em>, Coder B chose <em>e</em>, when Coder A chose <em>b</em>, Coder B chose <em>a</em>, and so on. Yet, when we would calculate Pearson’s <em>r</em> for this, we would find a result as shown in the right-hand side of the figure. Seen this way, the agreement between both coders does not seem a problem at all. The reason for this is that Pearson’s <em>r</em> works with the distances between the categories <em>without</em> taking into account their location. So, for a positive relationship, the only thing Pearson’s <em>r</em> requires is that for every increase or decrease for one coder, there is a similar increase or decrease for the other. This happens here with four of the five categories. The result is thus a high Pearson’s <em>r</em>, though the actual agreement should be 0.</p>
+<p>Pearson’s <em>r</em> thus cannot fulfil all our criteria. A measure that can is Krippendorff’s <span class="math inline">\(\alpha\)</span> <span class="citation">[@Krippendorff2004a]</span>. This measure can not only give us the agreement we need, but can also do so for nominal, ordinal, interval, and ratio level data, as well as data with many coders and missing values. Besides, we can compute 95% confidence intervals around <span class="math inline">\(\alpha\)</span> using bootstrapping, which we can use to show the degree of uncertainty around our reliability estimates.</p>
+<p>Despite this, Krippendorff’s <span class="math inline">\(\alpha\)</span> is not free of problems. One main problem occurs when coders agree on only a few categories and use these categories a considerable number of times. This leads to an inflation of <span class="math inline">\(\alpha\)</span>, making it is higher than it should be <span class="citation">[@Krippendorff2004a]</span>, as in the following example:</p>
+<p><img src="figures/kripp.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Here, in the left-most figure, we see coders A and B who have to code into three categories: 0, 1, or 2. In this example, the categories 1 and 2 carry a certain meaning, while category 0 means that the coders did not know what to assign the case to. Of the 86 cases, both coders code 80 cases in the 0 category. This means that there are only 6 cases on which they can agree or disagree about a code that carries some meaning. Yet, if we calculate <span class="math inline">\(\alpha\)</span>, the result - 0.686 - takes into account all the categories. One solution for this is to add up the categories 1 and 2, as the figure in the middle shows. Here, the coders agree in 84 of the 86 cases (on the diagonal line) and disagree in only 2 of them. Calculating <span class="math inline">\(\alpha\)</span> now shows that it would increase to 0.789. Finally, we can remove the 0 category and again view 1 and 2 as separate categories (as the most right-hand figure shows). Yet, the result of this is quite disastrous. While the coders agree in 3 of the 4 cases, the resulting <span class="math inline">\(\alpha\)</span> equals 0.000, as coder B did not use category 1 at all.</p>
+<p>Apart from these issues, Krippendorff’s <span class="math inline">\(\alpha\)</span> is a stable and useful measure. A value of <span class="math inline">\(\alpha\)</span> = 1 indicates perfect reliability, while a value of <span class="math inline">\(\alpha\)</span> = 0 indicates the absence of reliability. This means that if <span class="math inline">\(\alpha\)</span> = 0, there is no relationship between the values. It is possible for <span class="math inline">\(\alpha\)</span> &lt; 0, which means that the disagreements between the values are larger than they would be by chance and are systematic. As for thresholds, <span class="citation">@Krippendorff2004a</span> proposes to use either 0.80 or 0.67 for results to be reliable. Such low reliability often has many causes. One thing might be that the coding scheme is not appropriate for the documents. This means that coders had categories that they had no use for, and lacked categories they needed. Another reason might be that the coders lacked training. Thus, they did not understand how to use the coding scheme or how the coding process works. This often leads to frustration on part of the coders, as in these cases the process often becomes time-consuming and too demanding to carry out.</p>
+<p>To calculate Krippendorff’s <span class="math inline">\(\alpha\)</span>, we can use the following software:</p>
+<ul>
+<li>KALPHA custom dialogue (SPSS)</li>
+<li><strong>kalpha</strong> user-written package (Stata)</li>
+<li>KALPHA macro (SAS)</li>
+<li><strong>kripp.alpha</strong> command in <strong>kripp.boot</strong> package (R) - amongst others</li>
+</ul>
+<p>Let us try this in R using an example. Here, we will look at the results of a coding reliability test where 12 coders assigned the sentences of the 1997 European Commission work programme in the 20 categories of a policy areas coding scheme. We can find the results for this on GitHub. To get the data, we tell R where to find it, then to read that file as a .csv file and write is to a new object:</p>
+<pre class="r"><code>library(readr)
+
+urlfile = &quot;https://raw.githubusercontent.com/SCJBruinsma/qta-files/master/reliability_results.csv&quot;
+reliability_results &lt;- read_csv(url(urlfile))</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   coder1 = col_double(),
+##   coder2 = col_double(),
+##   coder3 = col_double(),
+##   coder4 = col_double(),
+##   coder5 = col_double(),
+##   coder6 = col_double(),
+##   coder7 = col_double(),
+##   coder8 = col_double(),
+##   coder9 = col_double(),
+##   coder10 = col_double(),
+##   coder11 = col_double(),
+##   coder12 = col_double()
+## )</code></pre>
+<p>Notice that in the data frame we just created, the coders are in the columns and the sentences in the rows. As the <code>kripp.boot</code> package requires it to be the other way around and in matrix form, we first transpose the data, and then place it in a matrix. Finally, we run the command and specify we want the nominal version:</p>
+<pre class="r"><code>library(&quot;kripp.boot&quot;)
+
+reliability_results_t &lt;- t(reliability_results)
+reliability &lt;- as.matrix(reliability_results_t)
+kalpha &lt;- kripp.boot(reliability, iter=1000, method = &quot;nominal&quot;)
+kalpha$value</code></pre>
+<p>Note also that <code>kripp.boot</code> is a GitHub package. You can still calculate the value (but without the confidence interval) with another package:</p>
+<pre class="r"><code>library(&quot;DescTools&quot;)
+
+reliability_results_t &lt;- t(reliability_results)
+reliability &lt;- as.matrix(reliability_results_t)
+kalpha &lt;- KrippAlpha(reliability, method = &quot;nominal&quot;)
+kalpha$value</code></pre>
+<p>As we can see, the results point out that the agreement among the coders is 0.634 with an upper limit of 0.650 and a lower limit of 0.618 which is short of Krippendorff’s cut-off point of 0.667.</p>
+</div>
+<div id="visualizing-the-quality-of-coding" class="section level2">
+<h2>Visualizing the quality of coding</h2>
+<p><span class="citation">@Lamprianou2020</span> notes that existing reliability indices may mask coding problems and that the reliability of coding is not stable across coding units (as illustrated in the example given for Krippendorff’s alpha in Section 3.2 above). To investigate the quality of coding he proposes using social network analysis (SNA) and exponential random graph models (ERGM). Here, we illustrate a different approach, based on the idea of sensitivity analysis.</p>
+<p>We therefore compare the codings of each coder against all others (and also against a benchmark or a gold standard). For this, we need to bootstrap the coding reliability results to create an uncertainty measure around each coder’s results, following the approach proposed by <span class="citation">@Benoit2009a</span>. The idea is to use a non-parametric bootstrap for the codings of each coder (using 1000 draws with replacement) at the category level and then calculate the confidence intervals. Their width then depends on both the number of sentences coded by each coder (n) in each category and the number of coding categories that are not empty. Thus, larger documents and fewer empty categories result in narrower confidence intervals, while a small number of categories leads to wider intervals <span class="citation">[@Lowe2011a]</span>.</p>
+<p>To start, the first thing we do is load two packages we need into R using the <code>library</code> command:</p>
+<pre class="r"><code>library(Hmisc)
+library(combinat)</code></pre>
+<p>In the following example we perform the sensitivity analysis on the coded sentences of the 1997 European Commission work programme, as given in Section 3.2. Here, however, the same data is arranged differently. Each row represents a coder, and each column represents a coding category (<em>c0</em> to <em>c19</em>). In each cell, we see the number of sentences that each coder coded in each category, with the column <em>n</em> giving the sum of each row:</p>
+<pre class="r"><code>coderid &lt;- c(&quot;coder1&quot;, &quot;coder2&quot;, &quot;coder3&quot;, &quot;coder4&quot;, &quot;coder5&quot;, 
+    &quot;coder6&quot;, &quot;coder7&quot;, &quot;coder8&quot;, &quot;coder9&quot;, &quot;coder10&quot;, &quot;coder11&quot;, 
+    &quot;coder12&quot;)
+c0 &lt;- c(14, 0, 0, 9, 29, 1, 2, 11, 1, 8, 9, 0)
+c01 &lt;- c(4, 1, 1, 2, 2, 3, 2, 1, 1, 1, 6, 0)
+c02 &lt;- c(5, 5, 5, 3, 5, 4, 6, 6, 3, 1, 3, 6)
+c03 &lt;- c(15, 12, 12, 26, 13, 22, 8, 14, 15, 25, 14, 21)
+c04 &lt;- c(5, 6, 6, 5, 4, 6, 6, 5, 6, 6, 6, 6)
+c05 &lt;- c(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+c06 &lt;- c(9, 10, 22, 12, 9, 11, 11, 7, 9, 11, 6, 20)
+c07 &lt;- c(2, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 2)
+c08 &lt;- c(3, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2)
+c09 &lt;- c(5, 7, 5, 5, 5, 6, 5, 6, 8, 7, 7, 6)
+c10 &lt;- c(23, 23, 22, 23, 18, 23, 22, 23, 23, 25, 24, 22)
+c11 &lt;- c(31, 31, 33, 40, 25, 23, 25, 30, 40, 16, 40, 31)
+c12 &lt;- c(2, 3, 1, 4, 0, 3, 1, 5, 3, 2, 3, 3)
+c13 &lt;- c(2, 4, 3, 3, 3, 3, 2, 5, 2, 2, 3, 2)
+c14 &lt;- c(13, 12, 11, 13, 9, 14, 18, 14, 2, 22, 12, 14)
+c15 &lt;- c(9, 8, 8, 5, 7, 8, 10, 10, 13, 8, 8, 7)
+c16 &lt;- c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+c17 &lt;- c(3, 3, 4, 1, 3, 3, 2, 1, 3, 3, 3, 3)
+c18 &lt;- c(16, 33, 27, 8, 26, 28, 31, 22, 28, 23, 14, 16)
+c19 &lt;- c(3, 3, 2, 1, 3, 3, 3, 1, 4, 2, 3, 3)
+c20 &lt;- c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+n &lt;- c(164, 164, 164, 163, 164, 164, 155, 164, 164, 164, 164, 
+    164)
+
+data_uncertainty &lt;- data.frame(coderid, c0, c01, c02, c03, c04, 
+    c05, c06, c07, c08, c09, c10, c11, c12, c13, c14, c15, c16, 
+    c17, c18, c19, c20, n, stringsAsFactors = FALSE)</code></pre>
+<p>We then tell R how many coders we have. As this number is equal to the number of rows we have, we can get this number using the <code>nrow</code> command. We also specify the number of bootstraps we want to carry out (1000) and transform our data frame into an array. We do the latter as R needs the data in this format later on:</p>
+<pre class="r"><code>nman &lt;- nrow(data_uncertainty)
+nrepl &lt;- 1000
+manifBSn &lt;- manifBSnRand &lt;- array(as.matrix(data_uncertainty[, 
+    2:21]), c(nman, 20, nrepl + 1), dimnames = list(1:nman, names(data_uncertainty[, 
+    2:21]), 0:nrepl))</code></pre>
+<p>We then bootstrap the sentence counts for each coder and compute percentages for each category using a multinomial draw. First, we define <code>p</code>, which is the proportion of each category over all the coders. Then, we input this value together with the total number of codes <code>n</code> into the <code>rmultinomial</code> command, which gives the random draws. As we want to do this a 1000 times, we place this command into a <code>for</code> loop:</p>
+<pre class="r"><code>p &lt;- manifBSn[, , 1]/n
+
+for (i in 1:nrepl) {
+    manifBSn[, , i] &lt;- rmultinomial(n, p)
+}</code></pre>
+<p>With this data, we can then ask R to compute the quantities of interest. These are standard errors for each category, as well as the percentage coded for each category:</p>
+<pre class="r"><code>c0SE &lt;- apply(manifBSn[, &quot;c0&quot;, ]/n * 100, 1, sd)
+c01SE &lt;- apply(manifBSn[, &quot;c01&quot;, ]/n * 100, 1, sd)
+c02SE &lt;- apply(manifBSn[, &quot;c02&quot;, ]/n * 100, 1, sd)
+c03SE &lt;- apply(manifBSn[, &quot;c03&quot;, ]/n * 100, 1, sd)
+c04SE &lt;- apply(manifBSn[, &quot;c04&quot;, ]/n * 100, 1, sd)
+c05SE &lt;- apply(manifBSn[, &quot;c05&quot;, ]/n * 100, 1, sd)
+c06SE &lt;- apply(manifBSn[, &quot;c06&quot;, ]/n * 100, 1, sd)
+c07SE &lt;- apply(manifBSn[, &quot;c07&quot;, ]/n * 100, 1, sd)
+c08SE &lt;- apply(manifBSn[, &quot;c08&quot;, ]/n * 100, 1, sd)
+c09SE &lt;- apply(manifBSn[, &quot;c09&quot;, ]/n * 100, 1, sd)
+c10SE &lt;- apply(manifBSn[, &quot;c10&quot;, ]/n * 100, 1, sd)
+c11SE &lt;- apply(manifBSn[, &quot;c11&quot;, ]/n * 100, 1, sd)
+c12SE &lt;- apply(manifBSn[, &quot;c12&quot;, ]/n * 100, 1, sd)
+c13SE &lt;- apply(manifBSn[, &quot;c13&quot;, ]/n * 100, 1, sd)
+c14SE &lt;- apply(manifBSn[, &quot;c14&quot;, ]/n * 100, 1, sd)
+c15SE &lt;- apply(manifBSn[, &quot;c15&quot;, ]/n * 100, 1, sd)
+c16SE &lt;- apply(manifBSn[, &quot;c16&quot;, ]/n * 100, 1, sd)
+c17SE &lt;- apply(manifBSn[, &quot;c17&quot;, ]/n * 100, 1, sd)
+c18SE &lt;- apply(manifBSn[, &quot;c18&quot;, ]/n * 100, 1, sd)
+c19SE &lt;- apply(manifBSn[, &quot;c19&quot;, ]/n * 100, 1, sd)
+
+per0 &lt;- apply(manifBSn[, &quot;c0&quot;, ]/n * 100, 1, mean)
+per01 &lt;- apply(manifBSn[, &quot;c01&quot;, ]/n * 100, 1, mean)
+per02 &lt;- apply(manifBSn[, &quot;c02&quot;, ]/n * 100, 1, mean)
+per03 &lt;- apply(manifBSn[, &quot;c03&quot;, ]/n * 100, 1, mean)
+per04 &lt;- apply(manifBSn[, &quot;c04&quot;, ]/n * 100, 1, mean)
+per05 &lt;- apply(manifBSn[, &quot;c05&quot;, ]/n * 100, 1, mean)
+per06 &lt;- apply(manifBSn[, &quot;c06&quot;, ]/n * 100, 1, mean)
+per07 &lt;- apply(manifBSn[, &quot;c07&quot;, ]/n * 100, 1, mean)
+per08 &lt;- apply(manifBSn[, &quot;c08&quot;, ]/n * 100, 1, mean)
+per09 &lt;- apply(manifBSn[, &quot;c09&quot;, ]/n * 100, 1, mean)
+per10 &lt;- apply(manifBSn[, &quot;c10&quot;, ]/n * 100, 1, mean)
+per11 &lt;- apply(manifBSn[, &quot;c11&quot;, ]/n * 100, 1, mean)
+per12 &lt;- apply(manifBSn[, &quot;c12&quot;, ]/n * 100, 1, mean)
+per13 &lt;- apply(manifBSn[, &quot;c13&quot;, ]/n * 100, 1, mean)
+per14 &lt;- apply(manifBSn[, &quot;c14&quot;, ]/n * 100, 1, mean)
+per15 &lt;- apply(manifBSn[, &quot;c15&quot;, ]/n * 100, 1, mean)
+per16 &lt;- apply(manifBSn[, &quot;c16&quot;, ]/n * 100, 1, mean)
+per17 &lt;- apply(manifBSn[, &quot;c17&quot;, ]/n * 100, 1, mean)
+per18 &lt;- apply(manifBSn[, &quot;c18&quot;, ]/n * 100, 1, mean)
+per19 &lt;- apply(manifBSn[, &quot;c19&quot;, ]/n * 100, 1, mean)</code></pre>
+<p>We then bind all these quantities together in a single data frame:</p>
+<pre class="r"><code>dataBS &lt;- data.frame(cbind(data_uncertainty[, 1:22], c0SE, c01SE, 
+    c02SE, c03SE, c04SE, c05SE, c06SE, c07SE, c08SE, c09SE, c10SE, 
+    c11SE, c12SE, c13SE, c14SE, c15SE, c16SE, c17SE, c18SE, c19SE, 
+    per0, per01, per02, per03, per04, per05, per06, per07, per08, 
+    per09, per10, per11, per12, per13, per14, per15, per16, per17, 
+    per18, per19))</code></pre>
+<p>While we can now inspect the results by looking at the data, it becomes more clear when we visualise this. While R has some inbuilt tools for visualisation (in the <code>graphics</code> package), these tools are rather crude. Thus, here we will use the <code>ggplot2</code> package, which extends our options, and which has an intuitive structure:</p>
+<pre class="r"><code>library(ggplot2)</code></pre>
+<p>First, we make sure that the variable <code>coderid</code> is a factor and make sure that it is in the right order:</p>
+<pre class="r"><code>dataBS$coderid &lt;- as.factor(dataBS$coderid)
+dataBS$coderid &lt;- factor(dataBS$coderid, levels(dataBS$coderid)[c(1, 
+    5:12, 2:4)])</code></pre>
+<p>Then, we calculate the 95% confidence intervals for each category. We do so using the percent of each category and the respective standard error, and add these values to our data-set:</p>
+<pre class="r"><code>c0_lo &lt;- per0 - (1.96 * c0SE)
+c0_hi &lt;- per0 + (1.96 * c0SE)
+c01_lo &lt;- per01 - (1.96 * c01SE)
+c01_hi &lt;- per01 + (1.96 * c01SE)
+c02_lo &lt;- per02 - (1.96 * c02SE)
+c02_hi &lt;- per02 + (1.96 * c02SE)
+
+dataBS &lt;- cbind(dataBS, c0_lo, c0_hi, c01_lo, c01_hi, c02_lo, 
+    c02_hi)</code></pre>
+<p>Finally, we generate the graphs for each individual category:</p>
+<pre class="r"><code>ggplot(dataBS, aes(per0, coderid)) + geom_point() + geom_errorbarh(aes(xmax = c0_hi, 
+    xmin = c0_lo), height = 0.2) + xlab(&quot;Percentage coded to category 0&quot;) + 
+    ylab(&quot;Coder ID&quot;) + theme_classic()</code></pre>
+<p><img src="03-Seminar1_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(dataBS, aes(per01, coderid)) + geom_point() + geom_errorbarh(aes(xmax = c01_hi, 
+    xmin = c01_lo), height = 0.2) + xlab(&quot;Percentage coded to category 01&quot;) + 
+    ylab(&quot;Coder ID&quot;) + theme_classic()</code></pre>
+<p><img src="03-Seminar1_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(dataBS, aes(per02, coderid)) + geom_point() + geom_errorbarh(aes(xmax = c02_hi, 
+    xmin = c02_lo), height = 0.2) + xlab(&quot;Percentage coded to category 02&quot;) + 
+    ylab(&quot;Coder ID&quot;) + theme_classic()</code></pre>
+<p><img src="03-Seminar1_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Each figure shows the percentage that each of the coders coded in the respective category of the coding scheme. We thus use the confidence intervals around the estimates to look at the degree of uncertainty around each estimate. We can read the plots by looking if the dashed line is within the confidence intervals for each coder. The larger the coders deviate from the benchmark or standard, the less likely that they understood the coding scheme in the same way. It also means that it is more likely that a coder would have coded the work programme much different from the benchmark coder. Thus, such a sensitivity analysis is like having a single reliability coefficient for each coding category.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

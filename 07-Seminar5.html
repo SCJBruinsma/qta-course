@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>07-Seminar5.utf8</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">HOME</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="01-Install.html">Install</a>
+</li>
+<li>
+  <a href="02-Import.html">Import</a>
+</li>
+<li>
+  <a href="03-Seminar1.html">Reliability and Validity</a>
+</li>
+<li>
+  <a href="04-Seminar2.html">Dictionaries</a>
+</li>
+<li>
+  <a href="05-Seminar3.html">Scaling</a>
+</li>
+<li>
+  <a href="06-Seminar4.html">Supervised Methods</a>
+</li>
+<li>
+  <a href="07-Seminar5.html">Unsupervised Methods</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="unsupervised-methods" class="section level1">
+<h1>Unsupervised Methods</h1>
+<p>While supervised models often work fine for text classification, one disadvantage is that we need to set specifics for the model. As an alternative, we can not specify anything and have R find out which classifications work. There are various algorithms to do so, and we will focus on two: Latent Dirichlet Allocation and Correspondence Analysis.</p>
+<div id="latent-dirichlet-allocation" class="section level2">
+<h2>Latent Dirichlet Allocation</h2>
+<p>Latent Dirichlet Allocation, or LDA, relies on the idea is that each text is in fact a mix of topics, and each word belongs to one these. To run LDA, we will use the <code>topicmodels</code> package, and use the British party manifestos again as an example:</p>
+<pre class="r"><code>library(topicmodels)
+library(quanteda)
+library(quanteda.corpora)
+
+data(data_corpus_ukmanifestos)
+corpus_manifestos &lt;- corpus_subset(data_corpus_ukmanifestos, 
+    Year == 2001)
+corpus_manifestos &lt;- corpus_subset(corpus_manifestos, Party == 
+    &quot;Lab&quot; | Party == &quot;LD&quot; | Party == &quot;Con&quot; | Party == &quot;SNP&quot; | 
+    Party == &quot;PCy&quot;)
+
+data_manifestos_tokens &lt;- tokens(corpus_manifestos, what = &quot;word&quot;, 
+    remove_punct = TRUE, remove_symbols = TRUE, remove_numbers = TRUE, 
+    remove_url = TRUE, remove_separators = TRUE, split_hyphens = FALSE, 
+    include_docvars = TRUE, padding = FALSE, verbose = TRUE)
+
+data_manifestos_tokens &lt;- tokens_tolower(data_manifestos_tokens, 
+    keep_acronyms = FALSE)
+data_manifestos_tokens &lt;- tokens_select(data_manifestos_tokens, 
+    stopwords(&quot;english&quot;), selection = &quot;remove&quot;)
+
+data_manifestos_dfm &lt;- dfm(data_manifestos_tokens)</code></pre>
+<p>First, we will use the <code>convert</code> function to convert the data frequency matrix to a data term matrix as this is what <code>topicmodels</code> uses:</p>
+<pre class="r"><code>manifestos_dtm &lt;- convert(data_manifestos_dfm, to = &quot;topicmodels&quot;)</code></pre>
+<p>Then, we fit an LDA model with 10 topics. First, we have to define some a priori parameters for the model. Here, we will use the Gibbs sampling method to fit the LDA model <span class="citation">[@Griffiths2004a]</span> over the alternative VEM approach <span class="citation">[@Blei2003a]</span>. Gibbs sampling performs a random walk over the distribution so we need to set a seed to ensure reproducible results. In this particular example, we set five seeds for five independent runs. We also set a burn-in period of 2000 as the first iterations will not reflect the distribution well, and take the 200th iteration of the following 1000:</p>
+<pre class="r"><code>burnin &lt;- 2000
+iter &lt;- 1000
+thin &lt;- 200
+seed &lt;- list(42, 5, 24, 158, 2500)
+nstart &lt;- 5
+best &lt;- TRUE</code></pre>
+<p>The LDA algorithm estimates topic-word probabilities as well as topic-document probabilities that we can extract and visualize. Here, we will start with the topic-word probabilities called <em>beta</em>. To do this, we will use the <code>tidytext</code> package which is part of the tidyverse family of packages. Central to the logic of tidyverse packages is that <code>tidytext</code> does not rely on a document term matrix but represents the data in a long format <span class="citation">[@Welbers2017,p.252]</span>. Although this makes it less memory efficient, such data arrangement lends itself to effective visualisation. The whole logic of these packages is that it works with data which has columns (variables) and rows with single observations. While this is the logic most people know, but it is not always the quickest (and is also not used by <code>quanteda</code>). Yet, it always allows you to look at your data in a way most will understand. First, we run the LDA and have a look at the first 10 terms:</p>
+<pre class="r"><code>British_lda10 &lt;- LDA(manifestos_dtm, k = 10, method = &quot;Gibbs&quot;, 
+    control = list(burnin = burnin, iter = iter, thin = thin, 
+        seed = seed, nstart = nstart, best = best))
+British_lda10</code></pre>
+<pre><code>## A LDA_Gibbs topic model with 10 topics.</code></pre>
+<p>Here, we can see that the 10th topic is most concerned with the Conservative party, as is topic 7 with the Liberal Democrats, and topic 9 with the Green Party. Topic 4 concerns green solutions and energy and topic 3 is about equalities.</p>
+<p>Now, we load the packages and use the <code>tidy</code> command to prepare the dataset for visualisation. Then, we tell the command to use the information from the <em>beta</em> column, which contains the probability of a word occurring in a certain topic:</p>
+<pre class="r"><code>library(tidytext)
+library(dplyr)
+library(ggplot2)
+
+British_lda10_topics &lt;- tidy(British_lda10, matrix = &quot;beta&quot;)</code></pre>
+<p>If we would look into the dataset now, we would see that it has 57060 observations with 3 variables. These are the number of the topic, the word (the term) and the <strong>beta</strong> - the chance that the word occurs in that topic. We now want to visualise only the top ten words for each topic in a bar-plot. Also, we want the graphs of each of these ten topics to appear in a single graph. To make this happen, we first have to select the top ten words for each topic. We do so gain using a pipe (which is the <code>%&gt;%</code> command). This pipe transports an output of a command to another one before saving it. So here, we take our data-set and group it by topic using the <code>group_by</code> command. This command groups the dataset into 10 groups, each for every topic. What this allows us is to calculate things that we otherwise calculate for the whole data-set but here calculate for the groups instead. We then do so and select the top 10 terms (based on their beta value), using <code>top_n</code>. We then ungroup again (to make R view it as a single data-set), and use the <code>arrange</code> function to ensure the data-set has the topics sorted in an increasing fashion and the beta values in a decreasing fashion. Finally, we save this into a new object:</p>
+<pre class="r"><code>British_lda10_topterms &lt;- British_lda10_topics %&gt;%
+    group_by(topic) %&gt;%
+    top_n(10, beta) %&gt;%
+    ungroup() %&gt;%
+    arrange(topic, -beta)</code></pre>
+<p>If we now look at the data-set, we see that it is much smaller and has the topics ordered. Yet, before we can plot this we have to ensure that (seen from top to bottom), all the beta for the first topic come first, then for the second topic, and so on. To do so, we use the <code>mutate</code> command, and redefine the term variable so that it is re-ordered based first on the term and then on the beta value. The result is a data frame with first the first topic, then the second topic etc., and with the beta values ordered within each topic. We then make the figure, with the terms on the horizontal axis and the beta values and the vertical axes, and have the bars this generates coloured by topic. Also, we switch off the legend (which we do not need) and use the <code>facet_wrap</code> command to split up the total graph (which would have 107 bars otherwise - 107 bars and not a 100 because some terms had the same value for beta). We set the options for the scales to be <strong>free</strong> as it might be that the beta values for some topics are larger or smaller than for the others. Finally, we flip the graphs and make the x-axis the y-axis and vice versa, as this makes the picture more clear:</p>
+<pre class="r"><code>British_lda10_topterms %&gt;%
+    mutate(term = reorder(term, beta)) %&gt;%
+    ggplot(aes(term, beta, fill = factor(topic))) + geom_col(show.legend = FALSE) + 
+    facet_wrap(~topic, scales = &quot;free&quot;) + coord_flip()</code></pre>
+<p><img src="07-Seminar5_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>What is clear here is that looking at only the words in each topic only says so much. In the first topic, the term “meps” is more important than anything else, and so is “eu” in topic number 10. Also, in topic number six, we see that a bullet symbol causes the highest beta value - which indicates how important it is that we remove this kind of clutter (which we forgot about here).</p>
+<p>Another question we can ask is how much of each topic is in each of the documents. Put in another way: do certain documents talk more about certain topics than others? To see this, we first generate a new data frame with this information, known as the <em>gamma</em> value for each document:</p>
+<pre class="r"><code>British_lda10_documents &lt;- tidy(British_lda10, matrix = &quot;gamma&quot;)</code></pre>
+<p>We then go through similar steps to make the data-set ready for use and prepare the graph. For the graph, the only steps we do different are to force R to label each topic on the axis (as otherwise it will treat it as a continuous variable and come up with useless values such as 7.5), and to give it a different look (using the <code>theme_classic()</code> command):</p>
+<pre class="r"><code>British_lda10_toptopics &lt;- British_lda10_documents %&gt;%
+    group_by(document) %&gt;%
+    top_n(10, gamma) %&gt;%
+    ungroup() %&gt;%
+    arrange(topic, -gamma)
+
+British_lda10_toptopics %&gt;%
+    mutate(term = reorder(topic, gamma)) %&gt;%
+    ggplot(aes(topic, gamma, fill = factor(topic))) + geom_col(show.legend = FALSE) + 
+    scale_x_continuous(breaks = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 
+        10)) + facet_wrap(~document, scales = &quot;free&quot;) + coord_flip() + 
+    theme_classic()</code></pre>
+<p><img src="07-Seminar5_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Here, we see that the Conservatives talked about topics 10 and 8 a lot (and also 6 in 2014), which makes sense, as these topics cover the EU and trade. The Greens use topic 4 a lot in 2009 (as it is about Green policies), but not in 2014. Also, the liberal topic 7 occurs a lot in 2009 Liberal Democrat texts, but not in their 2014 manifesto.</p>
+<p>An alternative to the above approach is one known as seeded-LDA. This approach uses seed words that can steer the LDA into the right direction. One origin of these seed words can be a dictionary that tells the algorithm which words belong together in various categories. To use it, we will first load the packages and set a seed:</p>
+<pre class="r"><code>library(seededlda)
+library(quanteda.dictionaries)
+
+set.seed(42)</code></pre>
+<p>Next, we need to specify a selection of seed words in a dictionary form. While we can construct a dictionary ourselves, here we choose to use the Laver and Garry dictionary we saw earlier. We then use this dictionary to run our seeded LDA:</p>
+<pre class="r"><code>dict &lt;- dictionary(data_dictionary_LaverGarry)
+seededmodel &lt;- textmodel_seededlda(data_manifestos_dfm, dictionary=dict)
+terms(seededmodel, 20)</code></pre>
+<pre><code>##       CULTURE         ECONOMY      ENVIRONMENT       GROUPS      INSTITUTIONS 
+##  [1,] &quot;people&quot;        &quot;will&quot;       &quot;environmental&quot;   &quot;women&quot;     &quot;reform&quot;     
+##  [2,] &quot;media&quot;         &quot;work&quot;       &quot;environment&quot;     &quot;race&quot;      &quot;parliament&quot; 
+##  [3,] &quot;museums&quot;       &quot;children&quot;   &quot;green&quot;           &quot;ethnic&quot;    &quot;continue&quot;   
+##  [4,] &quot;galleries&quot;     &quot;education&quot;  &quot;population&quot;      &quot;asian&quot;     &quot;commission&quot; 
+##  [5,] &quot;operation&quot;     &quot;health&quot;     &quot;clean&quot;           &quot;girls&quot;     &quot;council&quot;    
+##  [6,] &quot;operations&quot;    &quot;investment&quot; &quot;emissions&quot;       &quot;racist&quot;    &quot;westminster&quot;
+##  [7,] &quot;artistic&quot;      &quot;economic&quot;   &quot;production&quot;      &quot;racing&quot;    &quot;councils&quot;   
+##  [8,] &quot;operating&quot;     &quot;care&quot;       &quot;car&quot;             &quot;racial&quot;    &quot;assembly&quot;   
+##  [9,] &quot;theatre&quot;       &quot;transport&quot;  &quot;cleaner&quot;         &quot;racism&quot;    &quot;rules&quot;      
+## [10,] &quot;music&quot;         &quot;school&quot;     &quot;congestion&quot;      &quot;woman&quot;     &quot;legislation&quot;
+## [11,] &quot;musical&quot;       &quot;benefit&quot;    &quot;recycling&quot;       &quot;racially&quot;  &quot;process&quot;    
+## [12,] &quot;art&quot;           &quot;poverty&quot;    &quot;products&quot;        &quot;liberal&quot;   &quot;schemes&quot;    
+## [13,] &quot;operators&quot;     &quot;money&quot;      &quot;environmentally&quot; &quot;s&quot;         &quot;modern&quot;     
+## [14,] &quot;operate&quot;       &quot;economy&quot;    &quot;emission&quot;        &quot;democrats&quot; &quot;scheme&quot;     
+## [15,] &quot;operational&quot;   &quot;training&quot;   &quot;produce&quot;         &quot;freedom&quot;   &quot;office&quot;     
+## [16,] &quot;theatres&quot;      &quot;pay&quot;        &quot;recycle&quot;         &quot;safety&quot;    &quot;election&quot;   
+## [17,] &quot;anglers&quot;       &quot;choice&quot;     &quot;productive&quot;      &quot;reduce&quot;    &quot;agency&quot;     
+## [18,] &quot;operated&quot;      &quot;working&quot;    &quot;litter&quot;          &quot;energy&quot;    &quot;vote&quot;       
+## [19,] &quot;operates&quot;      &quot;teachers&quot;   &quot;product&quot;         &quot;action&quot;    &quot;reforms&quot;    
+## [20,] &quot;conservatives&quot; &quot;establish&quot;  &quot;fur&quot;             &quot;setting&quot;   &quot;democratic&quot; 
+##       LAW_AND_ORDER RURAL          URBAN         VALUES          
+##  [1,] &quot;police&quot;      &quot;farming&quot;      &quot;towns&quot;       &quot;rights&quot;        
+##  [2,] &quot;forces&quot;      &quot;fisheries&quot;    &quot;town&quot;        &quot;human&quot;         
+##  [3,] &quot;prison&quot;      &quot;farmers&quot;      &quot;wales&quot;       &quot;maintain&quot;      
+##  [4,] &quot;drugs&quot;       &quot;countryside&quot;  &quot;party&quot;       &quot;discrimination&quot;
+##  [5,] &quot;victims&quot;     &quot;fishing&quot;      &quot;call&quot;        &quot;principle&quot;     
+##  [6,] &quot;fraud&quot;       &quot;agriculture&quot;  &quot;shall&quot;       &quot;threat&quot;        
+##  [7,] &quot;tough&quot;       &quot;agricultural&quot; &quot;order&quot;       &quot;leadership&quot;    
+##  [8,] &quot;force&quot;       &quot;village&quot;      &quot;towards&quot;     &quot;principles&quot;    
+##  [9,] &quot;drug&quot;        &quot;fish&quot;         &quot;important&quot;   &quot;proud&quot;         
+## [10,] &quot;officers&quot;    &quot;wildlife&quot;     &quot;press&quot;       &quot;past&quot;          
+## [11,] &quot;court&quot;       &quot;farms&quot;        &quot;adequate&quot;    &quot;immigration&quot;   
+## [12,] &quot;courts&quot;      &quot;villages&quot;     &quot;therefore&quot;   &quot;historic&quot;      
+## [13,] &quot;determined&quot;  &quot;farm&quot;         &quot;since&quot;       &quot;sex&quot;           
+## [14,] &quot;sentences&quot;   &quot;landscape&quot;    &quot;similarly&quot;   &quot;leader&quot;        
+## [15,] &quot;sentence&quot;    &quot;fishermen&quot;    &quot;union&quot;       &quot;marriage&quot;      
+## [16,] &quot;policing&quot;    &quot;landscapes&quot;   &quot;coal&quot;        &quot;reliable&quot;      
+## [17,] &quot;forced&quot;      &quot;hens&quot;         &quot;expenditure&quot; &quot;history&quot;       
+## [18,] &quot;offences&quot;    &quot;forest&quot;       &quot;one&quot;         &quot;preserve&quot;      
+## [19,] &quot;victim&quot;      &quot;feed&quot;         &quot;devolution&quot;  &quot;traditions&quot;    
+## [20,] &quot;prisoners&quot;   &quot;lanes&quot;        &quot;must&quot;        &quot;sexual&quot;</code></pre>
+<p>Note that using the dictionary has ensured that only the categories of the dictionary are used. We can therefore also have an easy look at the proportions of these categories as well:</p>
+<pre class="r"><code>corpus_manifestos$topic &lt;- topics(seededmodel)
+topics_table &lt;- ftable(corpus_manifestos$topic)
+
+topicsprop_table &lt;- as.data.frame(prop.table(topics_table))
+
+ggplot(data=topicsprop_table, aes(x=Var1, y=Freq))+
+  geom_bar(stat=&quot;identity&quot;)+
+  labs(x=&quot;Topics&quot;, y=&quot;Topic Percentage&quot;)+
+  theme(axis.text = element_text(size=10, angle=45,hjust = 1))+
+  theme_classic()</code></pre>
+<p><img src="07-Seminar5_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="correspondence-analysis" class="section level2">
+<h2>Correspondence Analysis</h2>
+<p>Correspondence Analysis has a similar logic as Principal Component Analysis. Yet, while PCA requires metric data, CA only requires nominal data (such as text). The idea behind both is to reduce the complexity of the data by looking for new dimensions. These dimensions should then explain as much of the original variance that is present in the data as possible. Within R many packages can run CA (such as the <code>ca</code> and <code>FactoMineR</code> packages and even <code>quanteda.textmodels</code>). One interesting package is the <code>R.temis</code> package. The <code>R.temis</code> package is interesting as it aims to bring the techniques of qualitative text analysis into R. Thus, the package focus on the import of corpus from programs such as Alceste (<a href="https://www.image-zafar.com/Logicieluk.html" class="uri">https://www.image-zafar.com/Logicieluk.html</a>) and sites such as LexisNexis (<a href="https://www.lexisnexis.com" class="uri">https://www.lexisnexis.com</a>) - programs that are often used in qualitative text analysis. The package itself is build on the popular <code>tm</code> package and has a largely similar logic.</p>
+<p>To carry out the Correspondence Analysis, <code>R.temis</code> uses the <code>FactoMineR</code> and <code>factoextra</code> packages. Here, we will look at an example with these packages using data from the an article on the stylistic variations in the Twitter data of Donald Trump between 2009 and 2018 <span class="citation">[@Clarke2019a]</span>. Here, the authors aimed to figure out whether the way Trump’s tweets were written fluctuated over time. To do so, they downloaded 21,739 tweets and grouped them into 63 categories over 4 dimensions based on their content. Given that all the data used in the article is available for inspection, we can attempt to replicate part of the analysis here.</p>
+<p>First, we load the packages we need for the Correspondence Analysis:</p>
+<pre class="r"><code>library(FactoMineR)
+library(factoextra)
+library(readr)</code></pre>
+<p>Then, we import the data. You can do so either by downloading the replication data yourselves, or use the file we already put up on GitHub:</p>
+<pre class="r"><code>urlfile = &quot;https://raw.githubusercontent.com/SCJBruinsma/qta-files/master/TRUMP_DATA.txt&quot;
+tweets &lt;- read_csv(url(urlfile))</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_character(),
+##   TWEETID = col_double(),
+##   WORDCOUNT = col_double(),
+##   DATE = col_date(format = &quot;&quot;),
+##   TIME = col_time(format = &quot;&quot;),
+##   RETWEET = col_double(),
+##   FAV = col_double()
+## )
+## ℹ Use `spec()` for the full column specifications.</code></pre>
+<p>This data-set contains quite some information we do not need. To begin with, we remove all those variables that do not contain information about the 63 categories and the length of the tweet in words:</p>
+<pre class="r"><code>tweets_mat&lt;-tweets[,2:65]</code></pre>
+<p>We can then run the MCA with the <code>FactoMineR</code> package. For this, we have to give the data-set and the number of dimensions we think are in the data. We can set the latter either by establishing the dimensions as in a regular PCA (for example through a scree plot) or based on theory. Here we combine both and use the 5 dimensions established in the article. In addition, we set a supplementary quantitative variable as <code>quanti.sup=1</code>. As this is a quantitative variable, it is not taken into consideration by the MCA, but does allow us to assess later on how it correlates with each of the five dimensions:</p>
+<pre class="r"><code>mca_tweets &lt;- MCA(tweets_mat, ncp=5, quanti.sup=1)</code></pre>
+<p><img src="07-Seminar5_files/figure-html/unnamed-chunk-16-1.png" width="672" /><img src="07-Seminar5_files/figure-html/unnamed-chunk-16-2.png" width="672" /><img src="07-Seminar5_files/figure-html/unnamed-chunk-16-3.png" width="672" /><img src="07-Seminar5_files/figure-html/unnamed-chunk-16-4.png" width="672" /></p>
+<p>First, let’s start by looking at the association of the wordlength with the five dimensions:</p>
+<pre class="r"><code>mca_tweets$quanti.sup</code></pre>
+<pre><code>## $coord
+##               Dim 1      Dim 2      Dim 3       Dim 4     Dim 5
+## WORDCOUNT 0.8654755 -0.1226605 0.05684362 -0.05895059 0.1153646</code></pre>
+<p>As we can see, the word length has a strong correlation with Dimension 1. This basically means that this dimension captures the length of the words and not a seperate dimension we are interested in. Thus, when we want to look at the correspondence between the categories and the dimensions, we can ignore this dimension. Thus, for the MCA, we will look at dimensions 2 and 3:</p>
+<pre class="r"><code>fviz_mca_var(mca_tweets,
+             repel = TRUE,
+             geom = c(&quot;point&quot;),
+             axes = c(2, 3),             
+             ggtheme = theme_minimal())</code></pre>
+<p><img src="07-Seminar5_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Here, we only plot the points as adding the labels as well will make the picture quite cluttered. In the article, Dimension 2 is identified as “Conversational Style” and Dimension 3 as “Campaigning Style”. The plot thus nicely shows us that some categories belong to one of these dimensions and not to the other. To see for which cases this is mostly the case (the ones that have the most extreme positions), we can have a look at their coordinates:</p>
+<pre class="r"><code>var &lt;- get_mca_var(mca_tweets)
+coordinates &lt;- as.data.frame(var$coord)
+coordinates &lt;- coordinates[order(coordinates$`Dim 2`),]
+head(coordinates)</code></pre>
+<pre><code>##                  Dim 1      Dim 2       Dim 3      Dim 4       Dim 5
+## COLON_P     -0.3220412 -1.1428256  0.04281867  1.0927841  0.53554321
+## POSESPRPN_P  0.1387993 -0.9951648 -0.61464413  0.2225888 -0.25936891
+## URL_P       -0.4158210 -0.8934352  0.21496850  0.3550399  0.06615652
+## NUMDET_P     0.2826158 -0.6607215  0.08456176 -0.2142622 -0.10244773
+## HASHTAG_P   -0.5848886 -0.6130760  0.86493960  0.1354279  0.34699663
+## CAPS_P       0.2182945 -0.5780128  0.50565549 -0.1774480  0.20366075</code></pre>
+<p>Here, remember to look only at the results from the second column onward. Here, we see that one extreme category for the second dimension (Conversational Style) was the use of a colon (:) or possessive proper nouns (such as Hillary’s). This seems to fit well with the idea of conversational style. We can also see that the latter one also corresponds quite well with Dimension 3 (Campaigning Style), while the first one does not.</p>
+<p>Apart from this simple overview, Correspondence Analysis has many more features, some of which are included in the article and which include cluster analysis and heatmaps - which we recommend to take a look at.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

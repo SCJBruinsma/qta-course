@@ -1,0 +1,197 @@
+# Scaling
+
+With a dictionary, we aimed to classify our texts into different categories based on the words they contain. While practical, there is no real way to compare these categories: one category is no better or worse than the other. If we do want to compare texts, we have to place them on some sort of scale. Here, we will look at two ways in which we can do so: *Wordscores* [@Laver2003a] and *Wordfish* [@Slapin2008a]. Both methods used to be part of the main `quanteda` package, but have now moved to the `quanteda.textmodels` package. For both, we will use again the data from the 2001 and 2005 party manifestos of the five largest parties in the United Kingdom. So, we load this data, make the subset, transform it into a dfm, and clean it:
+
+```{r, tidy=TRUE, tidy.opts = list(width.cutoff = 60), results='hide', message=FALSE}
+library(quanteda)
+library(quanteda.corpora)
+
+data(data_corpus_ukmanifestos)
+corpus_manifestos <- corpus_subset(data_corpus_ukmanifestos, Year == 2001 | Year == 2005)
+corpus_manifestos <- corpus_subset(corpus_manifestos, Party=="Lab" | Party=="LD" | Party == "Con" | Party== "SNP" | Party== "PCy")
+
+data_manifestos_tokens <- tokens(
+  corpus_manifestos,
+  what = "word",
+  remove_punct = TRUE,
+  remove_symbols = TRUE,
+  remove_numbers = TRUE,
+  remove_url = TRUE,
+  remove_separators = TRUE,
+  split_hyphens = FALSE,
+  include_docvars = TRUE,
+  padding = FALSE,
+  verbose = TRUE
+)
+
+data_manifestos_tokens <- tokens_tolower(data_manifestos_tokens, keep_acronyms = FALSE)
+data_manifestos_tokens <- tokens_select(data_manifestos_tokens, stopwords("english"), selection = "remove")
+
+data_manifestos_dfm <- dfm(data_manifestos_tokens)
+```
+
+## Wordscores
+
+The idea of Wordscores is to use reference texts (from which we know the position) to position our virgin texts (from which we do not know the position). Here, we will use the 2001 documents as reference texts and the 2005 documents as virgin texts. Here, we the scale we want to position our documents on is the general left-right scale. Thus, we need to know the positions for the 2001 documents on this. Here, we will use the left-right scale from the 2002 Chapel Hill Expert Survey [@Bakker2012a] to do so. 
+
+To start, we have to check the order of the documents inside our dfm:
+
+```{r}
+data_manifestos_dfm@Dimnames$docs
+```
+
+We can then set the scores for the reference texts. For the virgin texts, we set `NA` instead. Then, we run the wordscores model - providing the dfm and the reference scores - and save it into an object:
+
+```{r, message=FALSE}
+library(quanteda.textmodels)
+
+scores <- c(7.72,5.18,3.82,3.2,3,NA,NA,NA,NA,NA)
+ws <- textmodel_wordscores(data_manifestos_dfm, scores)
+summary(ws)
+```
+
+When we run the `summary` command, we can see the word scores for each word. This is the position of that word on our scale of interest. We then only need to figure out how often these words occur in each of the texts, add up their scores, and divide this by the total number of words of the texts. This gives us the *raw score* of the text. Yet, this raw score has some problems. Most important of which is that as some words occur in almost all texts, all the scores will be very clustered in the middle of our scale. To prevent this, we can spread out the scores again, so they look more like the scores of our reference texts. This rescaling has two versions. The first was the original as proposed by @Laver2003a, and focuses on the variance of the scores. The idea here is that the distribution of the scores of the virgin texts has the correct mean, but an incorrect variance which needs rescaling. The second, proposed by @Martin2008a, focuses on the extremes of the scores. What it does is to take the scores of the virgin texts and stretch them out to match the extremes of the scores of the reference texts. Here, we run both so we can compare them. For the MV transformation, we will calculate the standard errors for the scores as well:
+
+```{r, tidy=TRUE, tidy.opts = list(width.cutoff = 60)}
+pred_lbg <- predict(ws, rescaling = "lbg")
+pred_mv  <- predict(ws, rescaling = "mv", se.fit = TRUE, interval = "confidence")
+
+pred_lbg
+pred_mv
+```
+
+Note that this does not only predict the 2005 texts, but also the 2001 texts. As such, we can use these scores to see how well this procedure can recover the original scores. One reason why this might be a problem is because of a warning you most likely received. This says that "*n* features in newdata not used in prediction". This is as the method does not use all the words from the reference texts to score the virgin texts. Instead, it only uses the words that occur in them both. Thus, when we compare the reference scores with the scores the method gives to the reference documents, can see how well the method does.
+
+To compare the scores, we will use the Concordance Correlation Coefficient as developed by @Lin1989a. This coefficient estimates how far two sets of data deviate from a line of 45 degrees (which indicates perfect agreement). To calculate this, we take the scores (here we take the LBG version) from the object we created and combine them with the original scores. From this, we only select the first five texts (those from 2001) and calculate the CCC:
+
+```{r, tidy=TRUE, tidy.opts = list(width.cutoff = 60), message=FALSE}
+library(DescTools)
+```
+```{r, tidy=TRUE, tidy.opts = list(width.cutoff = 60)}
+comparison <- as.data.frame(cbind(pred_lbg, scores))
+comparison <- comparison[1:5,]
+
+CCC(comparison$scores, comparison$pred_lbg, ci = "z-transform", conf.level = 0.95, na.rm = TRUE)
+```
+
+The result here is not bad, though the confidence intervals are rather large. We can have a further look at why this is the case by plotting the data. In this plot, we will show the position of the texts, as well as a 45-degree line. Also, we plot the reduced major axis, which shows the symmetrical relationship between the two variables. This line is a linear regression, which we compute first using the `lm` command:
+
+```{r, tidy.opts = list(width.cutoff = 60), warning=FALSE}
+library(ggplot2)
+
+lm_line <- lm(comparison$scores ~ comparison$pred_lbg)
+
+ggplot(comparison, aes(x=scores, y=pred_lbg)) + 
+ geom_point()+
+ xlab("Original Scores")+
+ ylab("LBG Scores")+
+ ylim(0, 12)+
+ xlim(0, 12)+
+ geom_abline(aes(intercept = 0,
+                 slope =1,
+                 linetype = "dashed"))+
+ geom_abline(aes(intercept = lm_line$coefficients[1],
+                 slope = lm_line$coefficients[2],
+                 linetype = "solid" ))+
+ scale_shape_manual(name = "",
+                    values=c(1,3),
+                    breaks=c(0,1),
+                    labels=c("Line of perfect concordance" , "Reduced major axis"))+
+ scale_linetype_manual(name = "",
+                       values=c(1,3),
+                       labels=c("Line of perfect concordance" , "Reduced major axis"))+
+ theme_classic()
+```
+
+This graph allows us to spot the problem. That is that while we gave the manifesto for Plaid Cymru (PCy) a reference score of 3.20, Wordscores gave it 1.91. Removing this manifesto from our data-set would thus improve our estimates.
+
+Apart from positioning the texts, we can also have a look at the words themselves. We can do this with the `textplot_scale1d` command, for which we also specify some words to highlight:
+
+```{r, tidy=TRUE, tidy.opts = list(width.cutoff = 60)}
+library(quanteda.textplots)
+
+textplot_scale1d(ws, margin = "features", highlighted =c("british","vote", "europe", "taxes"))
+```
+
+Finally, we can have a look at the confidence intervals around the scores we created. For this, we use the same command as above, though instead of specifying `features` (referring to the words), we specify `texts`. Note that we can only do this for the MV scores, as only here we also calculated the standard errors:
+
+```{r, tidy=TRUE, tidy.opts = list(width.cutoff = 60)}
+textplot_scale1d(pred_mv, margin = "documents")
+```
+
+Note that we can also make this graph ourselves. This requires some data-wrangling using the ``dplyr`` package. This package allows us to use pipes, which are denoted by the ``%>%`` command. This pipe transports an output of a command to another one before saving it. This saves us from constructing too many intermediate data-sets. Thus, here we first bind together the row names of the fit (which denote the documents), the fit itself, and the standard error of the fit (which also includes the lower and upper bound). We then transform this into a tibble (which is similar to a dataframe), rename the first and fifth columns, and finally ensure that all the values (which are still characters), are numeric (and year a factor):
+
+```{r}
+library(dplyr)
+
+data_textplot <- cbind(rownames(as.data.frame(pred_mv$se.fit)), pred_mv$fit, pred_mv$se.fit) %>%
+  as_tibble() %>%
+  rename(id = 1,
+         se = 5) %>%
+  mutate(fit = as.numeric(fit),
+         lwr = as.numeric(lwr),
+         upr = as.numeric(upr),
+         se = as.numeric(se),
+         year = as.factor(stringr::str_sub(id, start = 9, end = 12)))
+```
+
+If we now look at our ``data_textplot`` object, we see that we have all the data we need: the fit (the average value), the lower and upper bounds, the year and the id that tells us with which party and year we are dealing. The only thing that we perhaps can do is to give the parties slightly better names. To see the current ones, type ``data_textplot$id`` in the console. We can then give them different names (just ensure that the order remains the same). We then sort them in decreasing order based on their fit:
+
+```{r}
+data_textplot$id <- as.character(c("CON 2001", "LAB 2001", "LD 2001", "PCY 2001", "SNP 2001", "CON 2005","LAB 2005", "LD 2005","PCY 2005", "SNP 2005"))
+data_textplot$id <- with(data_textplot,  reorder(id, fit))
+```
+
+Then, we can plot this data using ```ggplot```:
+
+```{r}
+ggplot() +
+  geom_point(data = data_textplot, aes(x = fit, y = id, colour = year)) +
+  geom_errorbarh(data = data_textplot, aes(xmax = upr, xmin = lwr,  y = id, colour = year), height = 0) +
+  theme_classic() +
+  scale_colour_manual(values = c("#ffa600", "#ff6361"),
+                      name = "Years:",
+                      breaks = c("2001", "2005"),
+                      labels = c("2001", "2005")) +
+  labs(title = "Left-Right Distribution of UK Party Manifestos",
+       subtitle = "with 95% confidence intervals",
+       x = "Left - Right Score",
+       y = NULL) +
+  theme_classic()+
+  theme(plot.title = element_text(size = 20, hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5),
+        legend.position = "top")
+```
+
+
+## Wordfish
+
+Different from Wordscores, for Wordfish we do not need any reference text. Instead of this, the method using a model (based on a Poisson distribution) to calculate the scores for the texts. The only thing we have to tell Wordfish is which texts define the extremes of our scale. 
+
+Here, we take the SNP party manifesto as the most left-wing (text 5), and the Conservative manifesto as the most right-wing (text 1). Before we run the model, we set a seed as the model draws random numbers and we want our work to be replicable:
+
+```{r, tidy=TRUE, tidy.opts = list(width.cutoff = 60), message = FALSE}
+set.seed(42)
+
+wordfish <- textmodel_wordfish(data_manifestos_dfm, dir = c(5,1))
+summary(wordfish)
+```
+
+Here, *theta* gives us the position of the text. As with Wordscores, we can also calculate the confidence intervals (note that *theta* is now called *fit*):
+
+```{r, tidy=TRUE, tidy.opts = list(width.cutoff = 60), message=FALSE,warning=FALSE}
+pred_wordfish <- predict(wordfish, interval = "confidence")
+pred_wordfish
+```
+
+As with Wordscores, we can also plot graphs for Wordfish, using the same commands. The first graph we will again be looking at is the distribution of the words, which here forms an "Eifel Tower" like graph:
+
+```{r, tidy=TRUE, tidy.opts = list(width.cutoff = 60), message=FALSE,warning=FALSE}
+textplot_scale1d(wordfish, margin = "features", highlighted = c("british","vote","europe","election"))
+```
+
+And then we can do the same for the documents as well. Note that we can also make a similar graph to the one we made ourselves above (just replace ``pred_mv`` with ``pred_wordfish``):
+
+```{r, tidy=TRUE, tidy.opts = list(width.cutoff = 60), message=FALSE,warning=FALSE}
+textplot_scale1d(wordfish, margin = "documents")
+```
