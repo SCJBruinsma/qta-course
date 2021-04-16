@@ -341,13 +341,60 @@ div.tocify {
 <hr />
 <div id="image" class="section level2">
 <h2>Image</h2>
-<p><code>&lt;img src="figures/observers.png" width="350px"&gt;</code></p>
+<p><img src="figures/observers.png" style="width:75.0%" /></p>
 <p><br></p>
 </div>
 <div id="r-script" class="section level2">
 <h2><code>R</code> script</h2>
-<p>You can source an R script. For example:</p>
-<pre class="r"><code>source(&quot;files/example_script.R&quot;)</code></pre>
+<p>Here is an R Script:</p>
+<pre class="r"><code>## Function to Clean Texts
+
+library(stringr) # install.packages(&#39;stringr&#39;)
+library(stopwords) # install.packages(&#39;stopwords&#39;)
+
+vector1 &lt;- &quot;This is the first of our character vectors&quot;
+nchar(vector1)</code></pre>
+<pre><code>## [1] 42</code></pre>
+<pre class="r"><code>vector2 &lt;- c(&quot;This is an example&quot;, &quot;This is another&quot;, &quot;And so we can go on.&quot;)
+length(vector2)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>stopwords_snowball &lt;- paste(stopwords::stopwords(&quot;en&quot;, source = &quot;snowball&quot;), collapse = &#39;\\b|\\b&#39;)
+stopwords_snowball &lt;- paste0(&#39;\\b&#39;, stopwords_snowball, &#39;\\b&#39;)
+
+vector1 &lt;- str_replace_all(vector1, stopwords_snowball, &#39; &#39;)
+vector1</code></pre>
+<pre><code>## [1] &quot;This     first     character vectors&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="load-some-data" class="section level2">
+<h2>Load some data</h2>
+<p>Here we load some data:</p>
+<pre class="r"><code>data &lt;- read.csv(&quot;files/reliability_results.csv&quot;)
+summary(data)</code></pre>
+<pre><code>##      coder1           coder2          coder3          coder4      
+##  Min.   : 0.000   Min.   : 1.00   Min.   : 1.00   Min.   : 0.000  
+##  1st Qu.: 4.000   1st Qu.: 9.00   1st Qu.: 6.00   1st Qu.: 4.000  
+##  Median :10.000   Median :11.00   Median :11.00   Median :10.000  
+##  Mean   : 9.451   Mean   :11.38   Mean   :10.76   Mean   : 8.822  
+##  3rd Qu.:14.000   3rd Qu.:15.00   3rd Qu.:14.25   3rd Qu.:11.000  
+##  Max.   :19.000   Max.   :19.00   Max.   :19.00   Max.   :19.000  
+##                                                   NA&#39;s   :1       
+##      coder5           coder6          coder7          coder8    
+##  Min.   : 0.000   Min.   : 0.00   Min.   : 0.00   Min.   : 0.0  
+##  1st Qu.: 3.000   1st Qu.: 6.00   1st Qu.: 9.00   1st Qu.: 6.0  
+##  Median :10.000   Median :11.00   Median :11.00   Median :11.0  
+##  Mean   : 9.085   Mean   :10.55   Mean   :11.39   Mean   :10.1  
+##  3rd Qu.:14.000   3rd Qu.:15.00   3rd Qu.:15.00   3rd Qu.:14.0  
+##  Max.   :19.000   Max.   :19.00   Max.   :19.00   Max.   :19.0  
+##                                   NA&#39;s   :9                     
+##      coder9         coder10         coder11          coder12      
+##  Min.   : 0.00   Min.   : 0.00   Min.   : 0.000   Min.   : 2.000  
+##  1st Qu.: 9.00   1st Qu.: 5.50   1st Qu.: 6.000   1st Qu.: 6.000  
+##  Median :11.00   Median :10.00   Median :11.000   Median :10.000  
+##  Mean   :11.04   Mean   :10.09   Mean   : 9.774   Mean   : 9.896  
+##  3rd Qu.:15.00   3rd Qu.:14.00   3rd Qu.:13.000   3rd Qu.:14.000  
+##  Max.   :19.00   Max.   :19.00   Max.   :19.000   Max.   :19.000  
+## </code></pre>
 </div>
 
 

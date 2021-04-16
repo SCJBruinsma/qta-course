@@ -12,15 +12,46 @@ If you are here, you seem to be quite willing to get started with Quantitative T
 
 ## Image
 
-`<img src="figures/observers.png" width="350px">`  
+![](figures/observers.png){width=75%}
 
 <br>
 
 ## `R` script
 
-You can source an R script. For example: 
+Here is an R Script:
 
-```{r source example script, echo=TRUE, warning=FALSE, message=FALSE}
-source("files/example_script.R")
+```{r example, echo=TRUE, warning=FALSE, message=FALSE}
+## Function to Clean Texts
+
+library(stringr) # install.packages('stringr')
+library(stopwords) # install.packages('stopwords')
+
+vector1 <- "This is the first of our character vectors"
+nchar(vector1)
+
+vector2 <- c("This is an example", "This is another", "And so we can go on.")
+length(vector2)
+
+stopwords_snowball <- paste(stopwords::stopwords("en", source = "snowball"), collapse = '\\b|\\b')
+stopwords_snowball <- paste0('\\b', stopwords_snowball, '\\b')
+
+vector1 <- str_replace_all(vector1, stopwords_snowball, ' ')
+vector1
 ```
+
+<br>
+
+## Load some data
+
+Here we load some data:
+
+```{r}
+data <- read.csv("files/reliability_results.csv")
+summary(data)
+```
+
+
+
+
+
 
