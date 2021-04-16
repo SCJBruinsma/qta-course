@@ -1,0 +1,132 @@
+# Getting Ready
+
+The developments over the past 20 years have made research using quantitative text analysis a particularly exciting undertaking. 
+
+First of all, the enormous increase in computing power has made it possible to work with large bodies of text. Secondly, the development of R, a free, open-source, cross-platform statistical software has enabled many researchers and programmers to develop particular packages that implement statistical methods of working with text. In addition, the spread of the Internet has made available in digital format many interesting sources of textual data. To these, we should add the emergence of social media as a massive source of text which is generated daily, by millions of users across the world.
+
+Yet, quantitative text analysis can be a daunting experience for someone who is not familiar with quantitative methods or programming. This book will guide you, with step-by-step explanation of the code, through a series of exercises illustrating a wide range of text analysis methods. Many of these exercises have been given to participants in the ECPR Summer and Winter Schools in Methods and Techniques whom, often, had no prior experience in text analysis, R, or quantitative methods. Therefore, we hope that you will find the exercises easy to understand but also engaging.
+
+Before we start, however, we have to ensure that we have everything that we need in our system. This means: a) installing R, b) installing RStudio, c) installing ```quanteda```, and d) installing several other packages.
+
+## Installing R
+
+R is an open-source programme that allows you to carry out a wide variety of statistical tasks. At its core, it is a modification of the programming languages S and Scheme, making it not only flexible but fast as well. R is available for Windows, Linux and OS X and receives regular updates. In its basic version, R uses a simple command-line interface. To give it a friendlier look, integrated development environments (IDEs) such as RStudio are available. Apart from looking better, these environments also provide some extra practical features.
+
+### R on Windows
+
+To install R on Windows, go to https://cran.r-project.org/bin/windows/base/, download the file, double-click it and run it. Whilst installing, it is best to leave standard options (such as the installation folder) unchanged. This makes it easier for other programmes to know where to find R. Once installed, you will find two shortcuts for R on your desktop. These refer to each of the two versions of R that come with the installation - the 32-bit and the 64-bit version. Which version you need depends on your version of Windows. To see which version of Windows you have, go to This PC (or My Computer, right-click it, and select Properties. Here you should find the version of Windows installed on your PC. If you have the 64-bit version of Windows, you can use both versions. Yet, it is best to use the 64-bit version as this makes better use of the memory of your computer and thus runs smoother. If you have the 32-bit version of Windows, you have to use the 32-bit version of R.
+
+To install RStudio, go to https://www.rstudio.com/products/rstudio/download/, and download the free version of RStudio at the bottom of the page. Make sure to choose **Installers for Supported Platforms** and pick the option for Windows. Once downloaded, install the programme, leaving all settings unchanged. If everything works out fine, RStudio will have found your installation of R and placed a shortcut on the desktop. Whether you have the 32-bit or 64-bit version of Windows or R does not matter for RStudio. What does matter are the slashes. R uses forward slashes (/) instead of the backslashes (``\``) that Windows uses. Thus, whenever you specify a folder or file within R, make sure to invert the slashes. So, you should refer to a file which in Windows has the address **C:\\Users\\Desktop\\data.csv** as **C:/Users/Desktop/data.csv**.
+
+### R on Linux
+
+How to install R on Linux depends on which flavour of Linux you have. In most cases, R is already part of your Linux distribution. You can check this by opening a terminal and typing ``R``. If installed, R will launch in the terminal. If R is not part of your system, run the following in the terminal:
+
+1. sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/'
+2. sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+3. sudo apt update
+4. sudo apt install r-base r-base-core r-recommended r-base-dev
+
+As an alternative, you can use the Synaptic Package Manager and look for the **r-base-dev** and **r-base** packages. Select them, and install them. 
+
+To install RStudio, go to https://www.rstudio.com/products/rstudio/download/. At the bottom of the page, pick the installer that corresponds to your OS. Then, install the file either through an installation manager or via the terminal. After running the launcher, you can find RStudio in the Dash.
+
+### R on macOS
+
+With OS X you must have OS X 10.6 (Snow Leopard) or above. Installing R otherwise is still possible, but you cannot use a certain number of packages (such as some we use here). To check this, click on the Apple icon in the top-left of your screen. Then, click on the "About This Mac" options. A window should then appear that tells you which version of OS X (or macOS) you have. 
+
+To install R, go to https://cran.r-project.org/index.html and click **Download R for (Mac) OS X**. Once there, download the .pkg file that corresponds to your version of OS X and install it. Besides, you have to download the **Clang 6.x compiler** and the **GNU Fortran compiler** from  https://cran.r-project.org/bin/macosx/tools/. Install both and leave the selected options as they are. After the installation, check if R works by launching the programme. 
+
+To install RStudio, go to https://www.rstudio.com/products/rstudio/download/ and download the OSX version at the bottom of the page. After downloading and installing, you can now find RStudio with your other programmes.
+
+### R in the Cloud
+
+Aside form installing R on your own system, you can also choose to use its cloud version. This version is hosted by RStudio on https://rstudio.cloud/. To use it, go to the Sign-Up button in the top-right of the screen. Then, select the *Cloud Free* option and once again select Sign-Up. Then, finish the procedure either by filling in your data, or connecting with your Google or GitHub account. Once done, log-in, and you will arrive at your workspace. To get started, you need to make a new project. To do so, click the *New Project* button which takes you to an instance of RStudio. From here on, the programme functions the same as its Desktop version. Note that everything you do - or packages you install - in the project *remain* in the project. Thus, you will have to re-install them if you want to create a new project. Besides, note that RStudio Cloud is quite dependent on both the number of users on the server and your internet connection. Thus, some actions (such as installing packages) might take longer to run.
+
+## Packages
+
+R on its own is a pretty bare-bones experience. What makes it work are the many packages that exist for it. These packages come in two kinds: officially released or in development. 
+
+### Installing from CRAN
+
+To be officially released, the package needs to be part of CRAN: the Comprehensive R Archive Network. CRAN is a website that collects and hosts all the material R needs, such as the different distributions, packages, and more. Besides, any package on CRAN has gone through a vetting process. This ensures that the package does not contain any major bugs, has README and NEWS files, and has a clear version number. Many official released packages also have additional documentation and motivating examples published in journals such as *The R Journal* and *The Journal of Statistical Software*. Also, a package being published in CRAN allows us to install the package using the ```install.packages``` command, or the **Packages** tab in RStudio. Besides, packages on CRAN often receive updates on a regular basis. These updates can add new features to the package, address bugs, or increase performance. To update your packages, go to the **Packages** tab in RStudio and click on the **Update** button. 
+
+### Installing from GitHub
+
+Some packages that have not yet had an official release are in development on GitHub (https://github.com/). As a result, these packages change very often and are more unstable as their official counterparts. We can, nevertheless, install packages from Github using the ```devtools``` package. To install this, type:
+
+```{r, eval=FALSE}
+install.packages("devtools", dependencies=TRUE)
+```
+
+Here, ``dependencies=TRUE`` ensures that if we need other packages to make ```devtools``` work, R will install these as well. Depending on your operating system, you might have to install some other software for ```devtools``` to work.
+
+On Windows, ```devtools``` requires the *RTools* software. To install this, go to https://cran.r-project.org/bin/windows/Rtools/, download the latest *recommended* version (in green), and install it. Then re-open R again and install ```devtools``` as shown above.
+
+On Linux, how ```devtools``` installs depends on the flavour of Linux that you have. Most often, installing it as shown above will work fine. If not, the problem is most likely a missing package in your Linux distribution. To address this, close R, open a terminal and type:
+
+1. sudo apt-get update
+2. sudo apt-get upgrade
+3. sudo apt install build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
+4. Close the terminal, open R, and install ```devtools``` as shown above.
+
+On OSX (or macOS), ```devtools``` requires the *XCode* software. To install this, follow these steps:
+
+1. Launch the terminal (which you can find in /Applications/Utilities/), and type:
+2. In the terminal, type: **xcode-select --install**
+3. A software update window should pop up. Here, click "Install" and agree to the Terms of Service.
+4. Go to R and install ```devtools``` as shown above.
+
+## Quanteda
+
+While we will be using several different packages to run quantitative text analysis, we will mostly use ```quanteda``` (@Benoit2018). ```quanteda``` integrates many of the text analysis functions of R that were before spread out over many different packages (see, for example @Welbers2017). Besides, it is easy to combine with other packages, has simple and logical commands, and a well-maintained website (www.quanteda.io).
+
+The current version of ```quanteda``` as of writing is ```packageVersion("quanteda")```. This version works best with R version 4.0.1 or higher. To check if your system has this, type ```R.Version()``` in your console. The result will be a list. Look for ```$version.string``` to see which version number your version of R is. If you do not have the latest version, see the steps above on how to download this. 
+
+To install the package, type:
+
+```{r, eval=FALSE}
+install.packages("quanteda", dependencies=TRUE)
+```
+
+Note that because we wrote ```dependencies=TRUE```, this command also installed three other ```quanteda``` helper packages that serve to expand upon the basic tools that are already within ```quanteda```. In the future, more of these helper packages will be added to expand the package even more. Yet, before these packages get an official release, we can already find them, in development, on GitHub. Here, we install two of them - ```quanteda.classifiers``` which we will use for supervised learning methods, and ```quanteda.dictionaries``` which we will use for dictionary analysis:
+
+```{r, eval=FALSE}
+library(devtools)
+install_github("quanteda/quanteda.classifiers", dependencies = TRUE)
+install_github("kbenoit/quanteda.dictionaries", dependencies = TRUE)
+```
+
+Apart from ```quanteda``` we then need these other packages as well:
+
+```{r, eval=FALSE}
+install_github("mikegruz/kripp.boot", dependencies = TRUE)
+install.packages("ca", dependencies = TRUE)
+install.packages("combinat", dependencies = TRUE)
+install.packages("DescTools")
+install.packages("factoextra", dependencies = TRUE)
+install.packages("Hmisc", dependencies = TRUE)
+install.packages("httr", dependencies = TRUE)
+install.packages("jsonlite")
+install.packages("manifestoR", dependencies = TRUE)
+install.packages("readr", dependencies = TRUE)
+install.packages("readtext", dependencies = TRUE)
+install.packages("RTextTools", dependencies = TRUE)
+install.packages("R.temis", dependencies = TRUE)
+install.packages("rvest", dependencies = TRUE)
+install.packages("seededlda", dependencies = TRUE)
+install.packages("tidyverse", dependencies = TRUE)
+```
+
+After installation, you will find these packages, as well as the ```quanteda``` and ```devtools``` packages, under the **Packages** tab in RStudio.
+
+## Issues, Bugs and Errors
+
+As it is free software, errors are not uncommon in R. Often they arise when you misspell the code or use the wrong code for the job at hand. In these cases, R prints a message (in red) telling you why it cannot do what you ask of it. Sometimes, this message is quite clear, such as telling you to install an extra package. Other times, it is more complicated and requires some extra work. In these cases, there are four questions you can ask yourself:
+
+1. Did I load all the packages I need?
+2. Are all packages up-to-date?
+3. Did I spell the commands correct?
+4. Is the data in the right shape or format?
+
+If none of these provides a solution, you can always look up online if others have run into the same issue. Often, copy-pasting your error into a search engine can provide you with other instances, and most often a solution. One well-known place for solutions is Stack Overflow (https://stackoverflow.com/). Here, you can share your problem with others and see if someone can offer a solution. Make sure though to read through the problems already posted first, to ensure that you do not post the same problem twice.

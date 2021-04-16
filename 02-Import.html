@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>02-Import.utf8</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">HOME</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="01-Install.html">Install</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="preparing-the-data" class="section level1">
+<h1>Preparing the Data</h1>
+<p>No analysis is possible unless we have some data to work with. In the following exercises, we will look at five different ways to get textual data into R: a) by using .pdf files, b) by using .txt files, c) by using .csv files, d) by using web scraping, and e) by using an API. Before we get to these methods, we will look at how R handles text and how we can work with it.</p>
+<div id="text-in-r" class="section level2">
+<h2>Text in R</h2>
+<p>R sees any form of text as a type of characters vector. In their simplest form, these vectors only have a single character in it. At their most complicated, they can contain many sentences or even whole stories. To see how many characters a vector has, we can use the <code>nchar</code> function:</p>
+<pre class="r"><code>vector1 &lt;- &quot;This is the first of our character vectors&quot;
+nchar(vector1)</code></pre>
+<pre><code>## [1] 42</code></pre>
+<pre class="r"><code>length(vector1)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<p>This example also shows the logic of R. First, we assign the text we have to a certain object. We do so using the <code>&lt;-</code> arrow. This arrow points from the text we have to the object R stores it in, which we here call <code>vector1</code>. We then ask R to give us the number of characters inside this object, 40 in this case. The <code>length</code> command returns something else, namely 1. This means that we have a single sentence, or word, in our object. If we want to, we can place more sentences inside our object using the <code>c()</code> option:</p>
+<pre class="r"><code>vector2 &lt;- c(&quot;This is an example&quot;, &quot;This is another&quot;, &quot;And so we can go on.&quot;)
+length(vector2)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>nchar(vector2)</code></pre>
+<pre><code>## [1] 18 15 20</code></pre>
+<pre class="r"><code>sum(nchar(vector2))</code></pre>
+<pre><code>## [1] 53</code></pre>
+<p>Another thing we can do is extract certain words from a sentence. For this, we use the <code>substr()</code> function. With this function, R gives us all the characters that occur between two specific positions. So, when we want the characters between the 4th and 10th characters, we write:</p>
+<pre class="r"><code>vector3 &lt;- &quot;This is yet another sentence&quot;
+substr(vector3, 4, 10)</code></pre>
+<pre><code>## [1] &quot;s is ye&quot;</code></pre>
+<p>We can also split a character vector into smaller parts. We often do this when we want to split a longer text into several sentences. To do so, we use the <code>strsplit</code> function:</p>
+<pre class="r"><code>vector3 &lt;- &quot;Here is a sentence - And a second&quot;
+parts1 &lt;- strsplit(vector3, &quot;-&quot;)
+parts1</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;Here is a sentence &quot; &quot; And a second&quot;</code></pre>
+<p>If we now look in the Environment window, we will see that R calls <code>parts1</code> a list. This is another type of object that R uses to store information. We will see it more often later on. For now, it is good to remember that lists in R can have many vectors (the layers of the list) and that in each of these vectors we can store many objects. Here, our list has only a single vector. To create a longer list, we have to add more vectors, and then join them together, again using the <code>c()</code> command:</p>
+<pre class="r"><code>vector4 &lt;- &quot;Here is another sentence - And one more&quot;
+parts2 &lt;- strsplit(vector4, &quot;-&quot;)
+parts3 &lt;- c(parts1, parts2)</code></pre>
+<p>We can now look at this new list in the Environment and check that it indeed has two elements. A further thing we can do is to join many vectors together. For this, we can use the <code>paste</code> function. Here, the <code>sep</code> argument defines how R will combine the elements:</p>
+<pre class="r"><code>fruits &lt;- paste(&quot;oranges&quot;, &quot;lemons&quot;, &quot;pears&quot;, sep = &quot;-&quot;)
+fruits</code></pre>
+<pre><code>## [1] &quot;oranges-lemons-pears&quot;</code></pre>
+<p>Note that we can also use this command that paste objects that we made earlier together. For example:</p>
+<pre class="r"><code>sentences &lt;- paste(vector3, vector4, sep = &quot;.&quot;)
+sentences</code></pre>
+<pre><code>## [1] &quot;Here is a sentence - And a second.Here is another sentence - And one more&quot;</code></pre>
+<p>Finally, we can change the case of the sentence. To do this, we can use <code>tolower</code> and <code>toupper</code>:</p>
+<pre class="r"><code>tolower(sentences)</code></pre>
+<pre><code>## [1] &quot;here is a sentence - and a second.here is another sentence - and one more&quot;</code></pre>
+<pre class="r"><code>toupper(sentences)</code></pre>
+<pre><code>## [1] &quot;HERE IS A SENTENCE - AND A SECOND.HERE IS ANOTHER SENTENCE - AND ONE MORE&quot;</code></pre>
+<p>Again, we can also run the same command when we have more than a single element in our vector:</p>
+<pre class="r"><code>sentences2 &lt;- c(&quot;This is a piece of example text&quot;, &quot;This is another piece of example text&quot;)
+toupper(sentences2)</code></pre>
+<pre><code>## [1] &quot;THIS IS A PIECE OF EXAMPLE TEXT&quot;      
+## [2] &quot;THIS IS ANOTHER PIECE OF EXAMPLE TEXT&quot;</code></pre>
+<pre class="r"><code>tolower(sentences2)</code></pre>
+<pre><code>## [1] &quot;this is a piece of example text&quot;      
+## [2] &quot;this is another piece of example text&quot;</code></pre>
+<p>And that is it. As you can see, the options for text analysis in basic R are rather limited. This is why packages such as <code>quanteda</code> exist in the first place. Note though, that even <code>quanteda</code> uses the same logic of character vectors and combinations that we saw here.</p>
+</div>
+<div id="import-.pdf-files" class="section level2">
+<h2>Import .pdf Files</h2>
+<p>One of the most popular formats for digital texts is the portable document format (.pdf). To read .pdf files into R, we need two packages. The <code>pdftools</code> package to convert the .pdf files into .txt files, and the <code>readtext</code> package to read the .txt files into R. Note that this only works if the .pdf files are <em>readable</em>. This means that we can select (and copy-paste) the text in them. Thus, <code>readtext</code> does not work with .pdf files that the text in them cannot be selected (this is most likely because the pages of the document were scanned as images before turned into a .pdf file). If we have a .pdf file of this type, one solution is to use the <code>tesseract</code> package, which can use optical character recognition technology (OCR) to fix this issue.</p>
+<p>To import the .pdf files, we start by loading the required libraries into R:</p>
+<pre class="r"><code>library(pdftools)
+library(readtext)</code></pre>
+<p>Then, we go to our working directory (to see where this is, type <code>getwd()</code> into the Console). Here, we make two folders: one in which to store the .pdf files - called <em>PDF</em> - and another new and empty folder in which to store the .txt files. We call this one <em>Texts</em>. Ensure that all the .pdf files are in the <em>PDF</em> folder. Then, we tell R about these folders:</p>
+<pre class="r"><code>setwd(&quot;Your Working Directory&quot;)
+pdf_directory &lt;- paste0(getwd(), &quot;/PDF&quot;)
+txt_directory &lt;- paste0(getwd(), &quot;/Texts&quot;)</code></pre>
+<p>Then, we ask R for a list of all the files in the .pdf directory. This is both to ensure that we are not overlooking anything and to tell R which files are in the folder. Here, setting <code>recurse=FALSE</code> means that we only list the files in the main folder and not any files that are in other folders in this main folder.</p>
+<pre class="r"><code>files &lt;- list.files(pdf_directory, pattern = &quot;.pdf&quot;, recursive = FALSE, 
+    full.names = TRUE)
+
+files</code></pre>
+<p>While we could convert a single document at a time, more often we have to deal with more than one document. To read all documents in at once, we have to write a little function. This function does the following. First, we tell R to make a new function that we label <code>extract</code>, and as input give it an element we call <code>filename</code>. This filename is at this point an empty element, but to which we will later refer the files we want to extract. Then, we tell it to print the file name to ensure that we are working with the right files while the function is running. In the next step, we tell it to try to read this filename using the <code>pdf_text</code> function and save the result as a file called <code>text</code>. Afterwards, we tell it to do so for each of the files that end on .pdf that are in the element <code>files</code>. Then, we have it write this text file to a new file. This file is the extracted .pdf in .txt form:</p>
+<pre class="r"><code>extract &lt;- function(filename) {
+    print(filename)
+    try({
+        text &lt;- pdf_text(filename)
+    })
+    title &lt;- gsub(&quot;(.*)/([^/]*).pdf&quot;, &quot;\\2&quot;, filename)
+    write(text, file.path(txt_directory, paste0(title, &quot;.txt&quot;)))
+}</code></pre>
+<p>We then use this function to extract all the pdf files in the <code>pdf_directory</code> folder. To do so, we use a <code>for</code> loop. The logic of this loop is that for each individual <code>file</code> in the element <code>files</code>, we run the <code>extract</code> function we created. This will create an element called <code>file</code> for the file R is currently working on, and will create the .txt files in the <code>txt_directory</code>:</p>
+<pre class="r"><code>for (file in files) {
+    extract(file)
+}</code></pre>
+<p>We can now read the .txt files into R. To do so, we use <code>paste0(txt_directory, "*")</code> to tell <code>readtext</code> to look into our <code>txt_directory</code>, and read any file in there. Besides this, we need to specify the encoding. Most often, this is <strong>UTF-8</strong>, though sometimes you might find <strong>latin1</strong> or <strong>Windows-1252</strong> encodings. While <code>readtext</code> will convert all these to <strong>UTF-8</strong>, you have to specify the original encoding. To find out which one you need, you have to look into the properties of the .txt file.</p>
+<p>Assuming our texts are in UTF-8 encoding, we run:</p>
+<pre class="r"><code>data_texts &lt;- readtext(paste0(txt_directory, &quot;*&quot;), encoding = &quot;UTF-8&quot;)</code></pre>
+<p>The result of this is a data frame of texts, which we can transform into a corpus for use in <code>quanteda</code> or keep as it is for other types of analyses.</p>
+</div>
+<div id="import-.txt-files" class="section level2">
+<h2>Import .txt Files</h2>
+<p>In case that we already have the .txt files somewhere, we can make the above process a bit easier, and begin at the last step:</p>
+<pre class="r"><code>library(readtext)
+
+txt_directory &lt;- paste0(getwd(), &quot;/Texts&quot;)
+data_texts &lt;- readtext(paste0(txt_directory, &quot;*&quot;), encoding = &quot;UTF-8&quot;)</code></pre>
+</div>
+<div id="import-.csv-files" class="section level2">
+<h2>Import .csv Files</h2>
+<p>We can also choose not to import the texts into R in a direct fashion, but import a .csv file with word counts instead. One way to generate these counts is by using JFreq <span class="citation">[@Lowe2011b]</span>. This is a useful stand-alone programme written in Java that generates a .csv file where the rows represent the documents and the columns represent the individual words contained in the documents. The cells therefore, contain the wordcounts for each word within each document. JFreq also allows performing some basic pre-processing. JFreq is not actively maintained, but is available at <a href="https://conjugateprior.org/software/jfreq/" class="uri">https://conjugateprior.org/software/jfreq/</a>.</p>
+<p>To use JFreq, open the programme and drag and drop all the documents you want to process into the window of the programme. Once you do this, the document file names will appear in the document window. Then, you can choose from several pre-processing options. Amongst these are options to make all words lowercase or remove numbers, currency symbols, or stop words. The latter are words that often appear in texts which do not carry an important meaning. These are words such as <code>and'',</code>or’’ and ``but’’. As stop words are language-specific and often context-specific as well, we need to tell JFreq what words are stop words. We can do so by putting all the stop words in a separate .txt file and load it in JFreq. You can also find many lists of stopwords for different languages online. For instance, many different lists of stopwords in English are available in this GitHub page: <a href="https://github.com/igorbrigadir/stopwords" class="uri">https://github.com/igorbrigadir/stopwords</a> Finally, we can apply a stemmer which reduces words such as Europe and European to a single Europ* stem. JFreq allows us to use pre-defined stemmers by choosing the relevant language from a drop-down menu. In the following screenshot, you can see the JFreq at work importing the .txt files of a number of election manifestos.</p>
+<p><img src="figures/jfreq.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Note that here the encoding is UTF-8 while the locale is English (UK). Once we have specified all the options we want, we give a name for the output folder and press <em>Process</em>. Now we go to that folder we named and copy-paste the ``data.csv’’ file into your Working Directory. In R, we then run the following:</p>
+<pre class="r"><code>data_manifestos &lt;- read.csv(&quot;data.csv&quot;, row.names = 1, header = TRUE)</code></pre>
+<p>By specifying <code>row.names=1</code>, we store the information of the first column in the data frame itself. This column, containing the names of the documents now belongs to the object of the data frame and does not appear as a separate column. The same is true for <code>header=TRUE</code> which ensures that the first row gives names to the columns (in this case containing the words).</p>
+</div>
+<div id="import-using-web-scraping" class="section level2">
+<h2>Import using Web Scraping</h2>
+<p>If our text is online (e.g. as part of a website) we can also choose to get it from there without copying it into a .txt file first. To do so, we have to employ web scraping. The logic of web scraping is that we use the structure of the underlying HTML document to find and download the text we want. Note though that not all websites encourage (or even allow) scraping. So, do have a look at their disclaimer before we do so. You can do this by either checking the website’s <em>terms and condition</em> page, or the robots.txt file that you can usually find appended at the home page (e.g. <a href="https://www.facebook.com/robots.txt" class="uri">https://www.facebook.com/robots.txt</a> ).</p>
+<p>In the following example we will see how one can download information from the Internet Movie Database (IMDb): <a href="https://www.imdb.com" class="uri">https://www.imdb.com</a> Note that the IMDb does not allow you to do any web scraping, so the following example is given for illustration purposes only! If you are interested in analyzing data from IMDB you can download the official datasets that are released by IMDB here: <a href="https://datasets.imdbws.com/" class="uri">https://datasets.imdbws.com/</a> The documentation for these datasets is available here: <a href="https://www.imdb.com/interfaces/" class="uri">https://www.imdb.com/interfaces/</a> If you would like to learn more about web scraping in the context of quantitative text analysis we suggest the textbook by <span class="citation">@Munzert2014</span>.</p>
+<p>In the following example we show how to download the user reviews that appear on the IMDB website. The first command, <code>read_html</code> downloads this whole page. If you look at this page in your browser, you see that there are many other things on there besides the user review. To tell R which part is the text to download, we use the <code>html_nodes</code> command. This command looks for a certain header on the HTML page and starts downloading from there. The <code>html_text</code> command then reads that bit of text and puts it into the object. Note that the <code>%&gt;%</code> command we use here is what we call a <em>pipe</em>. What it does is that it transports the output of one command into another, without saving it to an intermediate object. So here, we first download the HTML, find the right header, and only then save it into an object. Having done this for three reviews, we then bind them together:</p>
+<pre class="r"><code>library(rvest)
+
+review1 &lt;- read_html(&quot;http://www.imdb.com/title/tt1979376/&quot;) %&gt;%
+ html_nodes(&quot;#titleUserReviewsTeaser p&quot;) %&gt;%
+ html_text()
+
+review2 &lt;- read_html(&quot;http://www.imdb.com/title/tt6806448/&quot;) %&gt;%
+ html_nodes(&quot;#titleUserReviewsTeaser p&quot;) %&gt;%
+ html_text()
+
+review3 &lt;- read_html(&quot;http://www.imdb.com/title/tt7131622/&quot;) %&gt;%
+ html_nodes(&quot;#titleUserReviewsTeaser p&quot;) %&gt;%
+ html_text()
+
+reviews_scraping &lt;- c(review1, review2, review3)</code></pre>
+</div>
+<div id="import-from-an-api" class="section level2">
+<h2>Import from an API</h2>
+<p>Instead of importing the online data page-by-page, we can also use special programmes to download lots of data at once. We can do so with an Application Programming Interface (API). The main difference between using an API and regular webscraping is that APIs are specifically designed for this purpose. This means that it is easier for R to read the webpages, and that you can download a large amount of data at once. APIs are offered by many popular web sites like Wikipedia, social networking sites like Twitter and Facebook, newspapers such as <em>The New York Times</em>, and so on.</p>
+<p>While almost all websites can be read by the <code>rvest</code> package, for the APIs you often need a specific package. For example, for Twitter there is the <code>rtweet</code> package, for Facebook <code>rFacebook</code>, and <code>ggmap</code> for Google maps. Also, you often, if not always, need to register first before you can use an API. Note, however, that Facebook has recently taken steps in restricting access to their public APIs for research purposes, which means that research on Facebook users’ posts is no longer an option (see <span class="citation">@Freelon2018</span> and <span class="citation">@Perriam2020</span>).</p>
+<p>Having said this, however, there are many APIs with associated R packages that are made by researchers and for researchers. One such example in the area of quantitative text analysis is the API and <code>manifestoR</code> package developed by the Manifesto Project, a longstanding research project previously known as the Manifesto Research Group (MRG), Comparative Manifestos Project (CMP), and Manifesto Research on Political Representation (MARPOR).</p>
+<p>The Manifesto Project collects the electoral manifestos that have been released by major parties across the OECD countries since 1945, and trains human coders to classify their content using a custom-made coding scheme <span class="citation">[@Volkens2019a]</span>. Using the Manifesto Project API we can download the text of many of these manifestos along with the annotations made by the trained coders (see <span class="citation">@Merz2016</span>). In the following example we do this using the <code>manifestoR</code> package.</p>
+<p>Before you can use the API, you first need to register with the Manifesto Project. For this, go to their website (<a href="https://manifesto-project.wzb.eu/" class="uri">https://manifesto-project.wzb.eu/</a>), click on the <em>Login/Sign-up</em> button, and choose <em>Register</em>. As soon as you then have confirmed your account using the confirmation e-mail, you can then login to your account and go to your profile page. Here you can see your API key, which you can download. Do so, and save the file in your Working Directory. If you have forgotten where that is, type <code>getwd()</code> into the console and R will tell you. To load the manifestos into R we then first have to load the package and set the API key:</p>
+<pre class="r"><code>library(manifestoR)
+mp_setapikey(&quot;manifesto_apikey.txt&quot;)</code></pre>
+<p>R is now set to use the API for whatever we want. For example, let’s download the manifesto (and the corresponding codes) for the FDP in Germany, which has the code 41420 in the Manifesto Project, for the electing in September 2017:</p>
+<pre class="r"><code>corpus_fdp &lt;- mp_corpus(party == 41420 &amp; date == 201709)</code></pre>
+<p>As you can see, the <code>corpus_fdp</code> object now contains all the relevant information.</p>
+<p>So, what do we do when there is no R package available? In that case, we can still get the data into R, but it involves slightly more work. Let’s look at an example using an API from the Police in the United Kingdom (<a href="https://data.police.uk/docs/" class="uri">https://data.police.uk/docs/</a>). If you look at the website, you find that we can get information ranging from street-level crimes to stop-and-searches. If you click any of the links, you can also see what kind of information we will be <em>receiving</em> and what kind of information we need to <em>provide</em>. Let’s start by loading the packages:</p>
+<pre class="r"><code>library(tidyverse)
+library(httr)
+library(jsonlite)</code></pre>
+<p>Let’s see if we can get an overview of all the crimes on a street-level. When on the main page we select <strong>Street level crimes</strong> we find that we have to set the API to <a href="https://data.police.uk/api/crimes-street/all-crime" class="uri">https://data.police.uk/api/crimes-street/all-crime</a>?. Let’s store this address in an object so its easier to work with later:</p>
+<pre class="r"><code>path &lt;- &quot;https://data.police.uk/api/crimes-street/all-crime?&quot;</code></pre>
+<p>We can then build our request. As you can see on the site, the request requires us to specify the latitude and longitude of the place we are interested in and optionally the date. We set these here:</p>
+<pre class="r"><code>request &lt;- GET(url = path,
+query = list(
+lat = 51.523772,
+lng = -0.158539)
+)</code></pre>
+<p>We can then send our request. Here, we do this with the <code>content</code> command, which takes as its input the request we just set up, as well as the way we want our data (in text form) and the encoding (here UTF-8):</p>
+<pre class="r"><code>response &lt;- content(request, as = &quot;text&quot;, encoding = &quot;UTF-8&quot;)</code></pre>
+<p>The result is a JSON object that you can see in the environment. While JSON (JavaScript Object Notation) is a generic way in which information is easy to share - and is thus often used - it is not in an ideal form. So, we change the JSON information to a data frame using the following:</p>
+<pre class="r"><code>data_crimes &lt;- fromJSON(response, flatten = TRUE) %&gt;%
+data.frame()</code></pre>
+<p>You can now find all the information in the new <code>data_crimes</code> object, which contains information about the type of crime, location, month etc. This is one example of an API, but there are many others available, such as those of the EU, OpenStreetMaps, Weather Underground, etc. As we can see though, having a package makes things easier, though more limited.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

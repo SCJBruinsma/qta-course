@@ -2,8 +2,10 @@ name: "R Markdown Websites Tutorial"
 navbar:
   title: "HOME"
   left:
-    - text: "Getting Started"
-      href: getting_started.html
+    - text: "Install"
+      href: 01-Install.html
+    - text: "Import"
+      href: 02-Import.html      
 output_dir: "."
 output:
   html_document:
