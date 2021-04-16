@@ -1,0 +1,24 @@
+---
+title: "Quantitative Text Analysis"
+author:  "[Bastiaan Bruinsma](https://github.com/SCJBruinsma)"
+output:
+  html_document:
+    fig_width: 1
+---
+
+----
+
+Welcome to the website for the Quantitative Text Analysis course. To participate in the course, ensure R and Rstudio are installed first. To do so, follow these steps:
+
+1. Install [R](https://cran.r-project.org/)
+2. Install [RStudio](https://www.rstudio.com/products/rstudio/download/)
+3. Install and load [Quanteda](http://quanteda.io/):
+    - ``install.packages(quanteda)``
+    - ``library(quanteda)``
+
+----
+
+**Notes:**
+
+All the files can also be found on the accompanying Github page: https://github.com/SCJBruinsma/qta-files
+

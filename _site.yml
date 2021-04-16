@@ -1,0 +1,13 @@
+name: "R Markdown Websites Tutorial"
+navbar:
+  title: "HOME"
+  left:
+    - text: "Getting Started"
+      href: getting_started.html
+output_dir: "."
+output:
+  html_document:
+    theme: yeti
+    highlight: textmate
+#    include:
+#      after_body: _footer.html
