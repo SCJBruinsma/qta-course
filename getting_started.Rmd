@@ -18,7 +18,7 @@ If you are here, you seem to be quite willing to get started with Quantitative T
 
 ## `R` script
 
-You can source an R script. This is a super powerful way to avoid copy-pasting your analyses. For example: 
+You can source an R script. For example: 
 
 ```{r source example script, echo=TRUE, warning=FALSE, message=FALSE}
 source("files/example_script.R")
