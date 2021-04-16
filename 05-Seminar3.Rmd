@@ -206,3 +206,5 @@ And then we can do the same for the documents as well. Note that we can also mak
 ```{r, tidy=TRUE, tidy.opts = list(width.cutoff = 60), message=FALSE,warning=FALSE}
 textplot_scale1d(wordfish, margin = "documents")
 ```
+
+## References

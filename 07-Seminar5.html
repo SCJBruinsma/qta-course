@@ -361,10 +361,7 @@ div.tocify {
   <a href="07-Seminar5.html">Unsupervised Methods</a>
 </li>
 <li>
-  <a href="08-references.html">References</a>
-</li>
-<li>
-  <a href="09-test.html">Test</a>
+  <a href="08-test.html">Test</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -418,7 +415,8 @@ thin &lt;- 200
 seed &lt;- list(42, 5, 24, 158, 2500)
 nstart &lt;- 5
 best &lt;- TRUE</code></pre>
-<p>The LDA algorithm estimates topic-word probabilities as well as topic-document probabilities that we can extract and visualize. Here, we will start with the topic-word probabilities called <em>beta</em>. To do this, we will use the <code>tidytext</code> package which is part of the tidyverse family of packages. Central to the logic of tidyverse packages is that <code>tidytext</code> does not rely on a document term matrix but represents the data in a long format <span class="citation">(<a href="#ref-Welbers2017" role="doc-biblioref">Welbers, Van Atteveldt, and Benoit 2017, 252</a>)</span>. Although this makes it less memory efficient, such data arrangement lends itself to effective visualisation. The whole logic of these packages is that it works with data which has columns (variables) and rows with single observations. While this is the logic most people know, but it is not always the quickest (and is also not used by <code>quanteda</code>). Yet, it always allows you to look at your data in a way most will understand. First, we run the LDA and have a look at the first 10 terms:</p>
+<p>The LDA algorithm estimates topic-word probabilities as well as topic-document probabilities that we can extract and visualize. Here, we will start with the topic-word probabilities called <em>beta</em>. To do this, we will use the <code>tidytext</code> package which is part of the tidyverse family of packages. Central to the logic of tidyverse packages is that <code>tidytext</code> does not rely on a document term matrix but represents the data in a long format <span class="citation">(<a href="#ref-Welbers2017" role="doc-biblioref">Welbers, Van Atteveldt, and Benoit 2017, 252</a>)</span>. Although this makes it less memory efficient, such data arrangement lends itself to effective visualisation. The whole logic of these packages is that it works with data which has columns (variables) and rows with single observations. While this is the loutput:<br />
+html_document: ogic most people know, but it is not always the quickest (and is also not used by <code>quanteda</code>). Yet, it always allows you to look at your data in a way most will understand. First, we run the LDA and have a look at the first 10 terms:</p>
 <pre class="r"><code>British_lda10 &lt;- LDA(manifestos_dtm, k = 10, method = &quot;Gibbs&quot;, 
     control = list(burnin = burnin, iter = iter, thin = thin, 
         seed = seed, nstart = nstart, best = best))
@@ -588,6 +586,9 @@ head(coordinates)</code></pre>
 ## CAPS_P       0.2182945 -0.5780128  0.50565549 -0.1774480  0.20366075</code></pre>
 <p>Here, remember to look only at the results from the second column onward. Here, we see that one extreme category for the second dimension (Conversational Style) was the use of a colon (:) or possessive proper nouns (such as Hillary’s). This seems to fit well with the idea of conversational style. We can also see that the latter one also corresponds quite well with Dimension 3 (Campaigning Style), while the first one does not.</p>
 <p>Apart from this simple overview, Correspondence Analysis has many more features, some of which are included in the article and which include cluster analysis and heatmaps - which we recommend to take a look at.</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2 class="unnumbered">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Blei2003a" class="csl-entry">
 Blei, David M, Andrew Y Ng, and Michael I Jordan. 2003. <span>“Latent Dirichlet Allocation.”</span> <em>Journal of Machine Learning Research</em> 3 (Jan): 993–1022.

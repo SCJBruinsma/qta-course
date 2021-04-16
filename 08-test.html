@@ -263,10 +263,7 @@ $(document).ready(function () {
   <a href="07-Seminar5.html">Unsupervised Methods</a>
 </li>
 <li>
-  <a href="08-references.html">References</a>
-</li>
-<li>
-  <a href="09-test.html">Test</a>
+  <a href="08-test.html">Test</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -286,16 +283,30 @@ $(document).ready(function () {
 
 
 <p>You can embed Shiny inputs and outputs in your document. Outputs are automatically updated whenever inputs change. This demonstrates how a standard R plot can be made interactive by wrapping it in the Shiny <code>renderPlot</code> function. The <code>selectInput</code> and <code>sliderInput</code> functions create the input widgets used to drive the plot.</p>
+<pre class="r"><code>library(shiny)</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;shiny&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:jsonlite&#39;:
 ## 
 ##     validate</code></pre>
-<div class="form-group shiny-input-container">
-<label class="control-label" id="rows-label" for="rows">How many cars?</label>
-<input id="rows" type="number" class="form-control" value="5"/>
-</div>
-<p><div id="outb70b8cd1bab7d8e8" class="shiny-html-output"></div></p>
+<pre class="r"><code>shinyApp(
+
+  ui = fluidPage(
+    selectInput(&quot;region&quot;, &quot;Region:&quot;,
+                choices = colnames(WorldPhones)),
+    plotOutput(&quot;phonePlot&quot;)
+  ),
+
+  server = function(input, output) {
+    output$phonePlot = renderPlot({
+      barplot(WorldPhones[,input$region]*1000,
+              ylab = &quot;Number of Telephones&quot;, xlab = &quot;Year&quot;)
+    })
+  },
+
+  options = list(height = 500)
+)</code></pre>
+<p><iframe data-deferred-src="app9e3761632885e9e51c4b9933a681b832/?w=&amp;__subapp__=1" width="100%" height="500" class="shiny-frame shiny-frame-deferred"></iframe></p>
 
 
 

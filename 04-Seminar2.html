@@ -361,10 +361,7 @@ div.tocify {
   <a href="07-Seminar5.html">Unsupervised Methods</a>
 </li>
 <li>
-  <a href="08-references.html">References</a>
-</li>
-<li>
-  <a href="09-test.html">Test</a>
+  <a href="08-test.html">Test</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -433,7 +430,7 @@ corpus_manifestos &lt;- corpus_subset(corpus_manifestos, Party==&quot;Lab&quot; 
 <pre><code>##  ...segmenting into words</code></pre>
 <pre><code>##  ...10,488 unique types</code></pre>
 <pre><code>##  ...removing separators, punctuation, symbols, numbers, URLs</code></pre>
-<pre><code>##  ...complete, elapsed time: 0.858 seconds.</code></pre>
+<pre><code>##  ...complete, elapsed time: 0.838 seconds.</code></pre>
 <pre><code>## Finished constructing tokens from 10 documents.</code></pre>
 <p>We can also remove certain stopwords so that words like “and” or “the” do not influence our analysis too much. We can either specify these words ourselves or we can use a list that is already present in R. To see this list, type <code>stopwords("english")</code> in the console. Stopwords for other languages are also available (such as German, French and Spanish). Even more stopwords can be found in the <code>stopword</code> package, that can easily be integrated with <code>quanteda</code>. For now, we will use the English ones. First, however, as all the stopwords are lower-case, we will have to lower case our words as well:</p>
 <pre class="r"><code>data_manifestos_tokens &lt;- tokens_tolower(data_manifestos_tokens, keep_acronyms = FALSE)
@@ -522,36 +519,36 @@ results_dfm</code></pre>
 <pre class="r"><code>sentiment &lt;- convert(results_dfm, to=&quot;data.frame&quot;)
 sentiment</code></pre>
 <pre><code>##                   doc_id negative positive neg_positive neg_negative
-## 1   train/pos/2395_7.txt        6        9            0            0
-## 2   train/pos/7091_9.txt        8       11            0            0
-## 3   train/neg/3541_1.txt       20       17            0            0
-## 4  test/pos/12147_10.txt        2       12            0            0
-## 5  train/neg/12365_1.txt       17       22            0            0
-## 6   train/neg/1049_3.txt        6        6            0            0
-## 7   train/pos/322_10.txt        4        7            0            0
-## 8   train/neg/7427_3.txt       50       41            0            0
-## 9   train/pos/1745_7.txt       20       33            0            0
-## 10   test/neg/5617_2.txt        9        2            0            0
-## 11    test/neg/467_3.txt       15       11            0            0
-## 12   test/pos/4851_7.txt        9       12            0            0
-## 13 train/pos/3664_10.txt       22       20            0            0
-## 14  train/pos/4548_7.txt        2        9            0            0
-## 15   test/neg/4221_3.txt        4       16            0            0
-## 16  test/pos/1414_10.txt        3        4            0            0
-## 17 train/pos/10365_8.txt       11        9            0            0
-## 18 train/neg/11105_1.txt        9        6            0            0
-## 19  train/pos/8850_8.txt       10        6            0            0
-## 20  train/neg/1835_2.txt       14        8            0            0
-## 21  test/neg/11264_3.txt       19       15            0            0
-## 22  train/neg/5517_3.txt       26       19            0            0
-## 23   test/neg/5927_2.txt       12       15            0            0
-## 24  test/neg/10698_1.txt       12        8            0            0
-## 25   test/neg/4802_1.txt        3        5            0            0
-## 26   test/pos/9016_8.txt        3        3            0            0
-## 27  train/neg/6474_3.txt       22       11            0            0
-## 28  test/pos/11936_8.txt       11        8            0            0
-## 29   test/pos/6340_7.txt       16        8            0            0
-## 30    test/pos/852_7.txt        5       10            0            0</code></pre>
+## 1     test/pos/82_10.txt       11        7            0            0
+## 2    test/neg/2978_4.txt        5       13            0            0
+## 3   train/pos/1375_8.txt       24       24            0            0
+## 4   test/pos/11479_8.txt        5       11            0            0
+## 5   test/pos/8917_10.txt        3        7            0            0
+## 6   test/pos/10821_8.txt        0       12            0            0
+## 7   train/neg/1244_2.txt        4        4            0            0
+## 8   train/pos/9930_8.txt        5       11            0            0
+## 9    test/neg/2279_3.txt       17       10            0            0
+## 10  test/pos/9015_10.txt        0       12            0            0
+## 11  train/neg/9066_4.txt        7        6            0            0
+## 12 train/pos/1909_10.txt        2        9            0            0
+## 13   test/neg/8183_3.txt        2        1            0            0
+## 14   test/pos/9702_8.txt       13       10            0            0
+## 15   test/neg/9370_1.txt        8        5            0            0
+## 16 train/pos/8057_10.txt       19       23            0            0
+## 17 train/pos/11916_7.txt        8       11            0            0
+## 18   test/neg/8861_3.txt        3        4            0            0
+## 19  train/neg/6533_2.txt        1        5            0            0
+## 20  test/pos/1028_10.txt        2        4            0            0
+## 21   test/neg/2374_2.txt        4       11            0            0
+## 22  test/pos/2943_10.txt        2       21            0            0
+## 23 train/pos/5503_10.txt       20        9            0            0
+## 24  train/pos/4630_9.txt        8       10            0            0
+## 25  train/neg/7493_3.txt       11        8            0            0
+## 26  test/pos/6055_10.txt        2       11            0            0
+## 27  train/pos/364_10.txt       12        8            0            0
+## 28   train/neg/126_1.txt        8        5            0            0
+## 29  test/pos/4412_10.txt       18       27            0            0
+## 30  train/pos/3757_7.txt       10        5            0            0</code></pre>
 <p>Since movie reviews usually come with some sort of rating (often in the form of stars), we can see if this relates to the sentiment of the review. To do so, we have to take the rating out of the dfm and place it in a new data-frame with the positive and negative sentiments:</p>
 <pre class="r"><code>star_data &lt;- reviews_dfm@docvars$rating
 stargraph &lt;- as.data.frame(cbind(star_data, sentiment$negative, sentiment$positive))
@@ -619,6 +616,9 @@ ggplot() +
  theme_classic()</code></pre>
 <p><img src="04-Seminar2_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p>As can be seen in this particular example, the fact that some documents are much less lengthier than others introduces a lot of uncertainty in the estimates. As evident from the overlapping confidence intervals in the figure, for most reviews, the percentage of negative words is not much different from the percentage of positive words. In other words: the sentiment for these reviews is rather mixed.</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2 class="unnumbered">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Albaugh2013" class="csl-entry">
 Albaugh, Quinn, Julie Sevenans, Stuart Soroka, and Peter John Loewen. 2013. <span>“The Automated Coding of Policy Agendas: A Dictionary-Based Approach.”</span> In <em>6th Annual Comparative Agendas Conference, Antwerp, Belgium</em>.

@@ -360,3 +360,6 @@ KrippAlpha(reliability, method = "nominal")
 ```
 
 Here we see that the number of subjects was 2780 (the number of sentences in the test set), the number of coders 2 (the actual and the predicted codes), and the value of $\alpha$ 0.318 with an interval between 0.297 and 0.337. While this might not look particularly encouraging, when we realise that @Mikhaylov2012a estimate the agreement among trained coders by the Manifesto Project to be between 0.350 and 0.400, then 0.305 is quite a good score for a simple model!
+
+## References
+
