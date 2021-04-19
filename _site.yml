@@ -16,8 +16,8 @@ navbar:
       href: 06-Seminar4.html     
     - text: "Unsupervised Methods"
       href: 07-Seminar5.html       
-    - text: "Test"
-      href: 08-test.html        
+    - text: "Texttricks Package"
+      href: 08-Texttricks.html        
       
 output_dir: "."
 output:
