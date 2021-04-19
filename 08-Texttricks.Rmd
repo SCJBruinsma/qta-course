@@ -13,7 +13,7 @@ The ``texttricks`` package is designed to offer additional tools to an often ove
 
 To install the package within `R`, use the ``install_github`` command that is part of the devtools package:
 
-```{r}
+```{r, eval=FALSE, results=FALSE, warning==FALSE}
 install.packages("devtools")
 library(devtools)
 devtools::install_github("SCJBruinsma/texttricks")

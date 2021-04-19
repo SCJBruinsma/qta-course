@@ -339,7 +339,7 @@ div.tocify {
   <a href="07-Seminar5.html">Unsupervised Methods</a>
 </li>
 <li>
-  <a href="08-test.html">Test</a>
+  <a href="08-Texttricks.html">Texttricks Package</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -360,14 +360,9 @@ div.tocify {
 
 <p>The <code>texttricks</code> package is designed to offer additional tools to an often overlooked aspect of text analysis: importing the data. All the files for the package can be found on the Github page of the package: <a href="https://github.com/SCJBruinsma/texttricks" class="uri">https://github.com/SCJBruinsma/texttricks</a>.</p>
 <p>To install the package within <code>R</code>, use the <code>install_github</code> command that is part of the devtools package:</p>
-<pre class="r"><code>install.packages(&quot;devtools&quot;)</code></pre>
-<pre><code>## Installing package into &#39;/home/bastiaan/R/x86_64-pc-linux-gnu-library/4.0&#39;
-## (as &#39;lib&#39; is unspecified)</code></pre>
-<pre class="r"><code>library(devtools)</code></pre>
-<pre><code>## Loading required package: usethis</code></pre>
-<pre class="r"><code>devtools::install_github(&quot;SCJBruinsma/texttricks&quot;)</code></pre>
-<pre><code>## Skipping install of &#39;texttricks&#39; from a github remote, the SHA1 (9e68138c) has not changed since last install.
-##   Use `force = TRUE` to force installation</code></pre>
+<pre class="r"><code>install.packages(&quot;devtools&quot;)
+library(devtools)
+devtools::install_github(&quot;SCJBruinsma/texttricks&quot;)</code></pre>
 
 
 
