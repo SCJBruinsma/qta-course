@@ -7,7 +7,6 @@ output:
   html_document:  
     toc: true  
     toc_float: true
-    fig_width: 1       
 ---
 
 No analysis is possible unless we have some data to work with. In the following exercises, we will look at five different ways to get textual data into R: a) by using .pdf files, b) by using .txt files, c) by using .csv files, d) by using web scraping, and e) by using an API. Before we get to these methods, we will look at how R handles text and how we can work with it.
@@ -260,3 +259,5 @@ data.frame()
 ```
 
 You can now find all the information in the new `data_crimes` object, which contains information about the type of crime, location, month etc. This is one example of an API, but there are many others available, such as those of the EU, OpenStreetMaps, Weather Underground, etc. As we can see though, having a package makes things easier, though more limited.
+
+## References

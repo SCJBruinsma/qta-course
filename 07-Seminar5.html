@@ -440,7 +440,7 @@ British_lda10_topics &lt;- tidy(British_lda10, matrix = &quot;beta&quot;)</code>
     mutate(term = reorder(term, beta)) %&gt;%
     ggplot(aes(term, beta, fill = factor(topic))) + geom_col(show.legend = FALSE) + 
     facet_wrap(~topic, scales = &quot;free&quot;) + coord_flip()</code></pre>
-<p><img src="07-Seminar5_files/figure-html/unnamed-chunk-7-1.png" width="96" /></p>
+<p><img src="07-Seminar5_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>What is clear here is that looking at only the words in each topic only says so much. In the first topic, the term “meps” is more important than anything else, and so is “eu” in topic number 10. Also, in topic number six, we see that a bullet symbol causes the highest beta value - which indicates how important it is that we remove this kind of clutter (which we forgot about here).</p>
 <p>Another question we can ask is how much of each topic is in each of the documents. Put in another way: do certain documents talk more about certain topics than others? To see this, we first generate a new data frame with this information, known as the <em>gamma</em> value for each document:</p>
 <pre class="r"><code>British_lda10_documents &lt;- tidy(British_lda10, matrix = &quot;gamma&quot;)</code></pre>
@@ -457,7 +457,7 @@ British_lda10_toptopics %&gt;%
     scale_x_continuous(breaks = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 
         10)) + facet_wrap(~document, scales = &quot;free&quot;) + coord_flip() + 
     theme_classic()</code></pre>
-<p><img src="07-Seminar5_files/figure-html/unnamed-chunk-9-1.png" width="96" /></p>
+<p><img src="07-Seminar5_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Here, we see that the Conservatives talked about topics 10 and 8 a lot (and also 6 in 2014), which makes sense, as these topics cover the EU and trade. The Greens use topic 4 a lot in 2009 (as it is about Green policies), but not in 2014. Also, the liberal topic 7 occurs a lot in 2009 Liberal Democrat texts, but not in their 2014 manifesto.</p>
 <p>An alternative to the above approach is one known as seeded-LDA. This approach uses seed words that can steer the LDA into the right direction. One origin of these seed words can be a dictionary that tells the algorithm which words belong together in various categories. To use it, we will first load the packages and set a seed:</p>
 <pre class="r"><code>library(seededlda)</code></pre>
@@ -529,7 +529,7 @@ ggplot(data=topicsprop_table, aes(x=Var1, y=Freq))+
   labs(x=&quot;Topics&quot;, y=&quot;Topic Percentage&quot;)+
   theme(axis.text = element_text(size=10, angle=45,hjust = 1))+
   theme_classic()</code></pre>
-<p><img src="07-Seminar5_files/figure-html/unnamed-chunk-12-1.png" width="96" /></p>
+<p><img src="07-Seminar5_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
 <div id="correspondence-analysis" class="section level2">
 <h2>Correspondence Analysis</h2>
@@ -559,7 +559,7 @@ tweets &lt;- read_csv(url(urlfile))</code></pre>
 <pre class="r"><code>tweets_mat&lt;-tweets[,2:65]</code></pre>
 <p>We can then run the MCA with the <code>FactoMineR</code> package. For this, we have to give the data-set and the number of dimensions we think are in the data. We can set the latter either by establishing the dimensions as in a regular PCA (for example through a scree plot) or based on theory. Here we combine both and use the 5 dimensions established in the article. In addition, we set a supplementary quantitative variable as <code>quanti.sup=1</code>. As this is a quantitative variable, it is not taken into consideration by the MCA, but does allow us to assess later on how it correlates with each of the five dimensions:</p>
 <pre class="r"><code>mca_tweets &lt;- MCA(tweets_mat, ncp=5, quanti.sup=1)</code></pre>
-<p><img src="07-Seminar5_files/figure-html/unnamed-chunk-16-1.png" width="96" /><img src="07-Seminar5_files/figure-html/unnamed-chunk-16-2.png" width="96" /><img src="07-Seminar5_files/figure-html/unnamed-chunk-16-3.png" width="96" /><img src="07-Seminar5_files/figure-html/unnamed-chunk-16-4.png" width="96" /></p>
+<p><img src="07-Seminar5_files/figure-html/unnamed-chunk-16-1.png" width="672" /><img src="07-Seminar5_files/figure-html/unnamed-chunk-16-2.png" width="672" /><img src="07-Seminar5_files/figure-html/unnamed-chunk-16-3.png" width="672" /><img src="07-Seminar5_files/figure-html/unnamed-chunk-16-4.png" width="672" /></p>
 <p>First, let’s start by looking at the association of the wordlength with the five dimensions:</p>
 <pre class="r"><code>mca_tweets$quanti.sup</code></pre>
 <pre><code>## $coord
@@ -571,7 +571,7 @@ tweets &lt;- read_csv(url(urlfile))</code></pre>
              geom = c(&quot;point&quot;),
              axes = c(2, 3),             
              ggtheme = theme_minimal())</code></pre>
-<p><img src="07-Seminar5_files/figure-html/unnamed-chunk-18-1.png" width="96" /></p>
+<p><img src="07-Seminar5_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>Here, we only plot the points as adding the labels as well will make the picture quite cluttered. In the article, Dimension 2 is identified as “Conversational Style” and Dimension 3 as “Campaigning Style.” The plot thus nicely shows us that some categories belong to one of these dimensions and not to the other. To see for which cases this is mostly the case (the ones that have the most extreme positions), we can have a look at their coordinates:</p>
 <pre class="r"><code>var &lt;- get_mca_var(mca_tweets)
 coordinates &lt;- as.data.frame(var$coord)

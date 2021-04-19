@@ -558,15 +558,15 @@ dataBS &lt;- cbind(dataBS, c0_lo, c0_hi, c01_lo, c01_hi, c02_lo,
 <pre class="r"><code>ggplot(dataBS, aes(per0, coderid)) + geom_point() + geom_errorbarh(aes(xmax = c0_hi, 
     xmin = c0_lo), height = 0.2) + xlab(&quot;Percentage coded to category 0&quot;) + 
     ylab(&quot;Coder ID&quot;) + theme_classic()</code></pre>
-<p><img src="03-Seminar1_files/figure-html/unnamed-chunk-15-1.png" width="96" /></p>
+<p><img src="03-Seminar1_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(dataBS, aes(per01, coderid)) + geom_point() + geom_errorbarh(aes(xmax = c01_hi, 
     xmin = c01_lo), height = 0.2) + xlab(&quot;Percentage coded to category 01&quot;) + 
     ylab(&quot;Coder ID&quot;) + theme_classic()</code></pre>
-<p><img src="03-Seminar1_files/figure-html/unnamed-chunk-16-1.png" width="96" /></p>
+<p><img src="03-Seminar1_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(dataBS, aes(per02, coderid)) + geom_point() + geom_errorbarh(aes(xmax = c02_hi, 
     xmin = c02_lo), height = 0.2) + xlab(&quot;Percentage coded to category 02&quot;) + 
     ylab(&quot;Coder ID&quot;) + theme_classic()</code></pre>
-<p><img src="03-Seminar1_files/figure-html/unnamed-chunk-17-1.png" width="96" /></p>
+<p><img src="03-Seminar1_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>Each figure shows the percentage that each of the coders coded in the respective category of the coding scheme. We thus use the confidence intervals around the estimates to look at the degree of uncertainty around each estimate. We can read the plots by looking if the dashed line is within the confidence intervals for each coder. The larger the coders deviate from the benchmark or standard, the less likely that they understood the coding scheme in the same way. It also means that it is more likely that a coder would have coded the work programme much different from the benchmark coder. Thus, such a sensitivity analysis is like having a single reliability coefficient for each coding category.</p>
 </div>
 <div id="references" class="section level2 unnumbered">

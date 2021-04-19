@@ -7,7 +7,6 @@ output:
   html_document:  
     toc: true  
     toc_float: true
-    fig_width: 1       
 ---
 
 The developments over the past 20 years have made research using quantitative text analysis a particularly exciting undertaking. 
@@ -140,3 +139,6 @@ As it is free software, errors are not uncommon in R. Often they arise when you 
 4. Is the data in the right shape or format?
 
 If none of these provides a solution, you can always look up online if others have run into the same issue. Often, copy-pasting your error into a search engine can provide you with other instances, and most often a solution. One well-known place for solutions is Stack Overflow (https://stackoverflow.com/). Here, you can share your problem with others and see if someone can offer a solution. Make sure though to read through the problems already posted first, to ensure that you do not post the same problem twice.
+
+## References
+

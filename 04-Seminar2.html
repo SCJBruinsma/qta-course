@@ -430,7 +430,7 @@ corpus_manifestos &lt;- corpus_subset(corpus_manifestos, Party==&quot;Lab&quot; 
 <pre><code>##  ...segmenting into words</code></pre>
 <pre><code>##  ...10,488 unique types</code></pre>
 <pre><code>##  ...removing separators, punctuation, symbols, numbers, URLs</code></pre>
-<pre><code>##  ...complete, elapsed time: 0.838 seconds.</code></pre>
+<pre><code>##  ...complete, elapsed time: 0.787 seconds.</code></pre>
 <pre><code>## Finished constructing tokens from 10 documents.</code></pre>
 <p>We can also remove certain stopwords so that words like “and” or “the” do not influence our analysis too much. We can either specify these words ourselves or we can use a list that is already present in R. To see this list, type <code>stopwords("english")</code> in the console. Stopwords for other languages are also available (such as German, French and Spanish). Even more stopwords can be found in the <code>stopword</code> package, that can easily be integrated with <code>quanteda</code>. For now, we will use the English ones. First, however, as all the stopwords are lower-case, we will have to lower case our words as well:</p>
 <pre class="r"><code>data_manifestos_tokens &lt;- tokens_tolower(data_manifestos_tokens, keep_acronyms = FALSE)
@@ -518,37 +518,37 @@ results_dfm</code></pre>
 <p>The next step is to convert the results to a data frame and view them:</p>
 <pre class="r"><code>sentiment &lt;- convert(results_dfm, to=&quot;data.frame&quot;)
 sentiment</code></pre>
-<pre><code>##                   doc_id negative positive neg_positive neg_negative
-## 1     test/pos/82_10.txt       11        7            0            0
-## 2    test/neg/2978_4.txt        5       13            0            0
-## 3   train/pos/1375_8.txt       24       24            0            0
-## 4   test/pos/11479_8.txt        5       11            0            0
-## 5   test/pos/8917_10.txt        3        7            0            0
-## 6   test/pos/10821_8.txt        0       12            0            0
-## 7   train/neg/1244_2.txt        4        4            0            0
-## 8   train/pos/9930_8.txt        5       11            0            0
-## 9    test/neg/2279_3.txt       17       10            0            0
-## 10  test/pos/9015_10.txt        0       12            0            0
-## 11  train/neg/9066_4.txt        7        6            0            0
-## 12 train/pos/1909_10.txt        2        9            0            0
-## 13   test/neg/8183_3.txt        2        1            0            0
-## 14   test/pos/9702_8.txt       13       10            0            0
-## 15   test/neg/9370_1.txt        8        5            0            0
-## 16 train/pos/8057_10.txt       19       23            0            0
-## 17 train/pos/11916_7.txt        8       11            0            0
-## 18   test/neg/8861_3.txt        3        4            0            0
-## 19  train/neg/6533_2.txt        1        5            0            0
-## 20  test/pos/1028_10.txt        2        4            0            0
-## 21   test/neg/2374_2.txt        4       11            0            0
-## 22  test/pos/2943_10.txt        2       21            0            0
-## 23 train/pos/5503_10.txt       20        9            0            0
-## 24  train/pos/4630_9.txt        8       10            0            0
-## 25  train/neg/7493_3.txt       11        8            0            0
-## 26  test/pos/6055_10.txt        2       11            0            0
-## 27  train/pos/364_10.txt       12        8            0            0
-## 28   train/neg/126_1.txt        8        5            0            0
-## 29  test/pos/4412_10.txt       18       27            0            0
-## 30  train/pos/3757_7.txt       10        5            0            0</code></pre>
+<pre><code>##                    doc_id negative positive neg_positive neg_negative
+## 1   train/pos/6260_10.txt        3        3            0            0
+## 2     train/pos/626_9.txt       22       44            0            0
+## 3   train/pos/2099_10.txt        9       12            0            0
+## 4    train/neg/6500_3.txt        7        3            0            0
+## 5       test/neg/20_1.txt        5        1            0            0
+## 6    train/neg/3051_2.txt       18       22            0            0
+## 7    test/neg/10328_1.txt        3        1            0            0
+## 8   train/pos/9655_10.txt       12       27            0            0
+## 9     test/pos/2110_7.txt        5       22            0            0
+## 10     test/neg/139_4.txt       23       19            0            0
+## 11  train/neg/11175_2.txt        7        4            0            0
+## 12   train/neg/3026_1.txt       11        2            0            0
+## 13  train/pos/12170_8.txt       19       51            0            0
+## 14  train/pos/12358_7.txt        3        7            0            0
+## 15    test/neg/8931_1.txt        2       10            0            0
+## 16   train/pos/2918_9.txt        6       10            0            0
+## 17   train/pos/2706_9.txt        2        9            0            0
+## 18   train/pos/238_10.txt        9       26            0            0
+## 19 train/pos/11605_10.txt        6        5            0            0
+## 20    test/pos/7786_7.txt        8       23            0            0
+## 21    test/neg/8853_1.txt       45       25            0            0
+## 22   train/pos/6796_8.txt       14       15            0            0
+## 23    train/neg/238_4.txt        3        8            0            0
+## 24    test/neg/2428_1.txt       12       10            0            0
+## 25 train/pos/10285_10.txt       17       28            0            0
+## 26   train/pos/3470_8.txt        6       14            0            0
+## 27   train/pos/2836_7.txt       18       36            0            0
+## 28   test/neg/10000_4.txt       11       14            0            0
+## 29   train/neg/1315_4.txt       11       12            0            0
+## 30   train/neg/9078_1.txt        7        5            0            0</code></pre>
 <p>Since movie reviews usually come with some sort of rating (often in the form of stars), we can see if this relates to the sentiment of the review. To do so, we have to take the rating out of the dfm and place it in a new data-frame with the positive and negative sentiments:</p>
 <pre class="r"><code>star_data &lt;- reviews_dfm@docvars$rating
 stargraph &lt;- as.data.frame(cbind(star_data, sentiment$negative, sentiment$positive))

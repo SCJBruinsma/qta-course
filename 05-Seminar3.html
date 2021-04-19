@@ -402,6 +402,7 @@ data_manifestos_tokens &lt;- tokens_select(data_manifestos_tokens,
     stopwords(&quot;english&quot;), selection = &quot;remove&quot;)
 
 data_manifestos_dfm &lt;- dfm(data_manifestos_tokens)</code></pre>
+<p><br></p>
 <div id="wordscores" class="section level2">
 <h2>Wordscores</h2>
 <p>The idea of Wordscores is to use reference texts (from which we know the position) to position our virgin texts (from which we do not know the position). Here, we will use the 2001 documents as reference texts and the 2005 documents as virgin texts. Here, we the scale we want to position our documents on is the general left-right scale. Thus, we need to know the positions for the 2001 documents on this. Here, we will use the left-right scale from the 2002 Chapel Hill Expert Survey <span class="citation">(<a href="#ref-Bakker2012a" role="doc-biblioref">Bakker et al. 2012</a>)</span> to do so.</p>
@@ -535,17 +536,17 @@ ggplot(comparison, aes(x=scores, y=pred_lbg)) +
                        values=c(1,3),
                        labels=c(&quot;Line of perfect concordance&quot; , &quot;Reduced major axis&quot;))+
  theme_classic()</code></pre>
-<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-7-1.png" width="96" /></p>
+<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>This graph allows us to spot the problem. That is that while we gave the manifesto for Plaid Cymru (PCy) a reference score of 3.20, Wordscores gave it 1.91. Removing this manifesto from our data-set would thus improve our estimates.</p>
 <p>Apart from positioning the texts, we can also have a look at the words themselves. We can do this with the <code>textplot_scale1d</code> command, for which we also specify some words to highlight:</p>
 <pre class="r"><code>library(quanteda.textplots)
 
 textplot_scale1d(ws, margin = &quot;features&quot;, highlighted = c(&quot;british&quot;, 
     &quot;vote&quot;, &quot;europe&quot;, &quot;taxes&quot;))</code></pre>
-<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-8-1.png" width="96" /></p>
+<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Finally, we can have a look at the confidence intervals around the scores we created. For this, we use the same command as above, though instead of specifying <code>features</code> (referring to the words), we specify <code>texts</code>. Note that we can only do this for the MV scores, as only here we also calculated the standard errors:</p>
 <pre class="r"><code>textplot_scale1d(pred_mv, margin = &quot;documents&quot;)</code></pre>
-<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-9-1.png" width="96" /></p>
+<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Note that we can also make this graph ourselves. This requires some data-wrangling using the <code>dplyr</code> package. This package allows us to use pipes, which are denoted by the <code>%&gt;%</code> command. This pipe transports an output of a command to another one before saving it. This saves us from constructing too many intermediate data-sets. Thus, here we first bind together the row names of the fit (which denote the documents), the fit itself, and the standard error of the fit (which also includes the lower and upper bound). We then transform this into a tibble (which is similar to a dataframe), rename the first and fifth columns, and finally ensure that all the values (which are still characters), are numeric (and year a factor):</p>
 <pre class="r"><code>library(dplyr)
 
@@ -580,7 +581,7 @@ data_textplot$id &lt;- with(data_textplot,  reorder(id, fit))</code></pre>
   theme(plot.title = element_text(size = 20, hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5),
         legend.position = &quot;top&quot;)</code></pre>
-<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-12-1.png" width="96" /></p>
+<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
 <div id="wordfish" class="section level2">
 <h2>Wordfish</h2>
@@ -639,10 +640,10 @@ pred_wordfish</code></pre>
 <p>As with Wordscores, we can also plot graphs for Wordfish, using the same commands. The first graph we will again be looking at is the distribution of the words, which here forms an “Eifel Tower” like graph:</p>
 <pre class="r"><code>textplot_scale1d(wordfish, margin = &quot;features&quot;, highlighted = c(&quot;british&quot;, 
     &quot;vote&quot;, &quot;europe&quot;, &quot;election&quot;))</code></pre>
-<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-15-1.png" width="96" /></p>
+<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>And then we can do the same for the documents as well. Note that we can also make a similar graph to the one we made ourselves above (just replace <code>pred_mv</code> with <code>pred_wordfish</code>):</p>
 <pre class="r"><code>textplot_scale1d(wordfish, margin = &quot;documents&quot;)</code></pre>
-<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-16-1.png" width="96" /></p>
+<p><img src="05-Seminar3_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
 <div id="references" class="section level2 unnumbered">
 <h2 class="unnumbered">References</h2>

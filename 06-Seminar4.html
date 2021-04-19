@@ -594,7 +594,7 @@ ggplot(data = prop_row, aes(x = Code, y = Percentage, fill = Party)) +
     position = &quot;stack&quot;) + scale_y_continuous(expand = c(0, 0)) + 
     theme_classic() + theme(axis.text.x = element_text(angle = 90)) + 
     theme(axis.text.x = element_text(vjust = 0.4))</code></pre>
-<p><img src="06-Seminar4_files/figure-html/unnamed-chunk-21-1.png" width="96" /></p>
+<p><img src="06-Seminar4_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Now, we can see that some parties dominate some categories, while for others the spread is more even. For example, UKIP dominates the categories 406 and 407 - dealing with positive and negative mentions of protectionism, while the Conservatives do the same with category 103 (<em>Anti-Imperialism</em>). Note though, that these are percentages. This means that the reason the Conservatives dominate category 103 is as they have two (quasi)-sentences with that category. The others do not have the category at all (702 on <em>Negative Mentioning of Labour Groups</em> has the same issue). Other categories, such as 403 (<em>Market Regulation</em>) and 502 (<em>Positive Mentions of Culture</em>) are way better spread out over all the parties.</p>
 <p>Another thing we can look at is what part of a party’s manifesto belongs to any of the codes. This can help us answer the question: “what are the parties talking about?” To see this, we have to calculate the column percentages:</p>
 <pre class="r"><code>prop_col &lt;- as.data.frame((prop.table(table(manifesto_data$cmp_code, 
@@ -621,7 +621,7 @@ prop_col$Domain &lt;- factor(prop_col$Domain, levels(prop_col$Domain)[c(2,
     geom_bar(stat = &quot;identity&quot;, position = &quot;stack&quot;) + scale_y_continuous(expand = c(0, 
     0)) + theme_classic() + theme(axis.text.x = element_text(angle = 90)) + 
     theme(axis.text.x = element_text(vjust = 0.4))</code></pre>
-<p><img src="06-Seminar4_files/figure-html/unnamed-chunk-24-1.png" width="96" /></p>
+<p><img src="06-Seminar4_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>Here, we see that the Domain of <em>Welfare and Quality of Life</em> was the most dominant in all the manifestos, with <em>Economy</em> coming second. Also, especially UKIP paid a lot of attention to <em>External Relations</em>, while the Green party paid little attention to the <em>Fabric of Society</em>. In all, this gives us a good idea of what type of data we are actually dealing with.</p>
 <p>Now let’s get back to the classification. For this, we need to transform the corpus from the <code>manifestoR</code> package into a corpus for the <code>quanteda</code> package. To do so, we first have to transform the former into a data frame, and then turn it into a corpus. We then look at the first 10 entries:</p>
 <pre class="r"><code>corpus_data &lt;- mp_corpus(manifestos) %&gt;% 
@@ -666,7 +666,7 @@ ggplot(data = table_class, aes(x = predicted_class, y = actual_class)) +
     ylab(&quot;Actual Class&quot;) + scale_y_discrete(expand = c(0, 0)) + 
     theme_classic() + theme(axis.text.x = element_text(angle = 90)) + 
     theme(axis.text.x = element_text(vjust = 0.4))</code></pre>
-<p><img src="06-Seminar4_files/figure-html/unnamed-chunk-32-1.png" width="96" /></p>
+<p><img src="06-Seminar4_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <p>Here, we can see that a high number of cases are on the diagonal, which indicates that the algorithm did a good job. Yet, it also classified a large number of sentences into the 503 and 504 categories, while they belonged to any of the other categories.</p>
 <p>Besides this, we can also summarize how good the algorithm is by means of Krippendorff’s <span class="math inline">\(\alpha\)</span>. To do so, we take the predicted codes, transform them from factors to numeric values, and store them in an object. Then, we bind them together with the actual codes and place them into a data frame. Finally, we transpose the data frame (so that rows are now columns) and make it into a matrix:</p>
 <pre class="r"><code>predict &lt;- as.numeric(as.character(predicted_class))
