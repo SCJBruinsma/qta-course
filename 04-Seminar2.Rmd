@@ -88,10 +88,14 @@ Then we can plot the results:
 
 ```{r}
 library(ggplot2)
-ggplot(features_plot) + 
+library(plotly)
+
+wordcount <- ggplot(features_plot) + 
  geom_point(aes(x=term, y=frequency)) +
  theme_classic()+
  theme(axis.text.x=element_text(angle=90, hjust=1))
+
+ggplotly(wordcount)
 ```
 
 We can also generate word clouds. As these show all the words we have, we will trim our dfm first to remove all those words that occurred less than 40 times. We can do this with the `dfm_trim` function. Then, we can use this newly trimmed dfm to generate the word cloud:

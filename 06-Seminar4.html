@@ -493,7 +493,7 @@ manifesto_corpus &lt;- mp_corpus(manifestos)</code></pre>
 <p>For now, we are only interested in the (quasi)-sentences the of the manifestos, the codes the coders gave them, and names of the parties. To make everything more clear, we will take these elements from the corpus, combine them into a new data-frame, and remove all the NA values. We do this because otherwise the data would also include the headers and titles of the document, which do not have any codes assigned to them:</p>
 <pre class="r"><code>detach(&quot;package:httr&quot;, unload = TRUE)</code></pre>
 <pre><code>## Warning: &#39;httr&#39; namespace cannot be unloaded:
-##   namespace &#39;httr&#39; is imported by &#39;tidyverse&#39;, &#39;rvest&#39; so cannot be unloaded</code></pre>
+##   namespace &#39;httr&#39; is imported by &#39;tidyverse&#39;, &#39;plotly&#39;, &#39;rvest&#39; so cannot be unloaded</code></pre>
 <pre class="r"><code>text_51320 &lt;- content(manifesto_corpus[[&quot;51320_201505&quot;]])
 text_51620 &lt;- content(manifesto_corpus[[&quot;51620_201505&quot;]])
 text_51110 &lt;- content(manifesto_corpus[[&quot;51110_201505&quot;]])

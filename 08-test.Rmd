@@ -1,13 +1,20 @@
 ---
-title: "Test"
-output: html_document
+title: "Texttricks Package"
+bibliography: library.bib
+biblio-style: apalike
+link-citations: yes
+output:  
+  html_document:  
+    toc: true  
+    toc_float: true
 ---
 
-Here comes the test
+The ``texttricks`` package is designed to offer additional tools to an often overlooked aspect of text analysis: importing the data. All the files for the package can be found on the Github page of the package: https://github.com/SCJBruinsma/texttricks.
 
-```{r, message=FALSE, warning=FALSE, echo=FALSE}
-library(plotly)
-p <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) +
-            geom_bar(position = "dodge")
-ggplotly(p)
+To install the package within `R`, use the ``install_github`` command that is part of the devtools package:
+
+```{r}
+install.packages("devtools")
+library(devtools)
+devtools::install_github("SCJBruinsma/texttricks")
 ```
